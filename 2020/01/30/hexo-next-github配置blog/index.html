@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">7.9k</span>
+            <span class="post-count">8.3k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">32 分钟</span>
+            <span class="post-count">34 分钟</span>
         </span>
     </span>
 </div>
@@ -372,6 +372,9 @@
 <p>关于<code>waifu-tips.js</code>中模型列表等各类内容的配置直接参考项目说明即可。</p>
 <p>需要注意的是，这里<code>&lt;canvas id=&quot;live2d2&quot; style=&quot;top:150px&quot;&gt;&lt;/canvas&gt;</code>和它下一行的内容中，<code>style=top:150px</code>是我自己加的，正常模型不需要加这个。我加它的原因是要用的达达利亚模型画布比模型本身大一圈，自己没法修改，只能调整模型位置让它贴到页面边缘。不确定如果换个尺寸的显示屏，这里会不会又出问题，总之姑且先这样了。</p>
 <p>接下来重新部署网站，就能看到模型了。</p>
+<h3 id="鼠标穿透问题"><a href="#鼠标穿透问题" class="headerlink" title="鼠标穿透问题"></a>鼠标穿透问题</h3><p>在用了很久以后，我发现模型总是会挡住页面的可点击内容，比如目录、文章标题等，估计是因为用的模型尺寸大一圈，有很高一片空白区域。这有些影响使用，于是想试着把模型改成可以鼠标穿透点击的效果。经过各种尝试，目前发现的一个解决方案确实有效，但是会导致无法显示模型的工具栏（有切换模型和回到首页等功能），也就是说只能固定显示一个模型，操作方法如下：打开<code>waifu-tips.js</code>，找到如下代码块：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const waifuStyle = `</span><br><span class="line">#waifu &#123;</span><br><span class="line">$&#123;live2d_settings.waifuEdgeSide&#125;px;</span><br><span class="line">position:fixed;</span><br><span class="line">bottom:0;</span><br><span class="line">z-index:998;</span><br><span class="line">font-size:0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在最后一行<code>font-size:0</code>末尾加个分号，然后增加一行：<code>pointer-events: none</code>，修改后的代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const waifuStyle = `</span><br><span class="line">#waifu &#123;</span><br><span class="line">$&#123;live2d_settings.waifuEdgeSide&#125;px;</span><br><span class="line">position:fixed;</span><br><span class="line">bottom:0;</span><br><span class="line">z-index:998;</span><br><span class="line">font-size:0;</span><br><span class="line">pointer-events: none</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这实际上就是把整个模型改成了不响应鼠标事件的效果，自然就能让鼠标点击穿透到页面的其他链接，但也同时导致工具栏无法响应。目前还没找到其他既能显示工具栏又能鼠标穿透的方法，先这样吧。</p>
 <h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://segmentfault.com/a/1190000018761324" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018761324</a></p>
 <p><a href="https://www.jianshu.com/p/3a05351a37dc" target="_blank" rel="noopener">https://www.jianshu.com/p/3a05351a37dc</a></p>
 <p><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502" target="_blank" rel="noopener">https://blog.csdn.net/nightmare_dimple/article/details/86661502</a></p>
@@ -550,7 +553,11 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/cv">个人简历</a>
+      <a class="nav-item-link" href="/cv-ch">个人简历</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/cv-en">Resume</a>
     </li>
     
   </ul>
