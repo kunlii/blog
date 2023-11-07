@@ -1,6 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>论文记录-Tiered Mechanisms for Blockchain Transaction Fees</title>
+    <url>/2023/11/07/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Tiered%20Mechanisms%20for%20Blockchain%20Transaction%20Fees/</url>
+    <content><![CDATA[<h1 id="Tiered-Mechanisms-for-Blockchain-Transaction-Fees"><a href="#Tiered-Mechanisms-for-Blockchain-Transaction-Fees" class="headerlink" title="Tiered Mechanisms for Blockchain Transaction Fees"></a>Tiered Mechanisms for Blockchain Transaction Fees</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ol>
+<li>证明了以太坊目前使用的交易费机制 EIP-1559 并不具有包容性，并通过实验证明其价格在拥堵期间会横向飙升</li>
+<li>引入了一个能够捕捉区块链系统流量多样性的模型，以及一个能够实施更具包容性的交易政策的分级定价机制</li>
+<li>从形式上证明了我们的机制可以实现稳定的预期价格，我们还提供了实验结果，证明对于低紧迫性交易来说，交易价格可以保持在较低水平，从而使进入区块链的交易类型多样化</li>
+<li>并不一定会牺牲收益，因为由于机制的价格歧视能力，低紧急交易价格的降低可以从高紧急交易中得到补偿<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2></li>
+<li>背景：用户的收益与交易上链时间相关，不同类型应用的交易有不同的紧迫性要求，例如在一个Layer 2支付系统中，DeFi交易更紧急，而结算交易紧迫性较低。理想的交易收费机制自然应该能满足各种应用对不同紧迫性的要求。</li>
+<li>现状：主流交易费方法以价格拍卖为主，这导致网络拥塞时，紧急交易加价，连带非紧急交易也需要加价，这样的系统有失公平。</li>
+<li>问题：让用户指定交易的紧迫度不现实，还需要考虑沟通成本、激励设计等</li>
+<li>本文：分层交易方案<ol>
+<li>动态确定层的数量、每一层的延迟和价格，用户自行选择去哪一层</li>
+<li>提出了一种新型模型，用于捕捉客户对区块链处理的需求，该模型利用单调递减函数将延迟映射为价值，概括一下就是关注了交易延迟导致的用户收益下降</li>
+</ol>
+</li>
+<li>目标：当系统遇到拥堵时，有一种政策可以在多种类型的用户之间平衡服务，由此考虑符合公开共享和商定的多样性政策的交易费机制，例如规定平均将一个区块中 20% 的交易空间用于低急迫性交易</li>
+<li>优势：从流量多样性的角度对分层机制进行了分析，并证明在 “无点质量 “分布的标准假设和预期需求连续的合理假设下，分层机制可以实施丰富多样的政策</li>
+<li>实验：研究分层机制如何收敛到一组价格，以及在需求波动时的表现<ol>
+<li>研究了需求激增超过网络容量一段时间的重要情况</li>
+<li>与 EIP-1559 协议进行了比较</li>
+<li>实验结论：<ol>
+<li>价值不会随时间显著下降的交易（也就是低紧迫度的交易）价格可以保持在较低水平，从而使进入区块链的交易类型多样化，并根据紧急程度进行适当的价格区分。</li>
+<li>EIP-1559 中的价格在整个网络拥堵期间横向飙升。</li>
+<li>研究了系统对收入的英雄，证明分层定价没牺牲收益。<h2 id="Preliminaries"><a href="#Preliminaries" class="headerlink" title="Preliminaries"></a>Preliminaries</h2></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>论文</category>
+      </categories>
+      <tags>
+        <tag>blockchain</tag>
+        <tag>defi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文略读记录</title>
+    <url>/2023/11/07/%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>从今天开始，找到的论文先略读做个记录，再决定是否细看</p>
+<a id="more"></a>
+<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><ol>
+<li>作者、期刊、发表时间：</li>
+<li>关键词：</li>
+<li>研究背景和问题：</li>
+<li>研究方法：</li>
+<li>论文结论：</li>
+<li>创新与贡献：</li>
+<li>我的问题：</li>
+<li>是否详细阅读：</li>
+</ol>
+<h1 id="Cooperative-game-for-coordination-of-a-green-closed-loop-supply-chain"><a href="#Cooperative-game-for-coordination-of-a-green-closed-loop-supply-chain" class="headerlink" title="Cooperative game for coordination of a green closed-loop supply chain"></a>Cooperative game for coordination of a green closed-loop supply chain</h1><ol>
+<li>作者、期刊、发表时间：Tooba Asghari, Ata Allah Taleizadeh, Fariborz Jolai, Mohammad Sadegh Moshtagh, Journal of Cleaner Production, Volume 363, 2022.</li>
+<li>关键词：Environmental responsibility; Inventory; Pricing; Cooperative game theory; Green design.</li>
+<li>研究背景和问题：在绿色闭环供应链中，制造商、零售商和回收商要决定三方在整个供应链过程中的贡献和利润分配。</li>
+<li>研究方法：合作博弈，包括核解机制（NSM）和沙普利值机制（SVM），以及不同的契约结构，包括成本分摊（CS）、收入分摊（RS）和两部分关税（TPT）契约</li>
+<li>论文结论：<ol>
+<li>合作博弈和契约机制都为所有主体提供了双赢的条件</li>
+<li>从供应链的角度看，不同机制有不同的经济效益，零售商更倾向于合作机制，回收商更喜欢契约机制</li>
+<li>消费者的认识对三方也有激励</li>
+<li>回收商二手交易能降低环保产品售价，提高其需求</li>
+</ol>
+</li>
+<li>创新与贡献：<ol>
+<li>考察了 GCLSC 的两种协调策略，并在经济和环境绩效方面比较了这两类策略，对每个成员的场景进行优先级排序，并确定每个机制下的受益人。</li>
+<li>所有三个成员的环境责任被分开考虑</li>
+<li>分别考虑了消费者对绿色制造商、绿色零售商和回收商所做努力的敏感度，并比较了它们对供应链决策的影响。</li>
+<li>除了考虑CLSC文献中常见的废旧绿色产品的收集和回收用于再制造外，还假设收集的一部分产品将作为二手绿色产品在二级市场上供应并在不同场景下考察二手产品交易对会员决策的影响。此外，还考虑了给予退回旧产品的消费者的优惠券对需求函数的影响。</li>
+<li>总的来说就是场景更细致了</li>
+</ol>
+</li>
+<li>我的问题：<ol>
+<li>收益函数的设计</li>
+<li>几个契约具体是怎么做的</li>
+</ol>
+</li>
+<li>是否详细阅读：让学生看一下，也许能用到数据交易方面</li>
+</ol>
+<h1 id="Blockchain-and-Zero-Sum-Game-based-Dynamic-Pricing-Scheme-for-Electric-Vehicle-Charging"><a href="#Blockchain-and-Zero-Sum-Game-based-Dynamic-Pricing-Scheme-for-Electric-Vehicle-Charging" class="headerlink" title="Blockchain and Zero-Sum Game-based Dynamic Pricing Scheme for Electric Vehicle Charging"></a>Blockchain and Zero-Sum Game-based Dynamic Pricing Scheme for Electric Vehicle Charging</h1><ol>
+<li>作者、期刊、发表时间：</li>
+<li>关键词：</li>
+<li>研究背景和问题：</li>
+<li>研究方法：</li>
+<li>论文结论：</li>
+<li>创新与贡献：</li>
+<li>我的问题：</li>
+<li>是否详细阅读：</li>
+</ol>
+]]></content>
+      <categories>
+        <category>论文</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning</title>
     <url>/2023/10/18/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Cooperative%20Multi-Agent%20Game%20Based%20on%20Reinforcement%20Learning/</url>
     <content><![CDATA[<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><ol>
@@ -592,8 +691,8 @@ h_i(\boldsymbol{\lambda},\tilde{\boldsymbol{\theta}})=\max_{\boldsymbol{x}-i}\ma
 <p>接下来看通信开销。每个用户需要向平台和所有其他用户发送传感数据$\tilde{\theta_i}$，向平台发送报价$\lambda_i$，由此可得第一阶段的复杂度是$\mathcal{O}(|\Theta_i|\cdot I)$，第二阶段的复杂度是$\mathcal{O}(N)$。与之相反，参考文献12和13中假设用户的效用函数是全局公开的。我们注意到，12和13中考虑的经典 VCG 型机制需要报告携带无穷维信息的整个效用函数，这会产生难以承受的通信开销。</p>
 <h4 id="信念系统和均衡概念"><a href="#信念系统和均衡概念" class="headerlink" title="信念系统和均衡概念"></a>信念系统和均衡概念</h4><p>尽管阶段1上报的传感数据$\tilde\theta_i$并没有出现在阶段2公式4的收益函数中，但报告的传感数据会影响每个用户的评价（由于评价相互依赖的特点），从而影响用户在阶段2的决策。为了描述这样的特点，我们引入了针对每个用户$i$的信念系统$\beta_i(\cdot|\cdot)$。具体来说，在阶段1中给定报告值$\tilde\theta_{-i}=\left\{\tilde\theta_j\right\}_{j\neq i}$的情况下，每个用户$i$选择一个关于真值$\theta_{-i}=\left\{\theta_j\right\}_{j\neq i}$的信念$\beta_i(\theta_{-i}|\tilde\theta_{-i})$，因此，阶段2中每个用户在其传感数据$\theta_i$和其他用户传感数据$\tilde\theta_{-i}$条件下的后验期望收益是：</p>
 <script type="math/tex; mode=display">
-J_{i}^{\beta_{i}}(\lambda|\theta_{i},\widetilde{\theta}_{-i})=\sum_{\theta_{-i}\in\Theta_{-i}}\bar{U}_{i}(x_{i}^{*}(\lambda)|\theta)\beta_{i}(\theta_{-i}|\widetilde{\theta}_{-i})-h_{i}(\lambda,\widetilde{\theta}). \tag{6}</script><p>因为我们关注所有用户都说真话的均衡，我们考虑下述真实均衡概念：</p>
-<p>定义2：真实完美贝叶斯均衡（PBE）。一个真实PBE是一个三元组$(\widetilde{\theta}^{<em>},\lambda^{</em>}(\widetilde{\theta}^{<em>}),\{\beta_{i}^{</em>}\}_{i\in I})$，使得：</p>
+J_{i}^{\beta_{i}}(\lambda|\theta_{i},\widetilde{\theta}_{-i})=\sum_{\theta_{-i}\in\Theta_{-i}}\bar{U}_{i}(x_{i}^{\ast}(\lambda)|\theta)\beta_{i}(\theta_{-i}|\widetilde{\theta}_{-i})-h_{i}(\lambda,\widetilde{\theta}). \tag{6}</script><p>因为我们关注所有用户都说真话的均衡，我们考虑下述真实均衡概念：</p>
+<p>定义2：真实完美贝叶斯均衡（PBE）。一个真实PBE是一个三元组$(\widetilde{\theta}^{\ast},\lambda^{\ast}(\widetilde{\theta}^{\ast}),\{\beta_{i}^{\ast}\}_{i\in I})$，使得：</p>
 <script type="math/tex; mode=display">
 \lambda_i^*(\widetilde{\theta}^*)\in\arg\max_{\lambda_i\in\mathbb{R}^N},J_i^{\beta_i^*}(\lambda_i,\lambda_{-i}^*(\widetilde{\theta}^*)|\theta_i,\widetilde{\theta}_{-i}^*), \tag{7a}</script><script type="math/tex; mode=display">
 \beta_i^*(\theta_{-i}|\tilde{\theta}_{-i})=\mathbb{I}(\theta_{-i}=\tilde{\theta}_{-i}), \tag{7b}</script><p>其中，$\mathbb{I}(X)$是指示函数，当X为真时该函数取值1，当X为假是该函数取值为0。另一方面，$\tilde\theta^\ast$满足：</p>
@@ -609,7 +708,7 @@ J_{i}^{\beta_{i}}(\lambda|\theta_{i},\widetilde{\theta}_{-i})=\sum_{\theta_{-i}\
 <li>玩家：所有用户</li>
 <li>策略空间：对于每个用户$i$都是$\lambda_{i}\in\mathbb{R}_{+}^{N}$</li>
 <li>支付函数：每个用户$i$都是<script type="math/tex; mode=display">
-J_i^{\boldsymbol{\beta}_i^*}\left(\boldsymbol{\lambda}\Big|\boldsymbol{\theta}_i,\widetilde{\boldsymbol{\theta}}_{-\boldsymbol{i}}\right)=\bar{U}_i\left(\boldsymbol{x}_i^*(\boldsymbol{\lambda})\Big|\boldsymbol{\theta}_i,\widetilde{\boldsymbol{\theta}}_{-\boldsymbol{i}}\right)-\boldsymbol{h}_i\left(\boldsymbol{\lambda},\widetilde{\boldsymbol{\theta}}\right) \tag{10}</script>其中，$x^{<em>}(\lambda)=\{x_{i}^{</em>}(\lambda)\}_{i\in I}$由公式4决定。</li>
+J_i^{\boldsymbol{\beta}_i^*}\left(\boldsymbol{\lambda}\Big|\boldsymbol{\theta}_i,\widetilde{\boldsymbol{\theta}}_{-\boldsymbol{i}}\right)=\bar{U}_i\left(\boldsymbol{x}_i^*(\boldsymbol{\lambda})\Big|\boldsymbol{\theta}_i,\widetilde{\boldsymbol{\theta}}_{-\boldsymbol{i}}\right)-\boldsymbol{h}_i\left(\boldsymbol{\lambda},\widetilde{\boldsymbol{\theta}}\right) \tag{10}</script>其中，$x^{\ast}(\lambda)=\{x_{i}^{\ast}(\lambda)\}_{i\in I}$由公式4决定。</li>
 </ul>
 <p>上述竞价子博弈包含以下均衡概念$\lambda^\ast$：</p>
 <p>定义3（纳什均衡 NE）：博弈 1 的纳什均衡是满足 (7a) 的策略集$\lambda^\ast$。</p>
@@ -4322,11 +4421,11 @@ Rs_{V_i}^\omega=\frac{F_f\omega_{i-1}+B_\omega s_i}{(F_f\omega_{i-1}+B_\omega s_
 <p>所有数据是直接在<code>web.js</code>中写好的，并不是从其他文件读取，且文件开头的<code>var scatter_origin_data</code>其实可以删了。此外，这份文件中的个人和组织项目散点图我并不需要，因此也直接删了。</p>
 <p>接下来将<code>web.js</code>中的数据修改成前面统计好的数据，打开<code>web.html</code>就可以看到图表了。</p>
 <p>由于hexo博客也可以显示echarts，因此我就把图表放这里了。</p>
-<div id="echarts8021" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts5510" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts8021'));
+        var myChart = echarts.init(document.getElementById('echarts5510'));
+
         // 指定图表的配置项和数据
         var option = {
 title: {
@@ -4379,14 +4478,15 @@ title: {
             }
         ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts7352" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts3045" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7352'));
+        var myChart = echarts.init(document.getElementById('echarts3045'));
+
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -4433,14 +4533,15 @@ title: {
             }
         ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts2464" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts8435" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts2464'));
+        var myChart = echarts.init(document.getElementById('echarts8435'));
+
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -4486,6 +4587,7 @@ title: {
             }
         ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
@@ -10116,11 +10218,11 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
 </ol>
 <p>到此为止就可以了，新建一个markdown文件，把下列代码放进去就可以看到本页最下面的echarts示例了。（直接复制粘贴，<strong>不要</strong>放代码块里）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% echarts 400 &#39;85%&#39; %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: &quot;某站点用户访问来源&quot;,</span><br><span class="line">        subtext: &quot;ECharts示例&quot;,</span><br><span class="line">        x: &quot;center&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: &quot;item&quot;,</span><br><span class="line">        formatter: &quot;&#123;a&#125; &lt;br&#x2F;&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        orient: &quot;vertical&quot;,</span><br><span class="line">        x: &quot;left&quot;,</span><br><span class="line">        data: [&quot;直接访问&quot;, &quot;邮件营销&quot;, &quot;联盟广告&quot;, &quot;视频广告&quot;, &quot;搜索引擎&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        show: true,</span><br><span class="line">        feature: &#123;</span><br><span class="line">            mark: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            dataView: &#123;</span><br><span class="line">                show: true,</span><br><span class="line">                readOnly: true</span><br><span class="line">            &#125;,</span><br><span class="line">            restore: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            saveAsImage: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    calculable: true,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name: &quot;访问来源&quot;,</span><br><span class="line">            type: &quot;pie&quot;,</span><br><span class="line">            radius: &quot;55%&quot;,</span><br><span class="line">            center: [&quot;50%&quot;, &quot;60%&quot;],</span><br><span class="line">            data: [</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 335,</span><br><span class="line">                    name: &quot;直接访问&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 310,</span><br><span class="line">                    name: &quot;邮件营销&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 234,</span><br><span class="line">                    name: &quot;联盟广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 135,</span><br><span class="line">                    name: &quot;视频广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 1548,</span><br><span class="line">                    name: &quot;搜索引擎&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
-<div id="echarts4230" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts2241" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts4230'));
+        var myChart = echarts.init(document.getElementById('echarts2241'));
+
         // 指定图表的配置项和数据
         var option = {
     title: {
@@ -10187,6 +10289,7 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
         }
     ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>]]></content>
