@@ -312,6 +312,84 @@ v_{0} \cdot h\left(d_{j}\right)-p_{j} & <v_{0} \cdot h\left(d_{j+1}\right)-p_{j+
 <li>是否详细阅读：让学生看一下，也许能用到数据交易方面</li>
 </ol>
 <h1 id="Blockchain-and-Zero-Sum-Game-based-Dynamic-Pricing-Scheme-for-Electric-Vehicle-Charging"><a href="#Blockchain-and-Zero-Sum-Game-based-Dynamic-Pricing-Scheme-for-Electric-Vehicle-Charging" class="headerlink" title="Blockchain and Zero-Sum Game-based Dynamic Pricing Scheme for Electric Vehicle Charging"></a>Blockchain and Zero-Sum Game-based Dynamic Pricing Scheme for Electric Vehicle Charging</h1><ol>
+<li>作者、期刊、发表时间：R. Kakkar, S. Agrawal, R. Gupta and S. Tanwar, IEEE INFOCOM 2022 - IEEE Conference on Computer Communications Workshops (INFOCOM WKSHPS)</li>
+<li>关键词：Blockchain, Electric vehicle, Zero-sum gametheory, Profit, Payoff, Latency</li>
+<li>研究背景和问题：<ol>
+<li>为了避免电价波动，需要一种合理的充电方案。</li>
+<li>集中式的电动车充电方案面临各类安全问题，如修改攻击、完整性攻击、中间人攻击。因此很多研究提出了基于区块链的充电方案。</li>
+<li>但是现有研究普遍面临延迟、成本效率、系统的最佳回报以及电动汽车和电动汽车的利润等问题，且缺乏对动态收费以获得最佳回报的讨论。</li>
+<li>需要提出一种基于区块链的6G网络动态定价方案，以提高系统的延迟和效率。</li>
+</ol>
+</li>
+<li>研究方法：构建了零和博弈模型，分别列出电动车和充电站的收益函数，然后找均衡。</li>
+<li>论文结论：本文方法在成本效率、盈利能力、低延迟和高可靠性方面优于传统系统。</li>
+<li>创新与贡献：<ol>
+<li>提出了一种安全高效的区块链，与基于 IPFS 的动态定价方案相结合，用于通过 6G 通信网络充电的电动汽车。</li>
+<li>制定零和博弈方法来优化电动车和CS的利润，使系统盈利。</li>
+<li>考虑延迟、系统的最佳回报以及电动汽车和CS 的利润等参数来评估所提议系统的性能。</li>
+</ol>
+</li>
+<li>我的问题：<ol>
+<li>实验是模拟的还是真实环境？</li>
+<li>场景模型还不太清楚。</li>
+</ol>
+</li>
+<li>是否详细阅读：让学生大致看看。</li>
+</ol>
+<h1 id="Game-Theoretic-Rating-in-N-player-general-sum-games-with-Equilibria"><a href="#Game-Theoretic-Rating-in-N-player-general-sum-games-with-Equilibria" class="headerlink" title="Game Theoretic Rating in N-player general-sum games with Equilibria"></a>Game Theoretic Rating in N-player general-sum games with Equilibria</h1><ol>
+<li>作者、期刊、发表时间：Marris, L.; Lanctot, M.; Gemp, I.; Omidshafiei, S.; Mcaleer, S.; Connor, J.; Tuyls, K.; Graepel, T. 是arxiv的论文，2022年的，目前应该还没发。</li>
+<li>关键词：无</li>
+<li>研究背景和问题：博弈论评级技术</li>
+<li>研究方法：<ol>
+<li>提出了博弈论支付评级(payoff rating)的定义,它利用联合策略分布条件化的期望支付来评价策略。</li>
+<li>证明在二人零和游戏中,当使用最大熵纳什均衡时,支付评级等价于纳什均值(Nash Average)。</li>
+<li>提出了使用关联均衡和粗略关联均衡进行支付评级。这更适合N人广义和博弈。</li>
+<li>通过最大熵选择准则,支付评级具有策略分组、重复策略一致性等好的性质。</li>
+</ol>
+</li>
+<li>论文结论：评级模型是有用的</li>
+<li>创新与贡献：最大熵评级模型</li>
+<li>我的问题：其实看了半天没看明白这个是游戏中的评级，还是博弈的评级，还是用博弈论做通用评级的场景</li>
+<li>是否详细阅读：否</li>
+</ol>
+<h1 id="Supply-chain-equilibrium-on-a-game-theory-incentivized-blockchainnetwork"><a href="#Supply-chain-equilibrium-on-a-game-theory-incentivized-blockchainnetwork" class="headerlink" title="Supply chain equilibrium on a game theory-incentivized blockchainnetwork"></a>Supply chain equilibrium on a game theory-incentivized blockchainnetwork</h1><ol>
+<li>作者、期刊、发表时间：Jianbin Gao, Bonsu Adjei-Arthur, Emmanuel Boateng Sifah, Hu Xia, Qi Xia*. Journal of Industrial Information Integration（一区，不是CCF）. 2022</li>
+<li>关键词：Supply chain; Game-theory; Blockchain; Smart contract; IoT.</li>
+<li>研究背景和问题：传统供应链依赖第三方在零售商和供应商之间构建契约来实现合作，但是面临一些问题：<ol>
+<li>基于第三方的契约机制由于缺乏自我强制的信任而导致交易双方之间难以建立关系。</li>
+<li>由于交易方的复杂性和自私程度，建立平衡也极具挑战性。在很多情况下，参与者必须对既定的投标协议做出妥协，以确保和维持合同双方之间的可信度，从而导致交易参与者不满意。</li>
+<li>契约机制也存在恶意篡改、谈判过程不透明等问题。</li>
+<li>同时预测和监控交易方的活动具有挑战性。决策的改变会严重影响整个供应链并造成巨大损失，需要有自动化的契约建立机制和透明的谈判媒介。</li>
+</ol>
+</li>
+<li>研究方法：<ol>
+<li>提出了一个结合区块链特征的新颖框架，以确保透明度并确保供应链的平衡。</li>
+<li>我们激励供应链环境中的交易各方共同行动并做出最佳决策，以确保各方有效建立均衡。</li>
+<li>我们提出的解决方案中的交易信息流提供了做出有效决策所需的能力，有助于确保多个缔约方之间的平衡。</li>
+<li>为了更好地理解网络上各方的行为及其行为的后果，我们结合了博弈论模型来表明使用区块链网络可以更好地实现供应链平衡。</li>
+<li>用了stackelberg博弈</li>
+</ol>
+</li>
+<li>论文结论：方法是可行的</li>
+<li>创新与贡献：<ol>
+<li>通过在基于区块链的供应链系统上设计一种新颖的方法来扩展[6]和[1]的工作，通过基于博弈论的方法促进供应商和零售商之间的交易，并在供应链网络上的各方之间建立平衡。</li>
+<li>设计了一个投标系统，将供应链网络中的多方聚集在一起。招标系统利用区块链功能规范供应链上的所有行为，通过请求和谈判为供应链上的多方提供透明度。</li>
+<li>开发了一种预测机制，确保对供应商和零售商进行有效的选择过程，从而避免供应链上的中断和供应不确定性问题，确保为交易过程选择最好的实体，从而提高供应商的供应水平。可以建立平衡。</li>
+<li>利用与区块链兼容的签约机制，这些机制可以有效地协同工作，并利用区块链功能在供应链各方之间建立重要的关系。</li>
+<li>对每个玩家在博弈论激励的区块链网络上的行为进行了详细分析。通过分析每个策略的执行情况以及每个时间点发生的变化对系统的影响，我们证明我们提出的想法可以满足连续、重复和无限博弈等复杂情况，同时保持各方之间的透明度。</li>
+<li>实现供应链上主要重要流程的自动化，并利用区块链功能提供良好的激励方案，使多方能够观察供应链上的正确行为。</li>
+<li>从数学上证明，区块链更擅长在各方和物联网设备之间建立纳什均衡，并为供应链上的各方提供信任机制。</li>
+<li>利用标准区块链网络提供概念证明，以证明我们提出的想法的可行性。</li>
+</ol>
+</li>
+<li>我的问题：<ol>
+<li>很好奇这个数学证明和概念证明是什么样的</li>
+<li>博弈方是哪些，收益函数是怎么设计的</li>
+</ol>
+</li>
+<li>是否详细阅读：让学生看，结合前面绿色供应链的。</li>
+</ol>
+<h1 id="Experimental-relativistic-zero-knowledge-proofs"><a href="#Experimental-relativistic-zero-knowledge-proofs" class="headerlink" title="Experimental relativistic zero-knowledge proofs"></a>Experimental relativistic zero-knowledge proofs</h1><ol>
 <li>作者、期刊、发表时间：</li>
 <li>关键词：</li>
 <li>研究背景和问题：</li>
@@ -416,8 +494,8 @@ v_{0} \cdot h\left(d_{j}\right)-p_{j} & <v_{0} \cdot h\left(d_{j+1}\right)-p_{j+
         <category>论文</category>
       </categories>
       <tags>
-        <tag>game theory</tag>
         <tag>审稿意见</tag>
+        <tag>game theory</tag>
         <tag>reinforcement learning</tag>
       </tags>
   </entry>
@@ -2095,8 +2173,8 @@ B_{\mathcal{H}, \alpha, \gamma}(\Phi, h)=\frac{1}{n} \sum_{i=1}^n\left|h\left(\P
         <category>论文</category>
       </categories>
       <tags>
-        <tag>deep learning</tag>
         <tag>因果推断</tag>
+        <tag>deep learning</tag>
       </tags>
   </entry>
   <entry>
@@ -4651,11 +4729,11 @@ Rs_{V_i}^\omega=\frac{F_f\omega_{i-1}+B_\omega s_i}{(F_f\omega_{i-1}+B_\omega s_
 <p>所有数据是直接在<code>web.js</code>中写好的，并不是从其他文件读取，且文件开头的<code>var scatter_origin_data</code>其实可以删了。此外，这份文件中的个人和组织项目散点图我并不需要，因此也直接删了。</p>
 <p>接下来将<code>web.js</code>中的数据修改成前面统计好的数据，打开<code>web.html</code>就可以看到图表了。</p>
 <p>由于hexo博客也可以显示echarts，因此我就把图表放这里了。</p>
-<div id="echarts7854" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts6645" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7854'));
-
+        var myChart = echarts.init(document.getElementById('echarts6645'));
         // 指定图表的配置项和数据
         var option = {
 title: {
@@ -4708,15 +4786,14 @@ title: {
             }
         ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts9546" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts245" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts9546'));
-
+        var myChart = echarts.init(document.getElementById('echarts245'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -4763,15 +4840,14 @@ title: {
             }
         ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts2791" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts7018" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts2791'));
-
+        var myChart = echarts.init(document.getElementById('echarts7018'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -4817,7 +4893,6 @@ title: {
             }
         ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
@@ -10448,11 +10523,11 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
 </ol>
 <p>到此为止就可以了，新建一个markdown文件，把下列代码放进去就可以看到本页最下面的echarts示例了。（直接复制粘贴，<strong>不要</strong>放代码块里）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% echarts 400 &#39;85%&#39; %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: &quot;某站点用户访问来源&quot;,</span><br><span class="line">        subtext: &quot;ECharts示例&quot;,</span><br><span class="line">        x: &quot;center&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: &quot;item&quot;,</span><br><span class="line">        formatter: &quot;&#123;a&#125; &lt;br&#x2F;&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        orient: &quot;vertical&quot;,</span><br><span class="line">        x: &quot;left&quot;,</span><br><span class="line">        data: [&quot;直接访问&quot;, &quot;邮件营销&quot;, &quot;联盟广告&quot;, &quot;视频广告&quot;, &quot;搜索引擎&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        show: true,</span><br><span class="line">        feature: &#123;</span><br><span class="line">            mark: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            dataView: &#123;</span><br><span class="line">                show: true,</span><br><span class="line">                readOnly: true</span><br><span class="line">            &#125;,</span><br><span class="line">            restore: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            saveAsImage: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    calculable: true,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name: &quot;访问来源&quot;,</span><br><span class="line">            type: &quot;pie&quot;,</span><br><span class="line">            radius: &quot;55%&quot;,</span><br><span class="line">            center: [&quot;50%&quot;, &quot;60%&quot;],</span><br><span class="line">            data: [</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 335,</span><br><span class="line">                    name: &quot;直接访问&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 310,</span><br><span class="line">                    name: &quot;邮件营销&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 234,</span><br><span class="line">                    name: &quot;联盟广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 135,</span><br><span class="line">                    name: &quot;视频广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 1548,</span><br><span class="line">                    name: &quot;搜索引擎&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
-<div id="echarts1506" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts5542" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts1506'));
-
+        var myChart = echarts.init(document.getElementById('echarts5542'));
         // 指定图表的配置项和数据
         var option = {
     title: {
@@ -10519,7 +10594,6 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
         }
     ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>]]></content>
