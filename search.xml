@@ -13,7 +13,7 @@
 <li>本文：<ol>
 <li>基于即时调优，我们提出了隐私保护即时调优（RAPT），这是一个为LLM服务提供隐私保证的框架。 </li>
 <li>RAPT采用本地隐私设置，允许用户通过本地差分隐私在本地对其数据进行私有化。</li>
-<li>由于直接在私有化数据上训练时提示调整表现不佳，因此我们引入了一种新颖的私有化令牌重建任务，该任务与下游任务联合训练，使LLM能够学习更好的依赖于任务的表示。</li>
+<li>由于直接在私有化数据上训练时提示调整表现不佳，因此我们引入了一种新颖的私有化token重建任务，该任务与下游任务联合训练，使LLM能够学习更好的依赖于任务的表示。</li>
 </ol>
 </li>
 </ol>
@@ -36,7 +36,23 @@ M(x_t)=x_t+z\tag{2}</script></li>
 x'_t=argmin_k\|w_k-M(w_t)\|\tag{3}</script>通过重复替换序列$x$中的单词，我们获得$x$的隐私化文本$M(x)$。</li>
 </ol>
 <h3 id="LLM-Customization"><a href="#LLM-Customization" class="headerlink" title="LLM Customization"></a>LLM Customization</h3><p>整体场景：假设用户通过及时调整API来定制LLM服务，将其私有化培训数据上传给服务提供商。</p>
-<h4 id="Prompt-Tuning"><a href="#Prompt-Tuning" class="headerlink" title="Prompt Tuning"></a>Prompt Tuning</h4><h4 id="Privatized-Token-Reconstruction"><a href="#Privatized-Token-Reconstruction" class="headerlink" title="Privatized Token Reconstruction"></a>Privatized Token Reconstruction</h4>]]></content>
+<h4 id="Prompt-Tuning"><a href="#Prompt-Tuning" class="headerlink" title="Prompt Tuning"></a>Prompt Tuning</h4><p>$f$表示LLM模型的主干网络。一个长度为N的提示词$P\in\mathbb{R}^{N\times h}$是连续向量$[p_1,…,p_N]$中的序列，其中$p_i\in\mathbb{R}^h$是可调整的虚拟token嵌入，$h$是主干网络的隐藏层维度。给定输入序列$\mathrm{x}=[x_i,…,x_n]$，提示词被添加到$X\in\mathbb{R}^{n\times h}$之前，其中$X=[x_1,…,x_n]$是词嵌入的序列，$x\in\mathbb{R}^h$。由此可以通过使用LLM得到激活序列：</p>
+<script type="math/tex; mode=display">
+H=f([\![P;X]\!])\tag{4}</script><p>其中$[![P;X]!]$表示两个序列P和X的串联，$H\in\mathbb{R}^{n\times h}$是激活序列。H用于预测任务依赖的标签，通常通过语言模型的头部。</p>
+<h4 id="Privatized-Token-Reconstruction"><a href="#Privatized-Token-Reconstruction" class="headerlink" title="Privatized Token Reconstruction"></a>Privatized Token Reconstruction</h4><ol>
+<li>直接在隐私化的数据上进行提示词调优会显著降低LLM在下游任务上的性能，说明提示词调优对这种文本到文本的隐私化带来的随机扰动很敏感。</li>
+<li>一些研究发现掩码语言模型目标有助于学习可分离的深度表示。</li>
+<li>受此启发本文提出了隐私化token重建任务，与下游任务联合训练，提高LLM在隐私保护的下游任务上的性能。</li>
+<li>token重建类似于掩码语言模型，为了保护隐私不能直接重建单词，但是可以在训练数据中的每个输入前添加一系列token（称为普通token），它由任意选择的token组成，可以安全发送而不会引起隐私泄露。</li>
+<li>普通token记作$k=[k_1,…,k_m]$</li>
+<li>训练例子记作$\mathcal{D}=\{\left \langle x_i,y_i \right \rangle|i=1,…,|\mathcal{D}|\}$，其中$|\mathcal{D}|$表示训练数据的尺寸</li>
+<li>用户首先在每个输入$x_i$的前面加入$k$，然后进行加密得到隐私化的版本$z=M([![k;x_i]!])=[k’_1,…,k’_m,x’_1,…,x’_n]$</li>
+<li>LLM使用提示P和输入z生成激活序列G：<script type="math/tex; mode=display">
+G=f([\![P;Z]\!])\tag{5}</script>其中Z是z的词嵌入序列，$G\in\mathbb{R}^{(m+n)\times h}$</li>
+<li>得到G后，我们使用其中的前m个向量$G_{1:m}=[g_1,…,g_m]$重建普通token，为了实现这一过程，我们引入了一个附加的重建head，由两个线性层组成。</li>
+<li></li>
+</ol>
+]]></content>
       <categories>
         <category>论文</category>
       </categories>
@@ -2233,8 +2249,8 @@ B_{\mathcal{H}, \alpha, \gamma}(\Phi, h)=\frac{1}{n} \sum_{i=1}^n\left|h\left(\P
         <category>论文</category>
       </categories>
       <tags>
-        <tag>因果推断</tag>
         <tag>deep learning</tag>
+        <tag>因果推断</tag>
       </tags>
   </entry>
   <entry>
@@ -4789,11 +4805,11 @@ Rs_{V_i}^\omega=\frac{F_f\omega_{i-1}+B_\omega s_i}{(F_f\omega_{i-1}+B_\omega s_
 <p>所有数据是直接在<code>web.js</code>中写好的，并不是从其他文件读取，且文件开头的<code>var scatter_origin_data</code>其实可以删了。此外，这份文件中的个人和组织项目散点图我并不需要，因此也直接删了。</p>
 <p>接下来将<code>web.js</code>中的数据修改成前面统计好的数据，打开<code>web.html</code>就可以看到图表了。</p>
 <p>由于hexo博客也可以显示echarts，因此我就把图表放这里了。</p>
-<div id="echarts1262" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts9632" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts1262'));
-
+        var myChart = echarts.init(document.getElementById('echarts9632'));
         // 指定图表的配置项和数据
         var option = {
 title: {
@@ -4846,15 +4862,14 @@ title: {
             }
         ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts1551" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts9631" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts1551'));
-
+        var myChart = echarts.init(document.getElementById('echarts9631'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -4901,15 +4916,14 @@ title: {
             }
         ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts9671" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts5052" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts9671'));
-
+        var myChart = echarts.init(document.getElementById('echarts5052'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -4955,7 +4969,6 @@ title: {
             }
         ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
@@ -10586,11 +10599,11 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
 </ol>
 <p>到此为止就可以了，新建一个markdown文件，把下列代码放进去就可以看到本页最下面的echarts示例了。（直接复制粘贴，<strong>不要</strong>放代码块里）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% echarts 400 &#39;85%&#39; %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: &quot;某站点用户访问来源&quot;,</span><br><span class="line">        subtext: &quot;ECharts示例&quot;,</span><br><span class="line">        x: &quot;center&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: &quot;item&quot;,</span><br><span class="line">        formatter: &quot;&#123;a&#125; &lt;br&#x2F;&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        orient: &quot;vertical&quot;,</span><br><span class="line">        x: &quot;left&quot;,</span><br><span class="line">        data: [&quot;直接访问&quot;, &quot;邮件营销&quot;, &quot;联盟广告&quot;, &quot;视频广告&quot;, &quot;搜索引擎&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        show: true,</span><br><span class="line">        feature: &#123;</span><br><span class="line">            mark: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            dataView: &#123;</span><br><span class="line">                show: true,</span><br><span class="line">                readOnly: true</span><br><span class="line">            &#125;,</span><br><span class="line">            restore: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            saveAsImage: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    calculable: true,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name: &quot;访问来源&quot;,</span><br><span class="line">            type: &quot;pie&quot;,</span><br><span class="line">            radius: &quot;55%&quot;,</span><br><span class="line">            center: [&quot;50%&quot;, &quot;60%&quot;],</span><br><span class="line">            data: [</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 335,</span><br><span class="line">                    name: &quot;直接访问&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 310,</span><br><span class="line">                    name: &quot;邮件营销&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 234,</span><br><span class="line">                    name: &quot;联盟广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 135,</span><br><span class="line">                    name: &quot;视频广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 1548,</span><br><span class="line">                    name: &quot;搜索引擎&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
-<div id="echarts5477" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts700" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts5477'));
-
+        var myChart = echarts.init(document.getElementById('echarts700'));
         // 指定图表的配置项和数据
         var option = {
     title: {
@@ -10657,7 +10670,6 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
         }
     ]
 }
-
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>]]></content>
