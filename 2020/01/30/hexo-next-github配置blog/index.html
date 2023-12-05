@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">10.5k</span>
+            <span class="post-count">10.6k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">44 分钟</span>
+            <span class="post-count">45 分钟</span>
         </span>
     </span>
 </div>
@@ -386,6 +386,12 @@
 </ol>
 <p>这个方法做出来的网页，是把添加的内容浏览器缓存了，也就是说，如果其他人打开我的博客添加了自己的内容，那么也只有添加者能看到，同样我添加的内容别人也看不到，甚至换个浏览器或者清缓存也会丢失内容。而且也没找到方法把它嵌入到我的主题里，这使得它和其他页面相比，非常不统一。此外，如果需要从这个待办页面返回博客，还得在代码里添加跳转博客地址的链接，例如<code>&lt;h2 bref=链接&gt;返回博客&lt;/h2&gt;</code>。</p>
 <p>鉴于这个网页外观和操作方式我都不太满意，也没找到更合适的方法，而且日常大多数时候会用跨平台软件来记录待办事项，最终决定去掉这个功能了。</p>
+<h2 id="添加相册"><a href="#添加相册" class="headerlink" title="添加相册"></a>添加相册</h2><ol>
+<li>输入<code>hexo new page photos</code>新建相册的页面，并注意在主题配置文件里添加对应的侧边栏；</li>
+<li>进入<code>photos</code>文件夹，修改其中的<code>index.md</code>如下：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Gallery</span><br><span class="line"></span><br><span class="line">albums: [["imgurl", "imgcaption"], ["imgurl", "imgcaption"]]</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
+<li>然后把要添加的图片放到<code>photos</code>文件夹中，并把<code>index.md</code>文件夹中的<code>imgurl</code>和<code>imgcaption</code>修改成图像的路径和标题，路径要注意带上级文件夹，和后缀名，例如我的路径就是<code>photos/ff14-伊修加德.png</code>。</li>
+<li>部署后就能看到照片了，之后再加新的照片就也是复制进来，然后打开<code>index.md</code>文件，在<code>albums</code>的方括号里添加新的链接和标题。</li>
+</ol>
 <h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://segmentfault.com/a/1190000018761324" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018761324</a></p>
 <p><a href="https://www.jianshu.com/p/3a05351a37dc" target="_blank" rel="noopener">https://www.jianshu.com/p/3a05351a37dc</a></p>
 <p><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502" target="_blank" rel="noopener">https://blog.csdn.net/nightmare_dimple/article/details/86661502</a></p>
@@ -561,6 +567,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">照片</a>
     </li>
     
     <li class="nav-item">
