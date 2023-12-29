@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Cryptography课程记录-1 |  左边
+    Cryptography课程记录-Week 1: Course overview and stream ciphers |  左边
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,7 +42,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Cryptography课程记录-1"
+  id="post-Cryptography课程记录-Week 1_Course overview and stream ciphers"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -53,14 +53,14 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Cryptography课程记录-1
+  Cryptography课程记录-Week 1: Course overview and stream ciphers
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1/" class="article-date">
+      <a href="/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-Week%201_Course%20overview%20and%20stream%20ciphers/" class="article-date">
   <time datetime="2023-12-04T06:39:54.000Z" itemprop="datePublished">2023-12-04</time>
 </a> 
   <div class="article-category">
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">6</span>
+            <span class="post-count">935</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">3 分钟</span>
         </span>
     </span>
 </div>
@@ -96,7 +96,79 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="Section-1-what-is-cryptography-about"><a href="#Section-1-what-is-cryptography-about" class="headerlink" title="Section 1: what is cryptography about?"></a>Section 1: what is cryptography about?</h1> 
+  <h1 id="Section-1-what-is-cryptography-about"><a href="#Section-1-what-is-cryptography-about" class="headerlink" title="Section 1: what is cryptography about?"></a>Section 1: what is cryptography about?</h1><h2 id="Course-Overview"><a href="#Course-Overview" class="headerlink" title="Course Overview"></a>Course Overview</h2><p>课程目标：</p>
+<ul>
+<li>密码学原理</li>
+<li>如何正确使用密码学原语和安全性证明</li>
+</ul>
+<p>密码学的应用案例：</p>
+<ul>
+<li>安全通信：Alice和Bob试图使用HTTPS通信，起到安全作用的是SSL，也称为TLS，确保网络中传输的数据既不会被窃听也不会被篡改。<ul>
+<li>网络通信：HTTPS</li>
+<li>无线通信：802.11i WPA2, GSM, Bluetooth</li>
+<li>SSL(Secure Sockets Layer)/TLS由两部分组成：<ol>
+<li>握手协议：构造共享密钥，采用公钥技术</li>
+<li>记录层：如何使用密钥传输数据</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>磁盘加密文件：EFS, TrueCrypt<ul>
+<li>对磁盘上的文件加密，保证既不会被窃取也不会被篡改【保密性和完整性】</li>
+</ul>
+</li>
+<li>内容保护（例如DVD, Blu-ray）：CSS, AACS</li>
+<li>用户认证 等等</li>
+</ul>
+<p>安全通信的基石：对称加密系统（sym.encryption）</p>
+<ul>
+<li>Alice和Bob使用共享密钥<code>k</code>通信，攻击者不知道<code>k</code></li>
+<li>使用公开的加密算法<code>E</code>和解密算法<code>D</code>，<code>E</code>的输入是明文消息<code>m</code>和密钥<code>k</code>，输出密文消息<code>c</code>；<code>D</code>的输入是密文消息<code>c</code>和密钥<code>k</code>，输出明文消息<code>m</code>。</li>
+</ul>
+<p>对称加密系统的两种情况：</p>
+<ul>
+<li>一次性密钥：只用来加密单条消息，例如加密邮件的时候，每个邮件都生成一个新密钥</li>
+<li>重复使用密钥：用来加密多条消息，例如加密文件的时候，一个密钥用于若干个文件，需要一些额外工作确保这样的加密系统是安全的</li>
+</ul>
+<p>密码学的局限性：</p>
+<ul>
+<li>并不能完全保证安全，对软件漏洞和社工无效</li>
+<li>需要正确使用，一个例子是加密WiFi通信的WEP</li>
+<li>使用密码学原语，而非创造</li>
+</ul>
+<h2 id="What-is-Cryptography"><a href="#What-is-Cryptography" class="headerlink" title="What is Cryptography?"></a>What is Cryptography?</h2><p>密码学核心：安全通信</p>
+<ul>
+<li>安全密钥构造</li>
+<li>安全通信</li>
+</ul>
+<p>密码学的其他应用：</p>
+<ul>
+<li>数字签名</li>
+<li>匿名通信</li>
+<li>匿名数字货币<ul>
+<li>支付数字货币而保持匿名</li>
+<li>实现该功能的同时避免双花</li>
+</ul>
+</li>
+<li>结合抽象协议<ul>
+<li>选举：既知道被选中的是谁，又不知道每个人投了谁——引入选举中心计票</li>
+<li>私有拍卖：采用Victory拍卖（价高者得，二价支付），需要公开出价最高的身份和出价第二高的价格，其余信息保密——引入拍卖中心统计</li>
+<li>安全多方计算：输出函数计算的值，而对函数输入信息保密，例如前两个涉及的选票计算和拍卖计算——在密码学中可信第三方是不可靠的，系统也不应当引入这样的第三方，而是通过一些协议完成计算。</li>
+</ul>
+</li>
+<li>其他不太相关的应用<ul>
+<li>私有外包计算：Alice将一串关键词加密后发送给Google，Google无需知道原文即可根据加密关键词检索到加密结果并返回给Alice，Alice自行解密得到查询结果。</li>
+<li>零知识证明：Alice知道一个大数字N，也知道该数字可由两个素数P和Q相乘得到；Bob也知道N，但不知道P和Q，Alice可通过某方法向Bob证明自己确实知道P和Q，而无需让Bob也知道P和Q。</li>
+</ul>
+</li>
+</ul>
+<p>密码学的三个步骤：</p>
+<ul>
+<li>精确说明威胁模型，例如数字签名中的威胁模型是：攻击者如何对数字签名发起攻击，攻击者发动攻击的动机</li>
+<li>提出构造方案</li>
+<li>证明在特定威胁模型条件下，任何攻击者对该构造发起攻击都相当于求解一个很复杂的难题。</li>
+</ul>
+<h2 id="History-of-Cryptography"><a href="#History-of-Cryptography" class="headerlink" title="History of Cryptography"></a>History of Cryptography</h2><h2 id="Section-2-crash-course-in-discrete-probability"><a href="#Section-2-crash-course-in-discrete-probability" class="headerlink" title="Section 2: crash course in discrete probability"></a>Section 2: crash course in discrete probability</h2><h3 id="Discrete-Probability"><a href="#Discrete-Probability" class="headerlink" title="Discrete Probability"></a>Discrete Probability</h3><h2 id="Stream-Ciphers-1-the-one-time-pad-and-stream-ciphers"><a href="#Stream-Ciphers-1-the-one-time-pad-and-stream-ciphers" class="headerlink" title="Stream Ciphers 1: the one-time pad and stream ciphers"></a>Stream Ciphers 1: the one-time pad and stream ciphers</h2><h3 id="Information-Theoretic-Security-and-The-One-Time-Pad"><a href="#Information-Theoretic-Security-and-The-One-Time-Pad" class="headerlink" title="Information Theoretic Security and The One Time Pad"></a>Information Theoretic Security and The One Time Pad</h3><h3 id="Stream-Ciphers-and-Pseudo-Random-Generators"><a href="#Stream-Ciphers-and-Pseudo-Random-Generators" class="headerlink" title="Stream Ciphers and Pseudo Random Generators"></a>Stream Ciphers and Pseudo Random Generators</h3> 
       <!-- reward -->
       
     </div>
@@ -148,7 +220,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-Week%201_Course%20overview%20and%20stream%20ciphers/" alt="微信分享二维码">
     </div>
 </div>
 

@@ -393,7 +393,18 @@
 </tbody>
 </table>
 </div>
-<h3 id="密码原语"><a href="#密码原语" class="headerlink" title="密码原语"></a>密码原语</h3><h2 id="安全矩阵乘法"><a href="#安全矩阵乘法" class="headerlink" title="安全矩阵乘法"></a>安全矩阵乘法</h2><h2 id="安全GELU"><a href="#安全GELU" class="headerlink" title="安全GELU"></a>安全GELU</h2><h2 id="安全前K项选取"><a href="#安全前K项选取" class="headerlink" title="安全前K项选取"></a>安全前K项选取</h2><h2 id="安全采样"><a href="#安全采样" class="headerlink" title="安全采样"></a>安全采样</h2><h2 id="CipherGPT框架"><a href="#CipherGPT框架" class="headerlink" title="CipherGPT框架"></a>CipherGPT框架</h2><h2 id="实验评估"><a href="#实验评估" class="headerlink" title="实验评估"></a>实验评估</h2>]]></content>
+<h3 id="密码学原语"><a href="#密码学原语" class="headerlink" title="密码学原语"></a>密码学原语</h3><ol>
+<li>秘密共享：我们在不同的2次幂环上使用2-2附加秘密共享方案。对于$x\in\mathbb{Z}_{2^t}$，我们用$\lt x \gt^l=(\lt x \gt^l_S,\lt x \gt^l_C)s.t.x=\lt x \gt^l_S+\lt x \gt^l_C mod 2^l$表示其shares。为了简化表达，当上下文无关时我们省略上标的$l$。</li>
+<li>非均匀位宽乘法：理想函数$F_{Mult}$以$\lt x \gt^g$和$\lt y \gt^h$为输入，返回$\lt z \gt^l$，其中$z=xy$且$l=g+h$。一个实现该功能的简单方法是首先将输入都扩展到$l$位，然后使用标准协议进行统一位宽的秘密共享乘法。SIRNN提供了一个协议，其性能比这个简单的解决方啊高1.5倍。该协议的通信复杂度是$\mu(\lambda+\mu/2+1/2)+mn$，其中$\mu=min(m,n)$。</li>
+<li>安全比较：理想函数$F_{CMP}$以$\lt x \gt^l$和$\lt y \gt^l$为输入，返回$\lt b \gt^l$，其中若$x\geq y$则$b=1$，否则$b=0$。$CrypTFlow2$为$F_{CMP}$提供了一个有效的协议，其通信成本小于$\lambda l+14l$位和$\log l$轮。</li>
+<li>安全多路复用器：理想函数$F_{MUX}$以$\lt x \gt^l$和$\lt b \gt^l$为输入，返回$\lt y \gt^l$，其中如果$b=1$则$y=x$，如果$b=0$则$y=0$。本文采用的安全多路复用器是SIRNN提出的，通信要求$2(\lambda+l)$位。</li>
+<li>安全截断：理想函数$F_{Trunc}$以$\lt x \gt^l$和$s$为输入，返回$\lt y \gt^l$，其中$y=x\gg s$。SIRNN提供了安全截断的协议，通信要求小于$\lambda(l+3)+15l+s+20$位和$\log l+3$轮。</li>
+<li>截断后减小：理想函数$F_{TR}$以$\lt x \gt^l$和$s$为输入，返回$\lt y \gt^{l-s}$，其中$y=x\gg s$。需要注意，这个和前一个的区别在于这个会通过右移操作将输出减少到一个更小的环上，而前一个则将输出保留在原始环上。SIRNN提供了协议，通信成本小于$\lambda(s+1)+l+13s$位。</li>
+<li>查表：理想函数$F_{LUT}$以$\lt i \gt$为输入，返回$\lt T[i] \gt$，其中$T$是有M个条目的表。该函数通过对$\tbinom{M}{1}-OT$的单次调用来实现。更有效的解决方案是先将LUT描述转换为布尔表达式，然后使用多扇入内积对其进行评估。该协议在预处理阶段需要$(mt+4)(2^M-M-1)$位通信，在在线阶段需要$2\sigma$位。</li>
+<li>秘密共享洗牌：理想函数$F_{Shuffle}$以$\lt \mathbf{x} \gt$和$\lt\pi\gt$为输入，返回$\lt\pi(\mathbf{x})\gt$，其中$\pi$是排列函数。Chase等提出了使用OT和PRG等轻量级原语来实现该功能的高效构造。该方法涉及使用PRF来构建排列共享协议，该协议允许两方使用一方选择的排列来排列输入向量。这个排列和共享协议运行两次，每方各选一次。为了混洗$n$个$l$位元素，该协议的通信成本与$\lambda n\log n+nl\log n/\log T$成正比，计算成本位$(nT\log n/\log T)(l/\lambda)$对称密钥操作，其中$T$在16和256之间。</li>
+<li></li>
+</ol>
+<h2 id="安全矩阵乘法"><a href="#安全矩阵乘法" class="headerlink" title="安全矩阵乘法"></a>安全矩阵乘法</h2><h2 id="安全GELU"><a href="#安全GELU" class="headerlink" title="安全GELU"></a>安全GELU</h2><h2 id="安全前K项选取"><a href="#安全前K项选取" class="headerlink" title="安全前K项选取"></a>安全前K项选取</h2><h2 id="安全采样"><a href="#安全采样" class="headerlink" title="安全采样"></a>安全采样</h2><h2 id="CipherGPT框架"><a href="#CipherGPT框架" class="headerlink" title="CipherGPT框架"></a>CipherGPT框架</h2><h2 id="实验评估"><a href="#实验评估" class="headerlink" title="实验评估"></a>实验评估</h2>]]></content>
       <categories>
         <category>论文</category>
       </categories>
@@ -418,9 +429,81 @@
       </tags>
   </entry>
   <entry>
-    <title>Cryptography课程记录-1</title>
-    <url>/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-1/</url>
-    <content><![CDATA[<h1 id="Section-1-what-is-cryptography-about"><a href="#Section-1-what-is-cryptography-about" class="headerlink" title="Section 1: what is cryptography about?"></a>Section 1: what is cryptography about?</h1>]]></content>
+    <title>Cryptography课程记录-Week 1: Course overview and stream ciphers</title>
+    <url>/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-Week%201_Course%20overview%20and%20stream%20ciphers/</url>
+    <content><![CDATA[<h1 id="Section-1-what-is-cryptography-about"><a href="#Section-1-what-is-cryptography-about" class="headerlink" title="Section 1: what is cryptography about?"></a>Section 1: what is cryptography about?</h1><h2 id="Course-Overview"><a href="#Course-Overview" class="headerlink" title="Course Overview"></a>Course Overview</h2><p>课程目标：</p>
+<ul>
+<li>密码学原理</li>
+<li>如何正确使用密码学原语和安全性证明</li>
+</ul>
+<p>密码学的应用案例：</p>
+<ul>
+<li>安全通信：Alice和Bob试图使用HTTPS通信，起到安全作用的是SSL，也称为TLS，确保网络中传输的数据既不会被窃听也不会被篡改。<ul>
+<li>网络通信：HTTPS</li>
+<li>无线通信：802.11i WPA2, GSM, Bluetooth</li>
+<li>SSL(Secure Sockets Layer)/TLS由两部分组成：<ol>
+<li>握手协议：构造共享密钥，采用公钥技术</li>
+<li>记录层：如何使用密钥传输数据</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>磁盘加密文件：EFS, TrueCrypt<ul>
+<li>对磁盘上的文件加密，保证既不会被窃取也不会被篡改【保密性和完整性】</li>
+</ul>
+</li>
+<li>内容保护（例如DVD, Blu-ray）：CSS, AACS</li>
+<li>用户认证 等等</li>
+</ul>
+<p>安全通信的基石：对称加密系统（sym.encryption）</p>
+<ul>
+<li>Alice和Bob使用共享密钥<code>k</code>通信，攻击者不知道<code>k</code></li>
+<li>使用公开的加密算法<code>E</code>和解密算法<code>D</code>，<code>E</code>的输入是明文消息<code>m</code>和密钥<code>k</code>，输出密文消息<code>c</code>；<code>D</code>的输入是密文消息<code>c</code>和密钥<code>k</code>，输出明文消息<code>m</code>。</li>
+</ul>
+<p>对称加密系统的两种情况：</p>
+<ul>
+<li>一次性密钥：只用来加密单条消息，例如加密邮件的时候，每个邮件都生成一个新密钥</li>
+<li>重复使用密钥：用来加密多条消息，例如加密文件的时候，一个密钥用于若干个文件，需要一些额外工作确保这样的加密系统是安全的</li>
+</ul>
+<p>密码学的局限性：</p>
+<ul>
+<li>并不能完全保证安全，对软件漏洞和社工无效</li>
+<li>需要正确使用，一个例子是加密WiFi通信的WEP</li>
+<li>使用密码学原语，而非创造</li>
+</ul>
+<h2 id="What-is-Cryptography"><a href="#What-is-Cryptography" class="headerlink" title="What is Cryptography?"></a>What is Cryptography?</h2><p>密码学核心：安全通信</p>
+<ul>
+<li>安全密钥构造</li>
+<li>安全通信</li>
+</ul>
+<p>密码学的其他应用：</p>
+<ul>
+<li>数字签名</li>
+<li>匿名通信</li>
+<li>匿名数字货币<ul>
+<li>支付数字货币而保持匿名</li>
+<li>实现该功能的同时避免双花</li>
+</ul>
+</li>
+<li>结合抽象协议<ul>
+<li>选举：既知道被选中的是谁，又不知道每个人投了谁——引入选举中心计票</li>
+<li>私有拍卖：采用Victory拍卖（价高者得，二价支付），需要公开出价最高的身份和出价第二高的价格，其余信息保密——引入拍卖中心统计</li>
+<li>安全多方计算：输出函数计算的值，而对函数输入信息保密，例如前两个涉及的选票计算和拍卖计算——在密码学中可信第三方是不可靠的，系统也不应当引入这样的第三方，而是通过一些协议完成计算。</li>
+</ul>
+</li>
+<li>其他不太相关的应用<ul>
+<li>私有外包计算：Alice将一串关键词加密后发送给Google，Google无需知道原文即可根据加密关键词检索到加密结果并返回给Alice，Alice自行解密得到查询结果。</li>
+<li>零知识证明：Alice知道一个大数字N，也知道该数字可由两个素数P和Q相乘得到；Bob也知道N，但不知道P和Q，Alice可通过某方法向Bob证明自己确实知道P和Q，而无需让Bob也知道P和Q。</li>
+</ul>
+</li>
+</ul>
+<p>密码学的三个步骤：</p>
+<ul>
+<li>精确说明威胁模型，例如数字签名中的威胁模型是：攻击者如何对数字签名发起攻击，攻击者发动攻击的动机</li>
+<li>提出构造方案</li>
+<li>证明在特定威胁模型条件下，任何攻击者对该构造发起攻击都相当于求解一个很复杂的难题。</li>
+</ul>
+<h2 id="History-of-Cryptography"><a href="#History-of-Cryptography" class="headerlink" title="History of Cryptography"></a>History of Cryptography</h2><h2 id="Section-2-crash-course-in-discrete-probability"><a href="#Section-2-crash-course-in-discrete-probability" class="headerlink" title="Section 2: crash course in discrete probability"></a>Section 2: crash course in discrete probability</h2><h3 id="Discrete-Probability"><a href="#Discrete-Probability" class="headerlink" title="Discrete Probability"></a>Discrete Probability</h3><h2 id="Stream-Ciphers-1-the-one-time-pad-and-stream-ciphers"><a href="#Stream-Ciphers-1-the-one-time-pad-and-stream-ciphers" class="headerlink" title="Stream Ciphers 1: the one-time pad and stream ciphers"></a>Stream Ciphers 1: the one-time pad and stream ciphers</h2><h3 id="Information-Theoretic-Security-and-The-One-Time-Pad"><a href="#Information-Theoretic-Security-and-The-One-Time-Pad" class="headerlink" title="Information Theoretic Security and The One Time Pad"></a>Information Theoretic Security and The One Time Pad</h3><h3 id="Stream-Ciphers-and-Pseudo-Random-Generators"><a href="#Stream-Ciphers-and-Pseudo-Random-Generators" class="headerlink" title="Stream Ciphers and Pseudo Random Generators"></a>Stream Ciphers and Pseudo Random Generators</h3>]]></content>
       <categories>
         <category>课程笔记</category>
       </categories>
@@ -1156,8 +1239,8 @@ v_{0} \cdot h\left(d_{j}\right)-p_{j} & <v_{0} \cdot h\left(d_{j+1}\right)-p_{j+
         <category>论文</category>
       </categories>
       <tags>
-        <tag>game theory</tag>
         <tag>审稿意见</tag>
+        <tag>game theory</tag>
         <tag>reinforcement learning</tag>
       </tags>
   </entry>
@@ -5391,11 +5474,11 @@ Rs_{V_i}^\omega=\frac{F_f\omega_{i-1}+B_\omega s_i}{(F_f\omega_{i-1}+B_\omega s_
 <p>所有数据是直接在<code>web.js</code>中写好的，并不是从其他文件读取，且文件开头的<code>var scatter_origin_data</code>其实可以删了。此外，这份文件中的个人和组织项目散点图我并不需要，因此也直接删了。</p>
 <p>接下来将<code>web.js</code>中的数据修改成前面统计好的数据，打开<code>web.html</code>就可以看到图表了。</p>
 <p>由于hexo博客也可以显示echarts，因此我就把图表放这里了。</p>
-<div id="echarts7210" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts4680" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7210'));
+        var myChart = echarts.init(document.getElementById('echarts4680'));
         // 指定图表的配置项和数据
         var option = {
 title: {
@@ -5451,11 +5534,11 @@ title: {
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts8132" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts3248" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts8132'));
+        var myChart = echarts.init(document.getElementById('echarts3248'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -5505,11 +5588,11 @@ title: {
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts5324" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts3006" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts5324'));
+        var myChart = echarts.init(document.getElementById('echarts3006'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -11185,11 +11268,11 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
 </ol>
 <p>到此为止就可以了，新建一个markdown文件，把下列代码放进去就可以看到本页最下面的echarts示例了。（直接复制粘贴，<strong>不要</strong>放代码块里）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% echarts 400 &#39;85%&#39; %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: &quot;某站点用户访问来源&quot;,</span><br><span class="line">        subtext: &quot;ECharts示例&quot;,</span><br><span class="line">        x: &quot;center&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: &quot;item&quot;,</span><br><span class="line">        formatter: &quot;&#123;a&#125; &lt;br&#x2F;&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        orient: &quot;vertical&quot;,</span><br><span class="line">        x: &quot;left&quot;,</span><br><span class="line">        data: [&quot;直接访问&quot;, &quot;邮件营销&quot;, &quot;联盟广告&quot;, &quot;视频广告&quot;, &quot;搜索引擎&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        show: true,</span><br><span class="line">        feature: &#123;</span><br><span class="line">            mark: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            dataView: &#123;</span><br><span class="line">                show: true,</span><br><span class="line">                readOnly: true</span><br><span class="line">            &#125;,</span><br><span class="line">            restore: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            saveAsImage: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    calculable: true,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name: &quot;访问来源&quot;,</span><br><span class="line">            type: &quot;pie&quot;,</span><br><span class="line">            radius: &quot;55%&quot;,</span><br><span class="line">            center: [&quot;50%&quot;, &quot;60%&quot;],</span><br><span class="line">            data: [</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 335,</span><br><span class="line">                    name: &quot;直接访问&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 310,</span><br><span class="line">                    name: &quot;邮件营销&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 234,</span><br><span class="line">                    name: &quot;联盟广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 135,</span><br><span class="line">                    name: &quot;视频广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 1548,</span><br><span class="line">                    name: &quot;搜索引擎&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
-<div id="echarts9378" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts1806" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts9378'));
+        var myChart = echarts.init(document.getElementById('echarts1806'));
         // 指定图表的配置项和数据
         var option = {
     title: {
