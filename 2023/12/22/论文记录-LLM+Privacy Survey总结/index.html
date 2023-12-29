@@ -96,7 +96,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="LLM-Privacy-Survey总结"><a href="#LLM-Privacy-Survey总结" class="headerlink" title="LLM+Privacy Survey总结"></a>LLM+Privacy Survey总结</h1><h2 id="A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly"><a href="#A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly" class="headerlink" title="A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly"></a>A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly</h2><p>Yifan Yao, Jinhao Duan, Kaidi Xu, Yuanfang Cai, Eric Sun and Yue Zhang</p>
+  <h1 id="LLM-Privacy-Survey总结"><a href="#LLM-Privacy-Survey总结" class="headerlink" title="LLM+Privacy Survey总结"></a>LLM+Privacy Survey总结</h1><h2 id="1-A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly"><a href="#1-A-Survey-on-Large-Language-Model-LLM-Security-and-Privacy-The-Good-the-Bad-and-the-Ugly" class="headerlink" title="1 - A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly"></a>1 - A Survey on Large Language Model (LLM) Security and Privacy: The Good, the Bad, and the Ugly</h2><p>Yifan Yao, Jinhao Duan, Kaidi Xu, Yuanfang Cai, Eric Sun and Yue Zhang</p>
 <ol>
 <li>这篇survey探讨的是LLM对安全与隐私的影响，分别从以下三方面讨论：<ol>
 <li>Good：利用LLM来解决一些安全隐私问题，例如用LLM查代码漏洞；</li>
@@ -105,7 +105,9 @@
 </ol>
 </li>
 <li>对几个LLM模型的对比方面，这篇论文列了<code>Date Provider</code>、<code>Open-Source</code>、<code>Params</code>和<code>Tunability</code>这四方面，对比了<code>gpt-4,gpt-3.5-turbo,gpt-3,cohere-medium,cohere-large,cohere-xlarge,BERT,T5,PaLM,LLaMA,CTRL,Dolly 2.0</code>这几个模型，没有很详细介绍。我觉得我们可以加上谷歌的<code>claude,bard,gemini</code>和一些国产模型。</li>
-<li>论文的图表都挺好，有参考价值<h3 id="LLM的漏洞和威胁"><a href="#LLM的漏洞和威胁" class="headerlink" title="LLM的漏洞和威胁"></a>LLM的漏洞和威胁</h3><h4 id="AI模型固有漏洞"><a href="#AI模型固有漏洞" class="headerlink" title="AI模型固有漏洞"></a>AI模型固有漏洞</h4></li>
+<li>论文的图表都挺好，有参考价值</li>
+</ol>
+<h3 id="LLM的漏洞和威胁"><a href="#LLM的漏洞和威胁" class="headerlink" title="LLM的漏洞和威胁"></a>LLM的漏洞和威胁</h3><h4 id="AI模型固有漏洞"><a href="#AI模型固有漏洞" class="headerlink" title="AI模型固有漏洞"></a>AI模型固有漏洞</h4><ol>
 <li>对抗性攻击：用于故意操纵或欺骗机器学习模型的技术和策略<ol>
 <li>文本下毒：向训练数据集中注入恶意数据来影响训练过程</li>
 <li>后门攻击：恶意操纵训练数据和模型处理，从而创建一个漏洞，攻击者可以将隐藏的后门嵌入到模型中</li>
@@ -118,15 +120,16 @@
 </li>
 <li>提取攻击：攻击者试图从机器学习模型或其相关数据中提取敏感信息或见解。提取攻击和推理攻击有相似之处，但具体重点和目标不同。提取攻击旨在直接获取特定资源（例如模型梯度、训练数据）或机密信息。推理攻击通常通过观察模型的响应或行为来获取有关模型或数据特征的知识或见解。</li>
 <li>偏见与不公平：模型表现出偏见结果或歧视行为的现象</li>
-<li><p>指令调整攻击：指令调优，也称为基于指令的微调，是一种机器学习技术，用于通过在微调过程中提供显式指令或示例来训练和调整特定任务的语言模型。在 LLM 中，指令调优攻击是指针对指令调优 LLM 的一类攻击或操纵。这些攻击旨在利用 LLM 中的漏洞或限制，这些漏洞或限制已通过特定任务的特定指令或示例进行了微调。</p>
-<ol>
+<li>指令调整攻击：指令调优，也称为基于指令的微调，是一种机器学习技术，用于通过在微调过程中提供显式指令或示例来训练和调整特定任务的语言模型。在 LLM 中，指令调优攻击是指针对指令调优 LLM 的一类攻击或操纵。这些攻击旨在利用 LLM 中的漏洞或限制，这些漏洞或限制已通过特定任务的特定指令或示例进行了微调。<ol>
 <li>越狱：绕过安全功能，以响应其他受限或不安全的问题，解锁通常受安全协议限制的功能</li>
 <li>提示词注入：操纵 LLM 行为以引发意外且可能有害的响应的方法。该技术涉及以绕过模型的保护措施或触发不需要的输出的方式制作输入提示。</li>
-<li>这两个的区别是什么？我查了一些资料显示这俩是一回事。<h4 id="非AI模型固有漏洞"><a href="#非AI模型固有漏洞" class="headerlink" title="非AI模型固有漏洞"></a>非AI模型固有漏洞</h4>包括LLM可能遇到的外部威胁和新漏洞（在传统人工智能模型中尚未观察到或调查过），可能与人工智能模型的内部机制没有复杂的联系，但它们可能会带来重大风险，涉及系统级漏洞（例如远程代码执行）。</li>
+<li>这两个的区别是什么？我查了一些资料显示这俩是一回事。</li>
 </ol>
 </li>
-<li><p>远程代码执行（RCE）：针对软件应用程序、Web 服务或服务器中的漏洞来远程执行任意代码。虽然 RCE 攻击通常不适用于 LLM，但如果 LLM 集成到 Web 服务中并且该服务的底层基础设施或代码中存在 RCE 漏洞，它可能会导致LLM环境受到损害。</p>
-</li>
+</ol>
+<h4 id="非AI模型固有漏洞"><a href="#非AI模型固有漏洞" class="headerlink" title="非AI模型固有漏洞"></a>非AI模型固有漏洞</h4><p>包括LLM可能遇到的外部威胁和新漏洞（在传统人工智能模型中尚未观察到或调查过），可能与人工智能模型的内部机制没有复杂的联系，但它们可能会带来重大风险，涉及系统级漏洞（例如远程代码执行）。</p>
+<ol>
+<li>远程代码执行（RCE）：针对软件应用程序、Web 服务或服务器中的漏洞来远程执行任意代码。虽然 RCE 攻击通常不适用于 LLM，但如果 LLM 集成到 Web 服务中并且该服务的底层基础设施或代码中存在 RCE 漏洞，它可能会导致LLM环境受到损害。</li>
 <li>边信道攻击（SCA）：虽然 LLM 本身通常不会通过传统的侧信道（例如功耗或电磁辐射）泄漏信息，但在实际部署场景中，它们可能容易受到某些侧信道攻击。</li>
 <li>Insure Plugins：用于LLM的第三方插件本身的安全问题。</li>
 </ol>
@@ -157,7 +160,7 @@
 </li>
 <li>我们的研究全面考察了大语言模型的安全性和隐私性，从三个方面对大语言模型的文献进行了广泛的回顾：有益的安全应用（如漏洞检测、安全代码生成）、不利的影响（如网络钓鱼攻击、社会工程学）和漏洞（如越狱攻击、提示攻击），以及相应的防御措施。</li>
 </ol>
-<h2 id="Privacy-in-Large-Language-Models-Attacks-Defenses-and-Future-Directions"><a href="#Privacy-in-Large-Language-Models-Attacks-Defenses-and-Future-Directions" class="headerlink" title="Privacy in Large Language Models: Attacks, Defenses and Future Directions"></a>Privacy in Large Language Models: Attacks, Defenses and Future Directions</h2><p>Haoran Li, Yulin Chen, Jinglong Luo, Yan Kang, Xiaojin Zhang, Qi Hu, Chunkit Chan, Yangqiu Song</p>
+<h2 id="2-Privacy-in-Large-Language-Models-Attacks-Defenses-and-Future-Directions"><a href="#2-Privacy-in-Large-Language-Models-Attacks-Defenses-and-Future-Directions" class="headerlink" title="2 - Privacy in Large Language Models: Attacks, Defenses and Future Directions"></a>2 - Privacy in Large Language Models: Attacks, Defenses and Future Directions</h2><p>Haoran Li, Yulin Chen, Jinglong Luo, Yan Kang, Xiaojin Zhang, Qi Hu, Chunkit Chan, Yangqiu Song</p>
 <ol>
 <li>从互联网上提取的自由格式文本存在数据质量差和无意中泄露个人信息的问题。例如，与模型的简单交互可能会导致个人身份信息 (PII) 的意外传播（有参考文献）。</li>
 <li>将不同的应用程序整合到LLM中是一种日益增长的趋势，旨在增强其知识基础能力。这些集成使LLM能够有效地解决数学问题（例如 ChatGPT Wolfram Alpha）、读取格式化文件（例如 ChatPDF）以及使用搜索引擎（例如 New Bing）对查询提供响应。当LLM与搜索引擎等外部工具结合使用时，会出现额外的特定领域隐私和安全漏洞。</li>
@@ -169,24 +172,31 @@
 </li>
 <li>对LLM的介绍：从transformer说起，没具体介绍和对比已有的模型。</li>
 <li>对Privacy的介绍：介绍了隐私的概念和保护隐私的重要性，介绍了DP和SMPC</li>
-<li><p>LLM中的隐私问题：</p>
-<ol>
+<li>LLM中的隐私问题：<ol>
 <li>训练数据隐私：如果训练数据包含个人或敏感信息，则存在通过模型响应无意中暴露该信息的风险。</li>
 <li>推断数据隐私：在为下游任务部署经过训练的语言模型后，用户输入和查询通常会被记录并存储一段时间。对于敏感域，这些数据可以包括个人信息、私人对话和潜在的敏感详细信息。</li>
-<li>再识别：即使用户信息被匿名化，仍然存在被重新识别的风险。通过结合来自多次交互的看似无害的信息，有可能识别个人或提取本应隐藏的个人详细信息。<h3 id="隐私攻击"><a href="#隐私攻击" class="headerlink" title="隐私攻击"></a>隐私攻击</h3><h4 id="后门攻击"><a href="#后门攻击" class="headerlink" title="后门攻击"></a>后门攻击</h4>数据中毒是指仅操纵一部分训练数据的较弱攻击。这种操纵的目的是在模型的训练过程中引入偏见或误导性信息。相反，后门攻击涉及插入或修改特定的输入模式，从而触发模型行为不当或产生目标输出。此外，如果对手可以操纵LLM的部分训练语料库，它可能会通过数据中毒向受害者模型注入后门。<h4 id="提示词注入"><a href="#提示词注入" class="headerlink" title="提示词注入"></a>提示词注入</h4>概括起来就是恶意提示词，包括越狱等，和前一节与后一节都有共通性。<h4 id="训练数据提取"><a href="#训练数据提取" class="headerlink" title="训练数据提取"></a>训练数据提取</h4>包括PII提取、越狱、对抗性提示词等。<h4 id="成员推理"><a href="#成员推理" class="headerlink" title="成员推理"></a>成员推理</h4>判断给定样本是否在训练数据中。列举了一些涉及成员推理的论文。<h4 id="额外信息攻击"><a href="#额外信息攻击" class="headerlink" title="额外信息攻击"></a>额外信息攻击</h4>是针对向量表示和梯度的攻击，主要是在联邦学习的场景出现，包括：</li>
+<li>再识别：即使用户信息被匿名化，仍然存在被重新识别的风险。通过结合来自多次交互的看似无害的信息，有可能识别个人或提取本应隐藏的个人详细信息。</li>
 </ol>
 </li>
-<li><p>属性推理攻击：从嵌入推测数据集的敏感属性</p>
-</li>
+</ol>
+<h3 id="隐私攻击"><a href="#隐私攻击" class="headerlink" title="隐私攻击"></a>隐私攻击</h3><h4 id="后门攻击"><a href="#后门攻击" class="headerlink" title="后门攻击"></a>后门攻击</h4><p>数据中毒是指仅操纵一部分训练数据的较弱攻击。这种操纵的目的是在模型的训练过程中引入偏见或误导性信息。相反，后门攻击涉及插入或修改特定的输入模式，从而触发模型行为不当或产生目标输出。此外，如果对手可以操纵LLM的部分训练语料库，它可能会通过数据中毒向受害者模型注入后门。</p>
+<h4 id="提示词注入"><a href="#提示词注入" class="headerlink" title="提示词注入"></a>提示词注入</h4><p>概括起来就是恶意提示词，包括越狱等，和前一节与后一节都有共通性。</p>
+<h4 id="训练数据提取"><a href="#训练数据提取" class="headerlink" title="训练数据提取"></a>训练数据提取</h4><p>包括PII提取、越狱、对抗性提示词等。</p>
+<h4 id="成员推理"><a href="#成员推理" class="headerlink" title="成员推理"></a>成员推理</h4><p>判断给定样本是否在训练数据中。列举了一些涉及成员推理的论文。</p>
+<h4 id="额外信息攻击"><a href="#额外信息攻击" class="headerlink" title="额外信息攻击"></a>额外信息攻击</h4><p>是针对向量表示和梯度的攻击，主要是在联邦学习的场景出现，包括：</p>
+<ol>
+<li>属性推理攻击：从嵌入推测数据集的敏感属性</li>
 <li>嵌入反转攻击：从给定的嵌入恢复原始数据</li>
-<li><p>梯度泄露：在可以访问其相应模型梯度的情况下恢复输入文本</p>
+<li>梯度泄露：在可以访问其相应模型梯度的情况下恢复输入文本</li>
+</ol>
 <h4 id="其他攻击"><a href="#其他攻击" class="headerlink" title="其他攻击"></a>其他攻击</h4><p>以下几类攻击的研究尚不充分。</p>
-</li>
-<li><p>提示词提取攻击：看内容就是提示词注入，不过提到了一个论文是prompt extraction attacks，可能和我们要总结的有关系。</p>
-</li>
+<ol>
+<li>提示词提取攻击：看内容就是提示词注入，不过提到了一个论文是prompt extraction attacks，可能和我们要总结的有关系。</li>
 <li>对抗性攻击：利用模型对原始输入的小扰动的不稳定性。</li>
 <li>侧信道攻击：只有一篇论文，和前面那个survey一样，没人研究这个。</li>
-<li>解码算法窃取：窃取超参数解码。<h3 id="隐私防御"><a href="#隐私防御" class="headerlink" title="隐私防御"></a>隐私防御</h3><h4 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h4></li>
+<li>解码算法窃取：窃取超参数解码。</li>
+</ol>
+<h3 id="隐私防御"><a href="#隐私防御" class="headerlink" title="隐私防御"></a>隐私防御</h3><h4 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h4><ol>
 <li>基于DP的预训练：基于DP的预训练可以进一步增强LM对随机噪声扰动的鲁棒性</li>
 <li>基于DP的微调：用公开数据预训练，再用敏感数据结合DP来微调</li>
 <li>基于DP的Prompt调优：由于模型规模庞大，参数高效的调优方法（例如提示调优）被广泛采用来调优各种下游任务的模型</li>
@@ -199,11 +209,11 @@
 <li>参数高效的fine-tuning，简称PEFT，旨在在尽可能减少所需的参数和计算资源的情况下，实现对预训练语言模型的有效微调。它是自然语言处理（NLP）中一组用于将预训练语言模型适应特定任务的方法，其所需参数和计算资源比传统的fine-tuning方法更少。例如知识蒸馏。</li>
 <li>prompt-tuning是一种更近期的精调预训练语言模型的方法，重点是调整输入提示（input prompt）而非修改模型参数。这意味着预训练模型保持不变，只有输入提示被修改以适应下游的任务。通过设计和优化一组提示，可以使预训练模型执行特定任务。</li>
 <li>prompt-tuning和传统的fine-tuning的主要区别在于预训练模型被修改的程度。fine-tuning修改模型的权重，而提示调整只修改模型的输入。因此，prompt-tuning调整比精调的计算成本低，需要的资源和训练时间也更少。此外，prompt-tuning比精调更灵活，因为它允许创建特定任务的提示，可以适应各种任务。</li>
-<li><p>我们在后续的研究中是否重点放在prompt tuning而非fine tuning也还需要再斟酌。</p>
+<li>我们在后续的研究中是否重点放在prompt tuning而非fine tuning也还需要再斟酌。</li>
+</ol>
 <h4 id="安全多方"><a href="#安全多方" class="headerlink" title="安全多方"></a>安全多方</h4><p>SMPC主要用于LLM的推理阶段，以保护模型参数和推理数据。然而，保护 LLM 隐私的一个主要挑战在于非线性操作所带来的限制，例如 Softmax、GeLU、LayerNorm 等，这些操作与 SMPC 不兼容。为了解决这个问题，出现了两种技术方法：模型结构优化和SMPC协议优化。</p>
-</li>
-<li><p>模型结构优化：旨在通过利用LLM的鲁棒性并修改其结构来提高推理效率，直接点说就是替换掉那几个非线性运算。</p>
-</li>
+<ol>
+<li>模型结构优化：旨在通过利用LLM的鲁棒性并修改其结构来提高推理效率，直接点说就是替换掉那几个非线性运算。</li>
 <li>SMPC协议优化：指利用先进的SMPC协议来提高LLM隐私保护推理的效率，同时保持原有的模型结构，也就是针对非线性运算设计SMPC协议，提到的方法有混淆电路、FSS、分段多项式拟合等。</li>
 </ol>
 <h4 id="联邦学习"><a href="#联邦学习" class="headerlink" title="联邦学习"></a>联邦学习</h4><p>使多方能够协作训练或微调其LLM，而无需共享参与方拥有的私有数据。和推理阶段没什么关系。</p>
@@ -213,9 +223,11 @@
 <li>隐私攻击不切实际：很多攻击在现实里没动机，例如不会有访问权限、只在有限的用例中能有作用等，一些数据集的分布假设也不现实。</li>
 <li>DP在LLM的局限性：DP是现阶段的主流隐私方案，但是有以下问题：<ol>
 <li>理论上的最坏情况边界。根据定义，基于差异隐私的法学硕士假设有一个强大的对手可以操纵整个训练数据。隐私参数 (ϵ, δ) 提供最坏情况下的隐私泄露边界。然而，在实际场景中，并不能保证对手完全控制法学硕士的训练数据。因此，实际攻击与根据差分隐私进行隐私泄露的最坏情况概率分析之间仍然存在巨大差距。</li>
-<li>实用性下降。 DP 调整通常用于相对较小规模的 LM，用于特别简单的下游数据集。尽管一些作品声称，通过仔细的超参数调整，基于 DP 的 LM 可以在某些下游分类任务上实现与不使用 DP 的正常调整类似的性能。然而，当下游任务变得复杂时，大多数工作仍然表现出明显的效用恶化。效用的降低削弱了基于DP的微调的动机。<h4 id="未来方向-1"><a href="#未来方向-1" class="headerlink" title="未来方向"></a>未来方向</h4></li>
+<li>实用性下降。 DP 调整通常用于相对较小规模的 LM，用于特别简单的下游数据集。尽管一些作品声称，通过仔细的超参数调整，基于 DP 的 LM 可以在某些下游分类任务上实现与不使用 DP 的正常调整类似的性能。然而，当下游任务变得复杂时，大多数工作仍然表现出明显的效用恶化。效用的降低削弱了基于DP的微调的动机。</li>
 </ol>
 </li>
+</ol>
+<h4 id="未来方向-1"><a href="#未来方向-1" class="headerlink" title="未来方向"></a>未来方向</h4><ol>
 <li>针对提示词注入</li>
 <li>SMPC的提升：模型结构优化（MSO）和SMPC协议优化（SPO）。 MSO 和 SPO 各自具有独特的优势。 MSO 通常在效率方面表现出色，但可能面临隐私保护推理和模型多功能性方面的限制。另一方面，SPO专注于优化SMPC协议，可以提高效率。不幸的是，SPO 可能需要修改模型结构，并且现有的预训练权重无法重复使用。挑战在于找到一种方法来整合 MSO 和 SPO 的优势，旨在为LLM设计一种高效、高性能、高度通用的隐私保护推理算法。克服这一挑战仍然是一项持续的研究工作。</li>
 <li>隐私与人类感知的一致性：多数隐私研究工作都集中在具有预定义隐私表述的简单情况，这些简单的表述利用现有工具将所有提取的预定义命名实体视为敏感信息，然后模糊或替换。这样的做法一方面会导致涉及这些信息的推断精确性下降，另一方面并不满足广义的隐私。</li>
@@ -223,7 +235,7 @@
 <li>走向情境化的隐私判断：和前面第3条有些类似，是指即便模糊掉隐私信息，仍然可能通过上下文推测出来。</li>
 </ol>
 <p>和第一个相比，这篇文章的分类感觉有点混乱，有些分类是应该合并的，也没啥自己的见解，就汇总起来概括了一下内容。这篇没有related work。</p>
-<h2 id="Challenges-and-Remedies-to-Privacy-and-Security-in-AIGC-Exploring-the-Potential-of-Privacy-Computing-Blockchain-and-Beyond"><a href="#Challenges-and-Remedies-to-Privacy-and-Security-in-AIGC-Exploring-the-Potential-of-Privacy-Computing-Blockchain-and-Beyond" class="headerlink" title="Challenges and Remedies to Privacy and Security in AIGC: Exploring the Potential of Privacy Computing, Blockchain, and Beyond"></a>Challenges and Remedies to Privacy and Security in AIGC: Exploring the Potential of Privacy Computing, Blockchain, and Beyond</h2><p>CHUAN CHEN, ZHENPENG WU, YANYI LAI, and WENLIN OU, TIANCHI LIAO and ZIBIN ZHENG, 中山大学</p>
+<h2 id="3-Challenges-and-Remedies-to-Privacy-and-Security-in-AIGC-Exploring-the-Potential-of-Privacy-Computing-Blockchain-and-Beyond"><a href="#3-Challenges-and-Remedies-to-Privacy-and-Security-in-AIGC-Exploring-the-Potential-of-Privacy-Computing-Blockchain-and-Beyond" class="headerlink" title="3 - Challenges and Remedies to Privacy and Security in AIGC: Exploring the Potential of Privacy Computing, Blockchain, and Beyond"></a>3 - Challenges and Remedies to Privacy and Security in AIGC: Exploring the Potential of Privacy Computing, Blockchain, and Beyond</h2><p>CHUAN CHEN, ZHENPENG WU, YANYI LAI, and WENLIN OU, TIANCHI LIAO and ZIBIN ZHENG, 中山大学</p>
 <p>这篇不局限于LLM，而是扩展到了AIGC（人工智能生成内容），代表模型分文本和图像：</p>
 <ol>
 <li>LLM：ChatGPT等</li>
@@ -252,7 +264,7 @@
 <li>针对逃逸攻击(Evasion Attacks)：攻击者在不改变目标机器学习系统的情况下，通过构造特定输入样本以完成欺骗目标系统的攻击。一般发生在模型已经完成训练，在预测时。平滑VAE（主要针对的是图像）、修改模型结构</li>
 </ol>
 <p>总的来说这篇没怎么提推断的事情，无参考意义。</p>
-<h2 id="Security-and-Privacy-on-Generative-Data-in-AIGC-A-Survey"><a href="#Security-and-Privacy-on-Generative-Data-in-AIGC-A-Survey" class="headerlink" title="Security and Privacy on Generative Data in AIGC: A Survey"></a>Security and Privacy on Generative Data in AIGC: A Survey</h2><p>Tao Wang, Yushu Zhang, Shuren Qi, Ruoyu Zhao, Zhihua Xia, and Jian Weng</p>
+<h2 id="4-Security-and-Privacy-on-Generative-Data-in-AIGC-A-Survey"><a href="#4-Security-and-Privacy-on-Generative-Data-in-AIGC-A-Survey" class="headerlink" title="4 - Security and Privacy on Generative Data in AIGC: A Survey"></a>4 - Security and Privacy on Generative Data in AIGC: A Survey</h2><p>Tao Wang, Yushu Zhang, Shuren Qi, Ruoyu Zhao, Zhihua Xia, and Jian Weng</p>
 <p>这篇也是AIGC的，分图像和语言</p>
 <p>和其他survey的对比：</p>
 <ol>
