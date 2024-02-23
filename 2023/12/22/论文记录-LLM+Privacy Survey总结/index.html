@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">7.6k</span>
+            <span class="post-count">7.8k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">26 分钟</span>
+            <span class="post-count">27 分钟</span>
         </span>
     </span>
 </div>
@@ -222,7 +222,7 @@
 <h3 id="未来方向"><a href="#未来方向" class="headerlink" title="未来方向"></a>未来方向</h3><h4 id="当前局限"><a href="#当前局限" class="headerlink" title="当前局限"></a>当前局限</h4><ol>
 <li>隐私攻击不切实际：很多攻击在现实里没动机，例如不会有访问权限、只在有限的用例中能有作用等，一些数据集的分布假设也不现实。</li>
 <li>DP在LLM的局限性：DP是现阶段的主流隐私方案，但是有以下问题：<ol>
-<li>理论上的最坏情况边界。根据定义，基于差异隐私的法学硕士假设有一个强大的对手可以操纵整个训练数据。隐私参数 (ϵ, δ) 提供最坏情况下的隐私泄露边界。然而，在实际场景中，并不能保证对手完全控制法学硕士的训练数据。因此，实际攻击与根据差分隐私进行隐私泄露的最坏情况概率分析之间仍然存在巨大差距。</li>
+<li>理论上的最坏情况边界。根据定义，基于差异隐私的LLM假设有一个强大的对手可以操纵整个训练数据。隐私参数 (ϵ, δ) 提供最坏情况下的隐私泄露边界。然而，在实际场景中，并不能保证对手完全控制LLM的训练数据。因此，实际攻击与根据差分隐私进行隐私泄露的最坏情况概率分析之间仍然存在巨大差距。</li>
 <li>实用性下降。 DP 调整通常用于相对较小规模的 LM，用于特别简单的下游数据集。尽管一些作品声称，通过仔细的超参数调整，基于 DP 的 LM 可以在某些下游分类任务上实现与不使用 DP 的正常调整类似的性能。然而，当下游任务变得复杂时，大多数工作仍然表现出明显的效用恶化。效用的降低削弱了基于DP的微调的动机。</li>
 </ol>
 </li>
@@ -304,18 +304,27 @@
 <p>总结下来这几篇都没具体到推断这个环节，很多方法是针对训练数据的，也有一些不区分是不是inference</p>
 <p>待确认：</p>
 <ul>
-<li>[ ] 调优（Fine-tuning）属于推断吗？</li>
-<li>[ ] 推断的范畴：<ul>
-<li>[ ] 发生在推断过程中，针对prompt的应该算，例如DP和MPC</li>
-<li>[ ] 隐私攻击是在推断中进行的，但针对的是泄露训练数据，例如成员推断、属性推断等。针对这类攻击的是否符合要求？</li>
-<li>[ ] 发生在推断前，和AI以及隐私计算其实都没什么关系，例如本地计算、边缘计算等，但确实保护了推断数据的隐私，不过没保护模型和训练数据的隐私，是否符合要求？</li>
-<li>[ ] 发生在推断中，针对训练数据的隐私保护是否符合要求？例如通过输入来实现的知识遗忘【In-Context Unlearning: Language Models as Few Shot Unlearners】。p.s. 没找到关于遗忘prompt的论文，只有个别帖子提到了有这方面需求，论文【 <a href="https://arxiv.org/abs/2310.12523" target="_blank" rel="noopener">Privacy Preserving Large Language Models: ChatGPT Case Study Based Vision and Framework</a>】中提到了让GPT忘掉之前的prompt等，但不涉及什么技术。</li>
+<li>[x] 调优（Fine-tuning）属于推断吗？</li>
+<li>[x] 推断的范畴：<ul>
+<li>[x] 发生在推断过程中，针对prompt的应该算，例如DP和MPC</li>
+<li>[x] 隐私攻击是在推断中进行的，但针对的是泄露训练数据，例如成员推断、属性推断等。针对这类攻击的是否符合要求？</li>
+<li>[x] 发生在推断前，和AI以及隐私计算其实都没什么关系，例如本地计算、边缘计算等，但确实保护了推断数据的隐私，不过没保护模型和训练数据的隐私，是否符合要求？</li>
+<li>[x] 发生在推断中，针对训练数据的隐私保护是否符合要求？例如通过输入来实现的知识遗忘【In-Context Unlearning: Language Models as Few Shot Unlearners】。p.s. 没找到关于遗忘prompt的论文，只有个别帖子提到了有这方面需求，论文【 <a href="https://arxiv.org/abs/2310.12523" target="_blank" rel="noopener">Privacy Preserving Large Language Models: ChatGPT Case Study Based Vision and Framework</a>】中提到了让GPT忘掉之前的prompt等，但不涉及什么技术。</li>
 </ul>
 </li>
-<li>[ ] 调研范围或许应该加上generate，它和inference的区别是什么？</li>
-<li>[ ] 针对隐私对象的分类（训练数据、prompt、模型数据）应该不太可行了</li>
+<li>[ ] 调研范围或许应该加上generate，它和inference的区别是什么？——待确定</li>
+<li>[ ] 针对隐私对象的分类（训练数据、prompt、模型数据）应该不太可行了——待确定</li>
 <li>[ ] 按阶段分要看范畴的定义，再筛选论文。</li>
 </ul>
+<p>预训练：大数据输入给深度学习算法，输出大模型例如gpt——和推断无关<br>调优数据：小领域的小规模数据集或者prompt，输入给大模型（如gpt），得到其响应结果——推断前<br>模型数据：大模型本身的向量、梯度、服务器参数等等——推断中<br>推断后：对响应结果做处理</p>
+<p>问题：调优数据算推断吗？不算，只考虑promt调整</p>
+<p>大模型阶段：训练、调优、推断or生成，本文针对第三阶段的隐私安全展开研究</p>
+<p>分类方法：</p>
+<ol>
+<li>按时间阶段：推断前、中、后</li>
+<li>按隐私保护的对象：预训练数据、调优数据（prompt）、模型数据（向量、梯度等）</li>
+<li>按隐私方案优化的对象：调优数据（prompt）、模型数据（向量、梯度、函数等）、生成数据（推断后的检测、知识遗忘）、其他（硬件设备、本地计算等，考虑放到调优数据中）——首选</li>
+</ol>
  
       <!-- reward -->
       
@@ -381,10 +390,19 @@
    
   <nav class="article-nav">
     
+      <a href="/2024/01/02/2023%E5%B9%B410%E6%9C%881%E6%97%A5-12%E6%9C%8831%E6%97%A5%E5%86%B3%E7%AE%97%E5%8F%8A2024%E4%B8%8A%E5%8D%8A%E5%B9%B4%E9%A2%84%E7%AE%97/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            2023年10月1日-12月31日决算及2024上半年预算
+          
+        </div>
+      </a>
     
-      <a href="/2023/12/08/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-SIGMA%20Secure%20GPT%20Inference%20with%20Function%20Secret%20Sharing/" class="article-nav-link">
+    
+      <a href="/2023/12/08/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-SECURE%20TRANSFORMER%20INFERENCE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">论文记录-SIGMA: Secure GPT Inference with Function Secret Sharing</div>
+        <div class="article-nav-title">论文记录-SECURE TRANSFORMER INFERENCE</div>
       </a>
     
   </nav>
@@ -400,7 +418,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2020-2023
+        2020-2024
         <i class="ri-heart-fill heart_icon"></i> Kun Li
       </li>
     </ul>
@@ -450,7 +468,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/header.jpg" alt="左边"></a>
+    <a href="/"><img src="/images/ayer.png" alt="左边"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -473,10 +491,6 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/photos">照片</a>
     </li>
     
     <li class="nav-item">
