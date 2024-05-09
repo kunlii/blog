@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "论文记录-WASA2024审稿.md",
+                "file": "论文记录-ICMC2024审稿.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "论文记录-WASA2024审稿.md",
+                "file": "论文记录-ICMC2024审稿.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "论文记录-WASA2024审稿.md",
+                "file": "论文记录-ICMC2024审稿.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "论文记录-WASA2024审稿.md"
+                "file": "论文记录-ICMC2024审稿.md"
               }
             }
           }
@@ -160,8 +160,9 @@
   },
   "active": "c810b40314f81750",
   "lastOpenFiles": [
-    "论文记录-排队论公式理解.md",
     "论文记录-WASA2024审稿.md",
+    "论文记录-ICMC2024审稿.md",
+    "论文记录-排队论公式理解.md",
     "论文记录-分片相关.md",
     "overleaf的本地同步配置.md",
     "论文记录-Tiered Mechanisms for Blockchain Transaction Fees.md",
@@ -185,7 +186,6 @@
     "论文记录-Privacy-Preserved Data Disturbance and Truthfulness Verification for Data Trading.md",
     "论文记录-Privacy-Policy-in-Online-Social-Network-with-Targeted-Advertising-Business.md",
     "论文记录-Peer Prediction-Based Trustworthiness Evaluation and Trustworthy Service Rating in Social Networks.md",
-    "论文记录-Optimal and Quantized Mechanism Design for Fresh Data Acquisition.md",
     "daily-1 2.jpg",
     "daily-1 1.jpg",
     "daily-1.jpg"
