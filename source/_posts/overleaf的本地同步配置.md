@@ -35,9 +35,9 @@ Overleaf 的 Git 整合功能允许你从 Overleaf 项目中获取 Git URL，并
 或者，你也可以从项目 URL（进入项目时浏览器地址栏中的 URL）中找到 Git 网址。  
 #### Overleaf 云  
 
-如果您使用的是 Overleaf Cloud，且 Overleaf 项目 URL 如下：https://www.overleaf.com/project/1234567  
+如果您使用的是 Overleaf Cloud，且 Overleaf 项目 URL 如下：`https://www.overleaf.com/project/1234567`  
 
-那么克隆项目的 Git 网址就是  https://git.overleaf.com/1234567 
+那么克隆项目的 Git 网址就是 `https://git.overleaf.com/1234567`
 
 克隆该项目到本地 Git 仓库的命令是 `git clone https://git.overleaf.com/1234567`
 
@@ -47,13 +47,14 @@ Overleaf 的 Git 整合功能允许你从 Overleaf 项目中获取 Git URL，并
 
 **注意**：Server Pro 默认未启用 Git 桥集成。请参阅我们的[Git](https://github.com/overleaf/overleaf/wiki/Git-Integration)整合指南，了解如何启用。  
 
-如果你正在使用 Overleaf Server Pro，而你的项目 URL 看起来像这样：  https://<SHARELATEX_SITE_URL>/project/1234567    
+如果你正在使用 Overleaf Server Pro，而你的项目 URL 看起来像这样：  `https://<SHARELATEX_SITE_URL>/project/1234567`    
 
-那么克隆项目时使用的 Git URL 将是  https://git@<SHARELATEX_SITE_URL>/git/1234567    
+那么克隆项目时使用的 Git URL 将是 `https://git@<SHARELATEX_SITE_URL>/git/1234567`   
 
 使用 Git 命令行将项目克隆到本地 Git 仓库的命令是  `git clone git@<SHARELATEX_SITE_URL>/git/1234567`
 
 **注意**：系统可能会提示您输入密码。请参阅 [Git 整合身份验证令牌](https://www.overleaf.com/learn/how-to/Git_integration_authentication_tokens)
+
 ### 从现有 Git 仓库创建 Overleaf 项目  
 
 如果你已有一个 Git 仓库，就可以添加 Overleaf 项目作为远程仓库。下面有几条命令，你需要运行它们才能开始工作。请注意，Overleaf 只支持每个项目一个线性历史记录。Git 集成通过将分支数量限制为一个来实现这一限制。这一个分支目前被硬编码为`master`。  
@@ -78,5 +79,3 @@ Overleaf 的 Git 整合功能允许你从 Overleaf 项目中获取 Git URL，并
 4. 接着	`$ git checkout master`和`$ git pull overleaf master --allow-unrelated-histories --rebase=false`
 5. 最后就可以`git push overleaf my-branch:master`了
 6. 但是到第4步时，我就发现提示认证失败，经过一番尝试搜索，发现即便不用GitHub，只是git，也得付费一个月21美元，因此不继续搞了，还是老老实实写完上传吧，这篇记录就先放着，没准以后能用到。
-
-`

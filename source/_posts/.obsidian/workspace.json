@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "1c73ab405612a272",
+        "id": "0cb3fa093cbeebbd",
         "type": "tabs",
         "children": [
           {
-            "id": "c810b40314f81750",
+            "id": "534ce85090d8e412",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "论文记录-ICMC2024审稿.md",
+                "file": "hexo-next-github配置blog.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 316.5
   },
   "right": {
     "id": "e91e74292be9f775",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "论文记录-ICMC2024审稿.md",
+                "file": "hexo-next-github配置blog.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "论文记录-ICMC2024审稿.md",
+                "file": "hexo-next-github配置blog.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "论文记录-ICMC2024审稿.md"
+                "file": "hexo-next-github配置blog.md"
               }
             }
           }
@@ -158,13 +158,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c810b40314f81750",
+  "active": "534ce85090d8e412",
   "lastOpenFiles": [
-    "论文记录-WASA2024审稿.md",
+    "各种平台遇到过的error处理方式.md",
+    "overleaf的本地同步配置.md",
+    "Echarts的配置.md",
     "论文记录-ICMC2024审稿.md",
+    "论文记录-WASA2024审稿.md",
     "论文记录-排队论公式理解.md",
     "论文记录-分片相关.md",
-    "overleaf的本地同步配置.md",
     "论文记录-Tiered Mechanisms for Blockchain Transaction Fees.md",
     "Cryptography课程记录-Week 1_Course overview and stream ciphers.md",
     "论文记录-空间众包任务分配总结.md",
@@ -184,8 +186,6 @@
     "论文记录-PUMA Secure Inference Of LLaMa-7b In Five Minutes.md",
     "论文记录-Privacy-Preserving Prompt Tuning for Large Language Model Services.md",
     "论文记录-Privacy-Preserved Data Disturbance and Truthfulness Verification for Data Trading.md",
-    "论文记录-Privacy-Policy-in-Online-Social-Network-with-Targeted-Advertising-Business.md",
-    "论文记录-Peer Prediction-Based Trustworthiness Evaluation and Trustworthy Service Rating in Social Networks.md",
     "daily-1 2.jpg",
     "daily-1 1.jpg",
     "daily-1.jpg"

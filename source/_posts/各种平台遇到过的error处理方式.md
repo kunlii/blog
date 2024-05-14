@@ -68,3 +68,32 @@ categories: 无分类项
 9. pycharm更新了一下，然后导入包的时候会有`unresolved reference issue`的提示，但是能正常运行，就只是看起来不好看。
 
    解决方案：~~[有一个](https://www.jianshu.com/p/9555310f1920)说`File` → `Settings` → `Editor` → `File Types` → `Ignore files and folders`，干掉框框中的：`__init__.py;`，然后：`OK`等待重新文件扫描。但是我打开看了以后发现我的框里并没有`__init__.py`。于是就`File` → `Invalidate Caches / Restart`，选择`Invalidate and Restart`，等待重新扫描库文件。这之后就好了。~~并没有解决问题，算了反正不影响运行，就这样吧。
+
+10. 编译`hexo g`时，忽然出现了如下报错：
+```html
+FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html
+TypeError [ERR_INVALID_URL]: Invalid URL: https://git@
+    at onParseError (internal/url.js:258:9)
+    at new URL (internal/url.js:334:5)
+    at D:\Github\blog\node_modules\hexo-util\lib\is_external_link.js:21:18
+    at Cache.apply (D:\Github\blog\node_modules\hexo-util\lib\cache.js:27:46)
+    at isExternalLink (D:\Github\blog\node_modules\hexo-util\lib\is_external_link.js:19:16)
+    at D:\Github\blog\node_modules\hexo\lib\plugins\filter\after_render\external_link.js:23:35
+    at String.replace (<anonymous>)
+    at Hexo.externalLinkFilter (D:\Github\blog\node_modules\hexo\lib\plugins\filter\after_render\external_link.js:22:15)
+    at Hexo.tryCatcher (D:\Github\blog\node_modules\bluebird\js\release\util.js:16:23)
+    at Hexo.<anonymous> (D:\Github\blog\node_modules\bluebird\js\release\method.js:15:34)
+    at D:\Github\blog\node_modules\hexo\lib\extend\filter.js:62:52
+    at tryCatcher (D:\Github\blog\node_modules\bluebird\js\release\util.js:16:23)
+    at Object.gotValue (D:\Github\blog\node_modules\bluebird\js\release\reduce.js:166:18)
+    at Object.gotAccum (D:\Github\blog\node_modules\bluebird\js\release\reduce.js:155:25)
+    at Object.tryCatcher (D:\Github\blog\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise._settlePromiseFromHandler (D:\Github\blog\node_modules\bluebird\js\release\promise.js:547:31)
+    at Promise._settlePromise (D:\Github\blog\node_modules\bluebird\js\release\promise.js:604:18)
+    at Promise._settlePromise0 (D:\Github\blog\node_modules\bluebird\js\release\promise.js:649:10)
+    at Promise._settlePromises (D:\Github\blog\node_modules\bluebird\js\release\promise.js:729:18)
+    at _drainQueueStep (D:\Github\blog\node_modules\bluebird\js\release\async.js:93:12)
+    at _drainQueue (D:\Github\blog\node_modules\bluebird\js\release\async.js:86:9)
+    at Async._drainQueues (D:\Github\blog\node_modules\bluebird\js\release\async.js:102:5)
+```
+经过一番检查，发现问题出在某篇文章上，只要去掉这篇就能正常编译，又在这篇文章中一番检查（指删掉一些段落看能不能正常编译），最终发现是因为文章中有一段内容提到了`http://git@`等等，因为当时写的时候直接输入了地址，没有加转义等，让hexo以为是要引入这个地址，于是编译出错了，把这个地址的格式改成代码格式后就好起来了。
