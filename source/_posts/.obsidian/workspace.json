@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "生活记录-20240530.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "生活记录-20240530.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "生活记录-20240530.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "hexo-next-github配置blog.md"
+                "file": "生活记录-20240530.md"
               }
             }
           }
@@ -160,6 +160,9 @@
   },
   "active": "534ce85090d8e412",
   "lastOpenFiles": [
+    "生活记录-20240315.md",
+    "生活记录-20240530.md",
+    "hexo-next-github配置blog.md",
     "各种平台遇到过的error处理方式.md",
     "overleaf的本地同步配置.md",
     "Echarts的配置.md",
@@ -183,9 +186,6 @@
     "论文记录-Strategic Information Revelation in Crowdsourcing Systems Without Verification.md",
     "论文记录-SoK Decentralized Finance (DeFi) Attacks.md",
     "论文记录-Social Decision Making Insights from Game Theory and Neuroscience.md",
-    "论文记录-PUMA Secure Inference Of LLaMa-7b In Five Minutes.md",
-    "论文记录-Privacy-Preserving Prompt Tuning for Large Language Model Services.md",
-    "论文记录-Privacy-Preserved Data Disturbance and Truthfulness Verification for Data Trading.md",
     "daily-1 2.jpg",
     "daily-1 1.jpg",
     "daily-1.jpg"
