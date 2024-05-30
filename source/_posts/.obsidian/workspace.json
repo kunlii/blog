@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "生活记录-20240530.md",
+                "file": "hexo-next-github配置blog.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "生活记录-20240530.md",
+                "file": "hexo-next-github配置blog.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "生活记录-20240530.md",
+                "file": "hexo-next-github配置blog.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "生活记录-20240530.md"
+                "file": "hexo-next-github配置blog.md"
               }
             }
           }
@@ -160,8 +160,8 @@
   },
   "active": "534ce85090d8e412",
   "lastOpenFiles": [
-    "生活记录-20240315.md",
     "生活记录-20240530.md",
+    "生活记录-20240315.md",
     "hexo-next-github配置blog.md",
     "各种平台遇到过的error处理方式.md",
     "overleaf的本地同步配置.md",
