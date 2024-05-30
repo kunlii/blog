@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">689</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3 分钟</span>
+            <span class="post-count">5 分钟</span>
         </span>
     </span>
 </div>
@@ -119,6 +119,10 @@
 </li>
 <li><p>pycharm更新了一下，然后导入包的时候会有<code>unresolved reference issue</code>的提示，但是能正常运行，就只是看起来不好看。</p>
 <p>解决方案：<del><a href="https://www.jianshu.com/p/9555310f1920" target="_blank" rel="noopener">有一个</a>说<code>File</code> → <code>Settings</code> → <code>Editor</code> → <code>File Types</code> → <code>Ignore files and folders</code>，干掉框框中的：<code>__init__.py;</code>，然后：<code>OK</code>等待重新文件扫描。但是我打开看了以后发现我的框里并没有<code>__init__.py</code>。于是就<code>File</code> → <code>Invalidate Caches / Restart</code>，选择<code>Invalidate and Restart</code>，等待重新扫描库文件。这之后就好了。</del>并没有解决问题，算了反正不影响运行，就这样吧。</p>
+</li>
+<li><p>编译<code>hexo g</code>时，忽然出现了如下报错：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">TypeError [ERR_INVALID_URL]: Invalid URL: https://git@</span><br><span class="line">    at onParseError (internal/url.js:258:9)</span><br><span class="line">    at new URL (internal/url.js:334:5)</span><br><span class="line">    at D:\Github\blog\node_modules\hexo-util\lib\is_external_link.js:21:18</span><br><span class="line">    at Cache.apply (D:\Github\blog\node_modules\hexo-util\lib\cache.js:27:46)</span><br><span class="line">    at isExternalLink (D:\Github\blog\node_modules\hexo-util\lib\is_external_link.js:19:16)</span><br><span class="line">    at D:\Github\blog\node_modules\hexo\lib\plugins\filter\after_render\external_link.js:23:35</span><br><span class="line">    at String.replace (<span class="tag">&lt;<span class="name">anonymous</span>&gt;</span>)</span><br><span class="line">    at Hexo.externalLinkFilter (D:\Github\blog\node_modules\hexo\lib\plugins\filter\after_render\external_link.js:22:15)</span><br><span class="line">    at Hexo.tryCatcher (D:\Github\blog\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Hexo.<span class="tag">&lt;<span class="name">anonymous</span>&gt;</span> (D:\Github\blog\node_modules\bluebird\js\release\method.js:15:34)</span><br><span class="line">    at D:\Github\blog\node_modules\hexo\lib\extend\filter.js:62:52</span><br><span class="line">    at tryCatcher (D:\Github\blog\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Object.gotValue (D:\Github\blog\node_modules\bluebird\js\release\reduce.js:166:18)</span><br><span class="line">    at Object.gotAccum (D:\Github\blog\node_modules\bluebird\js\release\reduce.js:155:25)</span><br><span class="line">    at Object.tryCatcher (D:\Github\blog\node_modules\bluebird\js\release\util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (D:\Github\blog\node_modules\bluebird\js\release\promise.js:547:31)</span><br><span class="line">    at Promise._settlePromise (D:\Github\blog\node_modules\bluebird\js\release\promise.js:604:18)</span><br><span class="line">    at Promise._settlePromise0 (D:\Github\blog\node_modules\bluebird\js\release\promise.js:649:10)</span><br><span class="line">    at Promise._settlePromises (D:\Github\blog\node_modules\bluebird\js\release\promise.js:729:18)</span><br><span class="line">    at _drainQueueStep (D:\Github\blog\node_modules\bluebird\js\release\async.js:93:12)</span><br><span class="line">    at _drainQueue (D:\Github\blog\node_modules\bluebird\js\release\async.js:86:9)</span><br><span class="line">    at Async._drainQueues (D:\Github\blog\node_modules\bluebird\js\release\async.js:102:5)</span><br></pre></td></tr></table></figure>
+<p>经过一番检查，发现问题出在某篇文章上，只要去掉这篇就能正常编译，又在这篇文章中一番检查（指删掉一些段落看能不能正常编译），最终发现是因为文章中有一段内容提到了<code>http://git@</code>等等，因为当时写的时候直接输入了地址，没有加转义等，让hexo以为是要引入这个地址，于是编译出错了，把这个地址的格式改成代码格式后就好起来了。</p>
 </li>
 </ol>
  
