@@ -1,7 +1,7 @@
 ---
 title: 论文记录-Evolution of cooperation in stochastic games
 date: 2023-07-20 18:27:26
-tags: game theory
+tags: game-theory
 categories: 论文
 description: 随机博弈中合作的演变
 ---

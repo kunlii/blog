@@ -3,7 +3,7 @@ title: 论文记录-INFOCOM 2024审稿
 date: 2023-08-15 09:45:36
 tags:
   - blockchain
-  - mechanism design
+  - mechanism-design
   - 审稿意见
 categories: 论文
 description: infocom 2024的5篇审稿

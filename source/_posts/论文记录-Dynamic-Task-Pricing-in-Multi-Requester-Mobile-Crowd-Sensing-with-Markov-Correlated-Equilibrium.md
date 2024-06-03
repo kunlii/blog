@@ -2,8 +2,8 @@
 title: 论文记录-Dynamic Task Pricing in Multi-Requester Mobile Crowd Sensing with Markov Correlated Equilibrium
 date: 2020-05-14 11:40:43
 tags: 
-    - game theory
-    - crowd sensing
+    - game-theory
+    - crowd-sensing
 category: 论文
 ---
 # 基于马尔可夫相关均衡的多发包方移动群体感知中的动态任务定价

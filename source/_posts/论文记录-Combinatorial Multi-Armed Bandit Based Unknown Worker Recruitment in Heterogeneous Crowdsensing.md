@@ -3,7 +3,7 @@ title: 论文记录-Combinatorial Multi-Armed Bandit Based Unknown Worker Recrui
 date: 2020-07-05 14:31:25
 tags: 
     - crowdsourcing
-    - Combinatorial Multi Armed Bandit
+    - Combinatorial-Multi-Armed-Bandit
 category: 论文
 ---
 <!--more-->

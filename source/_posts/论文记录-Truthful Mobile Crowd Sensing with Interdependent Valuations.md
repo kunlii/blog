@@ -4,8 +4,7 @@ date: 2023-08-31 21:35:43
 tags:
   - trustworthiness
   - crowdsourcing
-  - mechanism
-  - design
+  - mechanism-design
 category: 论文
 description: 具有相互依赖的估值的真实移动群智感知
 ---

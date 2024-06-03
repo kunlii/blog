@@ -2,7 +2,7 @@
 title: 论文记录-A Robust Bayesian Truth Serum for Small Populations
 date: 2023-1-2 15:57:40
 tags:
-    - game theory
+    - game-theory
     - trustworthiness
     - BTS
 categories: 论文

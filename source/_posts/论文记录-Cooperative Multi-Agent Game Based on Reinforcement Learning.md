@@ -2,8 +2,8 @@
 title: 论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning
 date: 2023-10-18 10:51:36
 tags:
-  - game theory
-  - reinforcement learning
+  - game-theory
+  - reinforcement-learning
   - 审稿意见
 categories: 论文
 description: HCC的审稿

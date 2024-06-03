@@ -3,7 +3,7 @@ title: 论文记录-A Survey of Deep Causal
 date: 2023-1-27 20:06:40
 tags:
     - 因果推断
-    - deep learning
+    - deep-learning
 categories: 论文
 description: 深度因果推断综述
 ---

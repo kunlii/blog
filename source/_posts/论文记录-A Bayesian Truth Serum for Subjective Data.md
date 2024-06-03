@@ -2,7 +2,7 @@
 title: 论文记录-A Bayesian Truth Serum for Subjective Data
 date: 2022-10-24 16:33:40
 tags:
-    - game theory
+    - game-theory
     - trustworthiness
     - BTS
 categories: 论文

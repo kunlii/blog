@@ -1,7 +1,7 @@
 ---
 title: '论文记录-Best reply structure and equilibrium convergence in generic games'
 date: 2021-11-11 10:19:36
-tags: game theory
+tags: game-theory
 categories: 论文
 description: 博弈论-矩阵震荡
 ---

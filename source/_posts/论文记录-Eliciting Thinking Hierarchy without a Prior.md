@@ -2,7 +2,7 @@
 title: 论文记录-Eliciting Thinking Hierarchy without a Prior
 date: 2022-10-13 09:58:32
 tags:
-    - game theory
+    - game-theory
     - crowdsourcing
 categories: 论文
 description: 没有先验知识的情况下从众多答案中选择正确的那个

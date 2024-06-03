@@ -1,7 +1,7 @@
 ---
 title: '论文记录 - Social Decision-Making: Insights from Game Theory and Neuroscience'
 date: 2023-07-20 16:50:56
-tags: Game theory
+tags: game-theory
 categories: 论文
 description: 结合博弈论和神经科学的研究
 ---

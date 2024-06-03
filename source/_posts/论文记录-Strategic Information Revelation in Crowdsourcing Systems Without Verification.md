@@ -3,7 +3,7 @@ title: 论文记录-Strategic Information Revelation in Crowdsourcing Systems Wi
 date: 2020-12-25 09:38:43
 tags: 
     - crowdsourcing
-    - game theory
+    - game-theory
 category: 论文
 description: 无验证的众包系统中的策略性信息披露
 ---

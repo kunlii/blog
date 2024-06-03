@@ -3,7 +3,7 @@ title: 论文记录-Budgeted Unknown Worker Recruitment for Heterogeneous Crowds
 date: 2022-09-11 16:02:25
 tags: 
     - crowdsourcing
-    - Combinatorial Multi Armed Bandit
+    - Combinatorial-Multi-Armed-Bandit
 category: 论文
 ---
 <!--more-->

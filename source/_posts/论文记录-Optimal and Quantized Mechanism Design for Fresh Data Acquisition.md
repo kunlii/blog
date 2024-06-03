@@ -3,7 +3,7 @@ title: '论文记录-Optimal and Quantized Mechanism Design for Fresh Data Acqui
 date: 2021-11-01 16:58:36
 tags: 
   - crowdsourcing
-  - mechanism design
+  - mechanism-design
 categories: 论文
 description: 和虚拟成本有关的一篇论文，师弟的idea中用到了，因此看一看。
 ---

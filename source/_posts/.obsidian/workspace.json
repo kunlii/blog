@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "hexo-next-github配置blog.md"
+                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md"
               }
             }
           }
@@ -160,32 +160,32 @@
   },
   "active": "534ce85090d8e412",
   "lastOpenFiles": [
-    "生活记录-20240530.md",
-    "生活记录-20240315.md",
-    "hexo-next-github配置blog.md",
-    "各种平台遇到过的error处理方式.md",
-    "overleaf的本地同步配置.md",
-    "Echarts的配置.md",
-    "论文记录-ICMC2024审稿.md",
-    "论文记录-WASA2024审稿.md",
-    "论文记录-排队论公式理解.md",
-    "论文记录-分片相关.md",
-    "论文记录-Tiered Mechanisms for Blockchain Transaction Fees.md",
+    "python课程记录-13.md",
+    "python课程记录-9.md",
+    "python课程记录-4.md",
+    "Let-s-Build-A-Simple-Interpreter笔记-6.md",
+    "python课程记录-1.md",
+    "python-sklearn-keras-lstm回归预测问题.md",
+    "Let-s-Build-A-Simple-Interpreter笔记-8.md",
+    "Leetcode记录-2.md",
     "Cryptography课程记录-Week 1_Course overview and stream ciphers.md",
-    "论文记录-空间众包任务分配总结.md",
-    "论文记录-LLM+Privacy Survey总结.md",
-    "论文记录-SIGMA Secure GPT Inference with Function Secret Sharing.md",
-    "论文记录-Secure Transformer Inference.md",
-    "论文记录-Secure Balance Planning of Off-blockchain Payment Channel Networks.md",
-    "论文记录-Beyond Finite Layer Neural Networks Bridging Deep Architectures And Numerical Differential Equations.md",
-    "论文记录-Arthur Gervais论文略读记录.md",
+    "Echarts的配置.md",
+    "ck3mod制作笔记-6.md",
+    "ck3mod制作笔记-2.md",
+    "blender学习记录-2.md",
+    "仙境之夜攻略记录.md",
+    "使用算法和数据结构解决问题-1.md",
+    "生活记录-20240530.md",
+    "区块链行业总结.md",
+    "生活记录-20240315.md",
+    "论文略读记录.md",
+    "论文记录-WASA2024审稿.md",
     "论文记录-Using game theory to thwart multistage privacy intrusions when sharing data.md",
     "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
-    "论文记录-Theories of Bargaining Delays.md",
-    "论文记录-The universal visitation law of human mobility.md",
-    "论文记录-Strategic Information Revelation in Crowdsourcing Systems Without Verification.md",
-    "论文记录-SoK Decentralized Finance (DeFi) Attacks.md",
-    "论文记录-Social Decision Making Insights from Game Theory and Neuroscience.md",
+    "2023年2月1日-6月30日预算.md",
+    "2023年10月1日-12月31日决算及2024上半年预算.md",
+    "读书笔记-中世纪历史与文化.md",
+    "各种平台遇到过的error处理方式.md",
     "daily-1 2.jpg",
     "daily-1 1.jpg",
     "daily-1.jpg"
