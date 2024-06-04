@@ -41,14 +41,90 @@ g_j=ln(1+\delta_j\sum_{i\in W}s_{ij})\tag{4}</script><ol>
 <li>请求者j的成本函数$v_j()$被定义为其成本减去训练所得收益，如下，其中$\alpha_j\geq 0,\beta_j\geq 0$是用于将训练延迟和训练收益转为货币的参数。R的目标函数是最小化$v_j()$。</li>
 </ol>
 <script type="math/tex; mode=display">
-v_j()=\alpha_j\sum_{i\in W}l_{ij}+p_j\sum_{i\in W}s_{ij}-\beta_jg_j</script><h3 id="三类交互"><a href="#三类交互" class="headerlink" title="三类交互"></a>三类交互</h3><p>根据公式3，worker的效用函数可以改写为：</p>
+v_j()=\alpha_j\sum_{i\in W}l_{ij}+p_j\sum_{i\in W}s_{ij}-\beta_jg_j\tag{5}</script><h3 id="三类交互"><a href="#三类交互" class="headerlink" title="三类交互"></a>三类交互</h3><p>根据公式3，worker的效用函数可以改写为：</p>
 <script type="math/tex; mode=display">
 \begin{align}
 u_i(s_i,s_{-i})&=\sum_{j\in R}(p_j-c_i)s_{ij}\\
 &=\sum_{j\in R}((b_j-\rho_j^{-1}\sum_{k\in W}s_{kj})-c_i)s_{ij}
 \end{align}\tag{7}</script><p>其中$s_{-i}$表示除了i以外其他所有worker的策略向量，意味着每个worker的收益和其他worker的策略有关。worker的目标是最大化该函数。</p>
 <p>在给定$p_j&gt; c_i$的情况下，worker会尽可能设置一个大的$s_{ij}$。但这样做间接降低了其他所有workers的收益。另一方面，如果所有worker为R带来了更多收益，那么R就有更多钱能付给worker。这两个相互冲突的因素构成了WW互动。</p>
-<h2 id="问题形式化"><a href="#问题形式化" class="headerlink" title="问题形式化"></a>问题形式化</h2><h2 id="本文方案"><a href="#本文方案" class="headerlink" title="本文方案"></a>本文方案</h2><h2 id="数值分析"><a href="#数值分析" class="headerlink" title="数值分析"></a>数值分析</h2><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><ol>
+<p>RW互动：对于给定报酬，W希望通过设置合适的$s_{ij}$来最大化自己的效用；而R希望通过设置合适的$p_j$来在最小化成本的前提下吸引W为模型贡献</p>
+<p>RR互动：每个R吸引到更多W的同时，意味着其他R面临的训练延迟更高</p>
+<h2 id="问题形式化"><a href="#问题形式化" class="headerlink" title="问题形式化"></a>问题形式化</h2><p>RW互动建模为二阶段Stackelberg博弈，R是leader，W是follower，包含两个子博弈：</p>
+<ol>
+<li>WW：当所有R的策略都给定后，W们决定自己的策略，每个W的效用取决于其他W的策略，对于给定的所有其他W的策略集而言，能最大化自己效用的策略就是最好的，所有W的最优策略组成的集合就是该子博弈的均衡解。</li>
+<li>RR：尽管R的成本与W的策略有关，但R在制定策略时并不知道W的策略。对于给定的W策略集以及其他所有R策略集而言，能最小化自己成本的策略就是最好的，所有R的最优策略组成的集合就是该子博弈的均衡解。</li>
+</ol>
+<p>总的流程就是R先制定策略，即确定$b_i$，然后W根据R的策略决定策略，即确定$s_ij$，上述两个子博弈的均衡解合起来组成了整个RW博弈的均衡。</p>
+<h2 id="本文方案"><a href="#本文方案" class="headerlink" title="本文方案"></a>本文方案</h2><h3 id="W博弈的均衡"><a href="#W博弈的均衡" class="headerlink" title="W博弈的均衡"></a>W博弈的均衡</h3><p>找均衡解本质上就是找收益函数的极大值，这篇论文是找公式7的一阶导和二阶导。</p>
+<p>一阶导写完整就是：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\left\{\begin{array}{c}
+\frac{\partial u_{i}(\cdot)}{\partial s_{i 1}} & = b_{1}-2 \rho_{1}^{-1} s_{i 1}-\rho_{1}^{-1} \sum_{k \in W \backslash\{i\}} s_{k 1}-c_{i} & = 0, \\
+\frac{\partial u_{i}(\cdot)}{\partial s_{i 2}} & = b_{2}-2 \rho_{2}^{-1} s_{i 2}-\rho_{2}^{-1} \sum_{k \in W \backslash\{i\}} s_{k 2}-c_{i} & = 0, \\
+\vdots \\
+\frac{\partial u_{i}(\cdot)}{\partial s_{i r}} & = b_{r}-2 \rho_{r}^{-1} s_{i r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{i\}} s_{k r}-c_{i} & = 0 .
+\end{array}\right.
+\end{align}\tag{17}</script><p>再进一步对每个$i$写完整：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\left\{\begin{array}{c}
+b_{1}-2 \rho_{1}^{-1} s_{11}-\rho_{1}^{-1} \sum_{k \in W \backslash\{1\}} s_{k 1}-c_{1} & = 0, \\
+b_{2}-2 \rho_{2}^{-1} s_{12}-\rho_{2}^{-1} \sum_{k \in W \backslash\{1\}} s_{k 2}-c_{1} & = 0, \\
+b_{r}-2 \rho_{r}^{-1} s_{1 r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{1\}} s_{k r}-c_{1} & = 0, \\
+\vdots \\
+b_{1}-2 \rho_{1}^{-1} s_{w 1}-\rho_{1}^{-1} \sum_{k \in W \backslash\{w\}} s_{k 1}-c_{w} & = 0, \\
+b_{2}-2 \rho_{2}^{-1} s_{w 2}-\rho_{2}^{-1} \sum_{k \in W \backslash\{w\}} s_{k 2}-c_{w} & = 0, \\
+\vdots \\
+b_{r}-2 \rho_{r}^{-1} s_{w r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{w\}} s_{k r}-c_{w} & = 0 .
+\end{array}\right.
+\end{align}\tag{18}</script><p>这是关于W策略向量s的一组线性方程，可以转为矩阵形式：</p>
+<script type="math/tex; mode=display">
+sM=E\tag{19}</script><p>其中，$M_{w\times w}$是如下的分块矩阵：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+M(k,l)=
+\left\{\begin{array}{c}
+M_1, &if k=l\\
+M_2, &otherwise
+\end{array}\right.
+\end{align}\tag{20}</script><p>矩阵$M_1,M_2$都是$r\times r$的方阵，分别如下：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+M_1(k',l')=
+\left\{\begin{array}{c}
+2\rho_{k'}^{-1}, &if k'=l'\\
+0, &otherwise
+\end{array}\right.
+\end{align}\tag{21}</script><script type="math/tex; mode=display">
+\begin{align}
+M_2(k',l')=
+\left\{\begin{array}{c}
+\rho_{k'}^{-1}, &if k'=l'\\
+0, &otherwise
+\end{array}\right.
+\end{align}\tag{22}</script><p>矩阵$E_{1\times w}$是：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+E(1,k)&=(b_1-c_k,...,b_r-c_k)\\
+&=(\textbf{b}-c_kJ)
+\end{align}\tag{23}</script><p>其中$\textbf{b}=(b_1,…,b_r), J=(1,…,1)$</p>
+<p>一阶导为0对应的解$s$就是WW博弈的均衡解，根据公式19，$s^\ast=EM^{-1}$，所以只要矩阵$M$是可逆的，就说明存在均衡解$s^\ast$，接下来通过证明$det(M)\neq 0$来证明矩阵可逆，这里进行了一些矩阵初等变换。</p>
+<p>然后计算二阶导，并得到了新的矩阵，证明了W的收益函数是concave的，由此一阶导得到的那个点是最大值，由此可以通过$EM^{-1}$计算均衡解如下：</p>
+<script type="math/tex; mode=display">
+s_{ij}^\ast=\frac{\rho_j}{w+1}(b_j-wc_i+\sum_{k\in W\backslash\{i\}}c_k)\tag{34}</script><h3 id="R博弈的均衡"><a href="#R博弈的均衡" class="headerlink" title="R博弈的均衡"></a>R博弈的均衡</h3><p>对于R来说，他能预估到W会按照公式34的均衡解确定策略，那么就可以把公式34的结果代入到公式5中。首先把公式5写完整：</p>
+<script type="math/tex; mode=display">
+v_j()=\alpha_j\sum_{i\in W}(\lambda_i\sum_{k\in R\backslash\{j\}}s_{ik})+b_j\sum_{i\in W}s_{ij}-\rho_j^{-1}(\sum_{i\in W}s_{ij})^2-\beta_jln(1+\delta_j\sum_{i\in W}s_{ij})\tag{35}</script><p>代入$s_{ij}$后可得：</p>
+<script type="math/tex; mode=display">
+v_j()=(D-D^2)b_j^2\rho_j+(F-2DF)b_j\rho_j-F^2\rho_j+\alpha_iC-\beta_jln(1+\delta_j(Db_j\rho_j+F\rho_j))\tag{36}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C&=\sum_{i\in W}\lambda_i(\sum_{k\in R\backslash\{j\}}\frac{\rho_k}{w+1}(b_k-wc_i+\sum_{l\in W\backslash\{i\}} c_l))\\
+D&=\frac{w}{w+1}\\
+F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
+\end{align}</script><p>可以看到每个R的决策会受到其他R决策的影响。本文的思路是证明函数$v_j$是convex的，从而最优策略就可以通过一阶导来找，而这需要二阶导为正。</p>
+<h3 id="总博弈的均衡"><a href="#总博弈的均衡" class="headerlink" title="总博弈的均衡"></a>总博弈的均衡</h3><h2 id="数值分析"><a href="#数值分析" class="headerlink" title="数值分析"></a>数值分析</h2><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><ol>
 <li>Section 3第一章最后一句出现了energy，这个词应该是指computing power？建议相同的词统一表述，后面还出现了computation capability</li>
 </ol>
 ]]></content>
@@ -6402,11 +6478,11 @@ Rs_{V_i}^\omega=\frac{F_f\omega_{i-1}+B_\omega s_i}{(F_f\omega_{i-1}+B_\omega s_
 <p>所有数据是直接在<code>web.js</code>中写好的，并不是从其他文件读取，且文件开头的<code>var scatter_origin_data</code>其实可以删了。此外，这份文件中的个人和组织项目散点图我并不需要，因此也直接删了。</p>
 <p>接下来将<code>web.js</code>中的数据修改成前面统计好的数据，打开<code>web.html</code>就可以看到图表了。</p>
 <p>由于hexo博客也可以显示echarts，因此我就把图表放这里了。</p>
-<div id="echarts5185" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts1626" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts5185'));
+        var myChart = echarts.init(document.getElementById('echarts1626'));
+
         // 指定图表的配置项和数据
         var option = {
 title: {
@@ -6459,14 +6535,15 @@ title: {
             }
         ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts3389" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts31" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts3389'));
+        var myChart = echarts.init(document.getElementById('echarts31'));
+
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -6513,14 +6590,15 @@ title: {
             }
         ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts2411" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts9929" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts2411'));
+        var myChart = echarts.init(document.getElementById('echarts9929'));
+
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -6566,6 +6644,7 @@ title: {
             }
         ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
@@ -12196,11 +12275,11 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
 </ol>
 <p>到此为止就可以了，新建一个markdown文件，把下列代码放进去就可以看到本页最下面的echarts示例了。（直接复制粘贴，<strong>不要</strong>放代码块里）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% echarts 400 &#39;85%&#39; %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: &quot;某站点用户访问来源&quot;,</span><br><span class="line">        subtext: &quot;ECharts示例&quot;,</span><br><span class="line">        x: &quot;center&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: &quot;item&quot;,</span><br><span class="line">        formatter: &quot;&#123;a&#125; &lt;br&#x2F;&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        orient: &quot;vertical&quot;,</span><br><span class="line">        x: &quot;left&quot;,</span><br><span class="line">        data: [&quot;直接访问&quot;, &quot;邮件营销&quot;, &quot;联盟广告&quot;, &quot;视频广告&quot;, &quot;搜索引擎&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        show: true,</span><br><span class="line">        feature: &#123;</span><br><span class="line">            mark: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            dataView: &#123;</span><br><span class="line">                show: true,</span><br><span class="line">                readOnly: true</span><br><span class="line">            &#125;,</span><br><span class="line">            restore: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            saveAsImage: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    calculable: true,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name: &quot;访问来源&quot;,</span><br><span class="line">            type: &quot;pie&quot;,</span><br><span class="line">            radius: &quot;55%&quot;,</span><br><span class="line">            center: [&quot;50%&quot;, &quot;60%&quot;],</span><br><span class="line">            data: [</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 335,</span><br><span class="line">                    name: &quot;直接访问&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 310,</span><br><span class="line">                    name: &quot;邮件营销&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 234,</span><br><span class="line">                    name: &quot;联盟广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 135,</span><br><span class="line">                    name: &quot;视频广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 1548,</span><br><span class="line">                    name: &quot;搜索引擎&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
-<div id="echarts6078" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<div id="echarts2059" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts6078'));
+        var myChart = echarts.init(document.getElementById('echarts2059'));
+
         // 指定图表的配置项和数据
         var option = {
     title: {
@@ -12267,6 +12346,7 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
         }
     ]
 }
+
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>]]></content>
