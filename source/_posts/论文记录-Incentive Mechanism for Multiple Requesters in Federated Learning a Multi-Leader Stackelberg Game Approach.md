@@ -49,7 +49,7 @@ $$
 7. 请求者j的成本函数$v_j()$被定义为其成本减去训练所得收益，如下，其中$\alpha_j\geq 0,\beta_j\geq 0$是用于将训练延迟和训练收益转为货币的参数。R的目标函数是最小化$v_j()$。
 
 $$
-v_j()=\alpha_j\sum_{i\in W}l_{ij}+p_j\sum_{i\in W}s_{ij}-\beta_jg_j
+v_j()=\alpha_j\sum_{i\in W}l_{ij}+p_j\sum_{i\in W}s_{ij}-\beta_jg_j\tag{5}
 $$
 
 ### 三类交互
@@ -64,10 +64,122 @@ $$
 
 在给定$p_j> c_i$的情况下，worker会尽可能设置一个大的$s_{ij}$。但这样做间接降低了其他所有workers的收益。另一方面，如果所有worker为R带来了更多收益，那么R就有更多钱能付给worker。这两个相互冲突的因素构成了WW互动。
 
+RW互动：对于给定报酬，W希望通过设置合适的$s_{ij}$来最大化自己的效用；而R希望通过设置合适的$p_j$来在最小化成本的前提下吸引W为模型贡献
 
+RR互动：每个R吸引到更多W的同时，意味着其他R面临的训练延迟更高
 ## 问题形式化
+RW互动建模为二阶段Stackelberg博弈，R是leader，W是follower，包含两个子博弈：
+1. WW：当所有R的策略都给定后，W们决定自己的策略，每个W的效用取决于其他W的策略，对于给定的所有其他W的策略集而言，能最大化自己效用的策略就是最好的，所有W的最优策略组成的集合就是该子博弈的均衡解。
+2. RR：尽管R的成本与W的策略有关，但R在制定策略时并不知道W的策略。对于给定的W策略集以及其他所有R策略集而言，能最小化自己成本的策略就是最好的，所有R的最优策略组成的集合就是该子博弈的均衡解。
+
+总的流程就是R先制定策略，即确定$b_i$，然后W根据R的策略决定策略，即确定$s_ij$，上述两个子博弈的均衡解合起来组成了整个RW博弈的均衡。
 
 ## 本文方案
+### W博弈的均衡
+找均衡解本质上就是找收益函数的极大值，这篇论文是找公式7的一阶导和二阶导。
+
+一阶导写完整就是：
+
+$$
+\begin{align}
+\left\{\begin{array}{c}
+\frac{\partial u_{i}(\cdot)}{\partial s_{i 1}} & = b_{1}-2 \rho_{1}^{-1} s_{i 1}-\rho_{1}^{-1} \sum_{k \in W \backslash\{i\}} s_{k 1}-c_{i} & = 0, \\
+\frac{\partial u_{i}(\cdot)}{\partial s_{i 2}} & = b_{2}-2 \rho_{2}^{-1} s_{i 2}-\rho_{2}^{-1} \sum_{k \in W \backslash\{i\}} s_{k 2}-c_{i} & = 0, \\
+\vdots \\
+\frac{\partial u_{i}(\cdot)}{\partial s_{i r}} & = b_{r}-2 \rho_{r}^{-1} s_{i r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{i\}} s_{k r}-c_{i} & = 0 .
+\end{array}\right.
+\end{align}\tag{17}
+$$
+
+再进一步对每个$i$写完整：
+
+$$
+\begin{align}
+\left\{\begin{array}{c}
+b_{1}-2 \rho_{1}^{-1} s_{11}-\rho_{1}^{-1} \sum_{k \in W \backslash\{1\}} s_{k 1}-c_{1} & = 0, \\
+b_{2}-2 \rho_{2}^{-1} s_{12}-\rho_{2}^{-1} \sum_{k \in W \backslash\{1\}} s_{k 2}-c_{1} & = 0, \\
+b_{r}-2 \rho_{r}^{-1} s_{1 r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{1\}} s_{k r}-c_{1} & = 0, \\
+\vdots \\
+b_{1}-2 \rho_{1}^{-1} s_{w 1}-\rho_{1}^{-1} \sum_{k \in W \backslash\{w\}} s_{k 1}-c_{w} & = 0, \\
+b_{2}-2 \rho_{2}^{-1} s_{w 2}-\rho_{2}^{-1} \sum_{k \in W \backslash\{w\}} s_{k 2}-c_{w} & = 0, \\
+\vdots \\
+b_{r}-2 \rho_{r}^{-1} s_{w r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{w\}} s_{k r}-c_{w} & = 0 .
+\end{array}\right.
+\end{align}\tag{18}
+$$
+这是关于W策略向量s的一组线性方程，可以转为矩阵形式：
+$$
+sM=E\tag{19}
+$$
+其中，$M_{w\times w}$是如下的分块矩阵：
+$$
+\begin{align}
+M(k,l)=
+\left\{\begin{array}{c}
+M_1, &if k=l\\
+M_2, &otherwise
+\end{array}\right.
+\end{align}\tag{20}
+$$
+矩阵$M_1,M_2$都是$r\times r$的方阵，分别如下：
+$$
+\begin{align}
+M_1(k',l')=
+\left\{\begin{array}{c}
+2\rho_{k'}^{-1}, &if k'=l'\\
+0, &otherwise
+\end{array}\right.
+\end{align}\tag{21}
+$$
+$$
+\begin{align}
+M_2(k',l')=
+\left\{\begin{array}{c}
+\rho_{k'}^{-1}, &if k'=l'\\
+0, &otherwise
+\end{array}\right.
+\end{align}\tag{22}
+$$
+矩阵$E_{1\times w}$是：
+$$
+\begin{align}
+E(1,k)&=(b_1-c_k,...,b_r-c_k)\\
+&=(\textbf{b}-c_kJ)
+\end{align}\tag{23}
+$$
+其中$\textbf{b}=(b_1,...,b_r), J=(1,...,1)$
+
+一阶导为0对应的解$s$就是WW博弈的均衡解，根据公式19，$s^\ast=EM^{-1}$，所以只要矩阵$M$是可逆的，就说明存在均衡解$s^\ast$，接下来通过证明$det(M)\neq 0$来证明矩阵可逆，这里进行了一些矩阵初等变换。
+
+然后计算二阶导，并得到了新的矩阵，证明了W的收益函数是concave的，由此一阶导得到的那个点是最大值，由此可以通过$EM^{-1}$计算均衡解如下：
+
+$$
+s_{ij}^\ast=\frac{\rho_j}{w+1}(b_j-wc_i+\sum_{k\in W\backslash\{i\}}c_k)\tag{34}
+$$
+
+### R博弈的均衡
+对于R来说，他能预估到W会按照公式34的均衡解确定策略，那么就可以把公式34的结果代入到公式5中。首先把公式5写完整：
+$$
+v_j()=\alpha_j\sum_{i\in W}(\lambda_i\sum_{k\in R\backslash\{j\}}s_{ik})+b_j\sum_{i\in W}s_{ij}-\rho_j^{-1}(\sum_{i\in W}s_{ij})^2-\beta_jln(1+\delta_j\sum_{i\in W}s_{ij})\tag{35}
+$$
+
+代入$s_{ij}$后可得：
+$$
+v_j()=(D-D^2)b_j^2\rho_j+(F-2DF)b_j\rho_j-F^2\rho_j+\alpha_iC-\beta_jln(1+\delta_j(Db_j\rho_j+F\rho_j))\tag{36}
+$$
+其中：
+$$
+\begin{align}
+C&=\sum_{i\in W}\lambda_i(\sum_{k\in R\backslash\{j\}}\frac{\rho_k}{w+1}(b_k-wc_i+\sum_{l\in W\backslash\{i\}} c_l))\\
+D&=\frac{w}{w+1}\\
+F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
+\end{align}
+$$
+可以看到每个R的决策会受到其他R决策的影响。本文的思路是证明函数$v_j$是convex的，从而最优策略就可以通过一阶导来找，而这需要二阶导为正。
+
+
+### 总博弈的均衡
+
 
 ## 数值分析
 
