@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "0cb3fa093cbeebbd",
+        "id": "0fc58e48e9142848",
         "type": "tabs",
         "children": [
           {
-            "id": "534ce85090d8e412",
+            "id": "f6c3ec7f2b71b507",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,9 +130,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -158,8 +150,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "534ce85090d8e412",
+  "active": "f6c3ec7f2b71b507",
   "lastOpenFiles": [
+    "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
     "python课程记录-13.md",
     "python课程记录-9.md",
     "python课程记录-4.md",
@@ -185,7 +178,6 @@
     "2023年2月1日-6月30日预算.md",
     "2023年10月1日-12月31日决算及2024上半年预算.md",
     "读书笔记-中世纪历史与文化.md",
-    "各种平台遇到过的error处理方式.md",
     "daily-1 2.jpg",
     "daily-1 1.jpg",
     "daily-1.jpg"

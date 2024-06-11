@@ -72,7 +72,7 @@ RW互动建模为二阶段Stackelberg博弈，R是leader，W是follower，包含
 1. WW：当所有R的策略都给定后，W们决定自己的策略，每个W的效用取决于其他W的策略，对于给定的所有其他W的策略集而言，能最大化自己效用的策略就是最好的，所有W的最优策略组成的集合就是该子博弈的均衡解。
 2. RR：尽管R的成本与W的策略有关，但R在制定策略时并不知道W的策略。对于给定的W策略集以及其他所有R策略集而言，能最小化自己成本的策略就是最好的，所有R的最优策略组成的集合就是该子博弈的均衡解。
 
-总的流程就是R先制定策略，即确定$b_i$，然后W根据R的策略决定策略，即确定$s_ij$，上述两个子博弈的均衡解合起来组成了整个RW博弈的均衡。
+总的流程就是R先制定策略，即确定$b_i$，然后W根据R的策略决定策略，即确定$s_{ij}$，上述两个子博弈的均衡解合起来组成了整个RW博弈的均衡。
 
 ## 本文方案
 ### W博弈的均衡
@@ -207,3 +207,34 @@ $$
 
 ## 存在问题
 1. Section 3第一章最后一句出现了energy，这个词应该是指computing power？建议相同的词统一表述，后面还出现了computation capability
+
+### 审稿意见
+#### Summary
+本文关注联邦学习场景requesters和workers之间的博弈，将requesters确定基本单价、workers随之确定数据量分配方案的过程建模为stackelberg博弈，并使用推导+逆向归纳的方法寻找该博弈的均衡解。与已有研究不同在于本文重点关注requesters之间的interaction。最后通过数值分析得出了一系列与requesters成本和workers效用相关的结论。
+
+This paper focuses on the game between requesters and workers in the context of federated learning. It models the process where requesters set the basic unit price and workers subsequently determine their data allocation schemes as a Stackelberg game. The equilibrium solution of this game is derived using forward and backward induction methods. Unlike existing studies, this paper emphasizes the interaction between requesters. Finally, numerical analysis is conducted to draw a series of conclusions related to the costs of requesters and the utilities of workers.
+#### Strength
+1. 作者关注了requesters之间对workers算力和数据的竞争博弈这一被其他研究所忽略的问题，which is innovative.
+2. 作者通过巧妙的矩阵运算得到了一组可行的均衡解，which is XX.
+3. The main idea of this paper is described clearly and the research work is complete, containing detailed data analysis.
+
+- The authors focus on the competitive game between requesters for workers' computational power and data, an issue overlooked by other studies, which is innovative.
+- The authors have derived a set of feasible equilibrium solutions through ingenious matrix operations, which is commendable.
+- The main idea of this paper is described clearly, and the research work is complete, containing detailed data analysis.
+
+#### Weakness
+1. 作者声称requesters之间的interaction鲜有研究讨论，但有一些关注该问题的论文并没有在related works中列出，例如"Digital Twins Enabled On-Demand Matching for Multi-Task Federated Learning in HetVNets". 另一方面，本文中对联邦学习场景下requesters之间博弈的处理方式与crowdsourcing场景下的requesters之间的博弈分析非常相似。如果将调研拓展到crowdsourcing领域，则有更多这方面的研究。建议作者进行更充分的调研。
+2. 本文对requester成本函数、workers收益函数以及双方博弈的建模过于理论化，建议补充一些实际数据以说明函数和参数设计的合理性。
+3. 本文的主要目的是帮助requesters设计以基础单价为核心的激励机制，那么该机制与其他联邦学习中的用户激励机制相比有怎样的优势呢？
+4. 本文在数值分析中的各参数取值有什么依据？这样完全由虚拟数据得到的实验现象说服力较弱。
+5. 本文中先后出现了energy、computing power和computation capability，根据我的理解，这三个词表述的应该是相同含义，建议作者统一前后文的表述。
+6. 本文的模型中涉及许多参数，而作者没有介绍这些参数是公开信息还是私有信息。
+7. Requesters需要根据公式38来计算最优策略，这看起来要求每个requester都了解所有workers的单位成本，which is 不合理的。在实际场景中，workers并不会公开自己的训练成本，即便强制要求公开，workers也很可能谎报。
+
+- The authors claim that the interaction between requesters has been rarely discussed in research, but some papers that address this issue are not listed in the related works section, such as "Digital Twins Enabled On-Demand Matching for Multi-Task Federated Learning in HetVNets." On the other hand, the approach to modeling the game between requesters in federated learning scenarios is very similar to the analysis of games between requesters in crowdsourcing scenarios. Expanding the research to include the crowdsourcing field would reveal more studies on this topic. The authors are advised to conduct a more comprehensive literature review.
+- The modeling of the requester cost function, workers' utility function, and the game between both parties is overly theoretical. It is recommended to supplement with actual data to demonstrate the reasonableness of the function and parameter design.
+- The main purpose of this paper is to help requesters design incentive mechanisms centered around the basic unit price. What are the advantages of this mechanism compared to other user incentive mechanisms in federated learning?
+- What is the basis for the parameter values used in the numerical analysis? The experimental phenomena derived from entirely virtual data are less convincing.
+- The terms "energy," "computing power," and "computation capability" appear sequentially in the paper. According to my understanding, these terms should represent the same concept. It is recommended that the authors unify the terminology throughout the text.
+- The model in this paper involves numerous parameters, but the authors do not clarify whether these parameters are public information or private information.
+- Requesters need to calculate the optimal strategy based on Equation 38, which appears to require each requester to know the unit cost of all workers. This is unrealistic. In practical scenarios, workers do not disclose their training costs, and even if forced to do so, they are likely to misreport.
