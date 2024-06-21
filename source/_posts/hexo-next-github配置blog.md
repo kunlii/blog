@@ -916,7 +916,18 @@ index_generator:
 ## 用其他仓库的page放博客
 因为主页的页面想搞成单纯的个人介绍，和博客分割一下，所以需要把博客放到新的仓库。流程如下：
 1. GitHub新建仓库，名字是`blog`。
-2. 进入仓库的`settings`页面，在左侧边栏找到`Pages`，
+2. 可以看到新仓库的ssh对应的url应该是`git@github.com:kunlii/blog.git`，因此在本地找到博客的`_config.yml`以及`.git`中的`config`，修改这两个文件中涉及`ssh`登录的url为新的内容。
+3. 博客配置文件`_config.yml`中，前面`url`那里如下修改，注意`root`要改成`/blog`，不然页面之间的跳转会出错。
+	``` html
+	url: https://kunlii.github.io/blog
+	root: /blog/
+	```
+4. 主题配置文件`_config.yml`中，“网站图标和侧边栏logo”和“封面配置”这两部分涉及的网站logo以及封面图的链接需要改成`/blog/images/ayer.png`以及`/blog/images/cover1.png`，这里很奇怪，其他图标等都不需要改，只有这俩图得改。
+5. 本地先分别`hexo d`以及`git push`，主要是前者，把我们的网页传到这个仓库中。
+6. 进入仓库的`settings`页面，在左侧边栏找到`Pages`，在右边修改`Build and deployment`部分：
+	1. `Source`中选择Deploy from a branch，这里如果选GitHub action，则可以搞在线编译部署，不过有点麻烦，以后再研究吧。
+	2. `Branch`选`master/root`，这里因为本地博客编译后的文件是传master分支的，如果传了别的分支则改成对应的分支。
+	3. `Custom domain`那里设置一下希望用的域名，比如`kunlii.github.io/blog/`，保存后，就可以用这个域名访问博客了。
 
 ## 参考链接：
 
