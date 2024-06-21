@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0fc58e48e9142848",
+        "id": "aee52d8cd626d197",
         "type": "tabs",
         "children": [
           {
-            "id": "f6c3ec7f2b71b507",
+            "id": "8a47d5c1fea16948",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -150,8 +150,13 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f6c3ec7f2b71b507",
+  "active": "8a47d5c1fea16948",
   "lastOpenFiles": [
+    "hexo-next-github配置blog.md",
+    "论文记录-WASA2024审稿.md",
+    "论文记录-INFOCOM 2024审稿.md",
+    "论文记录-ICMC2024审稿.md",
+    "论文记录-Arthur Gervais论文略读记录.md",
     "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
     "python课程记录-13.md",
     "python课程记录-9.md",
@@ -172,12 +177,7 @@
     "区块链行业总结.md",
     "生活记录-20240315.md",
     "论文略读记录.md",
-    "论文记录-WASA2024审稿.md",
     "论文记录-Using game theory to thwart multistage privacy intrusions when sharing data.md",
-    "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
-    "2023年2月1日-6月30日预算.md",
-    "2023年10月1日-12月31日决算及2024上半年预算.md",
-    "读书笔记-中世纪历史与文化.md",
     "daily-1 2.jpg",
     "daily-1 1.jpg",
     "daily-1.jpg"

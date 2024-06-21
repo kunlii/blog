@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://likun1208.github.io
+url: https://kunlii.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -124,5 +124,5 @@ theme: ayer
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:likun1208/likun1208.github.io.git
+  repository: git@github.com:kunlii/kunlii.github.io.git
   branch: master
