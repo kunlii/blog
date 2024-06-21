@@ -372,24 +372,19 @@ categories: 博客配置
 
 ## 如何发布新的博客
 
-1. 在blog文件夹的命令行里输入`hexo new "标题"`，然后进入**/blog/sources/_post/**找到对应的markdown文件就可以开始写了，也可以直接在这个文件夹下新建一个markdown文件，然后添加对应的文件头。写博客的时候根据需求在文件头里填写tags和categories的信息，然后hexo会自动建立好tags和categories的内容并给文章分类。
+1. 在blog文件夹的命令行里输入`hexo new "标题"`，然后进入`/blog/sources/_post/`找到对应的markdown文件就可以开始写了，也可以直接在这个文件夹下新建一个markdown文件，然后添加对应的文件头。写博客的时候根据需求在文件头里填写tags和categories的信息，然后hexo会自动建立好tags和categories的内容并给文章分类。
    
    文件头信息如下编写：
    
-   ```
-   
-   ```
-
+   ```html
 ---
-
 title:
 date:
 tags:
 categories:
-
 ---
-
 ```
+
 2. 写好以后保存，然后还是blog文件夹的命令行，输入`hexo clean && hexo g && hexo d`，就发布成功了。
 
 3. 如果一个文章想设置多个标签，那么在编写文件头信息的时候，要按下面的方式写：
@@ -917,6 +912,11 @@ index_generator:
 2. 博客配置文件（`\blog\_config.yml`）中所有涉及地址等内容的都需要修改为新的博客名。
 3. 所有本地仓库的`.git`文件夹中找到`config`文件，修改其中的url信息（即存本地博客的和存图的等等都需要改）。
 4. 如果主题的一些js中有用到自己仓库的文件，那么也需要修改相应的存放路径。
+
+## 用其他仓库的page放博客
+因为主页的页面想搞成单纯的个人介绍，和博客分割一下，所以需要把博客放到新的仓库。流程如下：
+1. GitHub新建仓库，名字是`blog`。
+2. 进入仓库的`settings`页面，在左侧边栏找到`Pages`，
 
 ## 参考链接：
 
