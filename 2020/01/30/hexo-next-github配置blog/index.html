@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">10.8k</span>
+            <span class="post-count">11.4k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">45 分钟</span>
+            <span class="post-count">47 分钟</span>
         </span>
     </span>
 </div>
@@ -400,6 +400,24 @@
 <li>在<code>leancloud</code>下面有<code>valine</code>字段，把<code>enable</code>设置为<code>true</code>，<code>avatar</code>和<code>placeholder</code>分别表示评论头像和评论区的提示语，可以根据喜好修改，不改也行；</li>
 <li>保存后重新生成网站就好了。</li>
 </ol>
+<h2 id="修改主页"><a href="#修改主页" class="headerlink" title="修改主页"></a>修改主页</h2><p>因为这个博客被作为个人主页了，感觉页面跳转后直接出首页的文章列表不太合适，出个主页更好一些，所以研究了一下怎么让博客地址直接跳转到简历的页面。</p>
+<ol>
+<li><p>打开博客配置文件<code>_config.yml</code>，找到其中的<code>index_generator</code>字段，该字段下原本的<code>path</code>内容是空的，现在填一个空文件夹，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">'/homepage/'</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
+<p>注意这里不需要真的去新建一个文件夹，只需要保证这个名字是博客目录中没出现过的就可以，以及注意文件夹名称首尾的斜杠也不能丢。</p>
+</li>
+<li><p>打开<code>source</code>文件夹，新建一个<code>index.md</code>，这个文件中存放要作为主页的内容即可，比如我就把简历的内容直接复制过来了。注意这里必须叫<code>index</code>这个名字，不能改别的。</p>
+</li>
+<li>正常编译再打开就能发现主页变了。</li>
+<li>我希望改进的是：现在显示的markdown页面也没法搞照片等美化效果，而且原本的首页我也挺喜欢，更希望保留博客首页的同时，能打开后先出现简历，以及最好可以搞成html网页的方式。</li>
+<li>思考了一下，觉得应该这么做，首先搞清楚原本的主页是怎么生成的，然后让主题配置文件里的<code>home</code>对应到这个主页的文件，再修改<code>hexo</code>的主页为简历页面，这样就好了，不过目前还没想到具体怎么实现。</li>
+</ol>
+<h2 id="关于GitHub改名后博客需要修改的内容"><a href="#关于GitHub改名后博客需要修改的内容" class="headerlink" title="关于GitHub改名后博客需要修改的内容"></a>关于GitHub改名后博客需要修改的内容</h2><ol>
+<li>GitHub上找到该仓库，修改仓库名。</li>
+<li>博客配置文件（<code>\blog\_config.yml</code>）中所有涉及地址等内容的都需要修改为新的博客名。</li>
+<li>所有本地仓库的<code>.git</code>文件夹中找到<code>config</code>文件，修改其中的url信息（即存本地博客的和存图的等等都需要改）。</li>
+<li>如果主题的一些js中有用到自己仓库的文件，那么也需要修改相应的存放路径。</li>
+</ol>
 <h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://segmentfault.com/a/1190000018761324" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018761324</a></p>
 <p><a href="https://www.jianshu.com/p/3a05351a37dc" target="_blank" rel="noopener">https://www.jianshu.com/p/3a05351a37dc</a></p>
 <p><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502" target="_blank" rel="noopener">https://blog.csdn.net/nightmare_dimple/article/details/86661502</a></p>
@@ -466,7 +484,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2020/01/30/hexo-next-github%E9%85%8D%E7%BD%AEblog/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/2020/01/30/hexo-next-github%E9%85%8D%E7%BD%AEblog/" alt="微信分享二维码">
     </div>
 </div>
 
