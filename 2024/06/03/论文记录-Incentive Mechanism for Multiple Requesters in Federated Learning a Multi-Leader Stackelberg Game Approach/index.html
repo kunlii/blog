@@ -18,11 +18,11 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   
   
-<link rel="stylesheet" href="/dist/main.css">
+<link rel="stylesheet" href="/blog/dist/main.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
   
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/blog/css/custom.css">
 
   
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
@@ -60,11 +60,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/06/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Incentive%20Mechanism%20for%20Multiple%20Requesters%20in%20Federated%20Learning%20a%20Multi-Leader%20Stackelberg%20Game%20Approach/" class="article-date">
+      <a href="/blog/2024/06/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Incentive%20Mechanism%20for%20Multiple%20Requesters%20in%20Federated%20Learning%20a%20Multi-Leader%20Stackelberg%20Game%20Approach/" class="article-date">
   <time datetime="2024-06-03T05:51:36.000Z" itemprop="datePublished">2024-06-03</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
   </div>
   
 <div class="word_count">
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.6k</span>
+            <span class="post-count">4.2k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">10 分钟</span>
+            <span class="post-count">17 分钟</span>
         </span>
     </span>
 </div>
@@ -148,7 +148,7 @@ u_i(s_i,s_{-i})&=\sum_{j\in R}(p_j-c_i)s_{ij}\\
 <li>WW：当所有R的策略都给定后，W们决定自己的策略，每个W的效用取决于其他W的策略，对于给定的所有其他W的策略集而言，能最大化自己效用的策略就是最好的，所有W的最优策略组成的集合就是该子博弈的均衡解。</li>
 <li>RR：尽管R的成本与W的策略有关，但R在制定策略时并不知道W的策略。对于给定的W策略集以及其他所有R策略集而言，能最小化自己成本的策略就是最好的，所有R的最优策略组成的集合就是该子博弈的均衡解。</li>
 </ol>
-<p>总的流程就是R先制定策略，即确定$b_i$，然后W根据R的策略决定策略，即确定$s_ij$，上述两个子博弈的均衡解合起来组成了整个RW博弈的均衡。</p>
+<p>总的流程就是R先制定策略，即确定$b_i$，然后W根据R的策略决定策略，即确定$s_{ij}$，上述两个子博弈的均衡解合起来组成了整个RW博弈的均衡。</p>
 <h2 id="本文方案"><a href="#本文方案" class="headerlink" title="本文方案"></a>本文方案</h2><h3 id="W博弈的均衡"><a href="#W博弈的均衡" class="headerlink" title="W博弈的均衡"></a>W博弈的均衡</h3><p>找均衡解本质上就是找收益函数的极大值，这篇论文是找公式7的一阶导和二阶导。</p>
 <p>一阶导写完整就是：</p>
 <script type="math/tex; mode=display">
@@ -216,10 +216,64 @@ v_j()=(D-D^2)b_j^2\rho_j+(F-2DF)b_j\rho_j-F^2\rho_j+\alpha_iC-\beta_jln(1+\delta
 C&=\sum_{i\in W}\lambda_i(\sum_{k\in R\backslash\{j\}}\frac{\rho_k}{w+1}(b_k-wc_i+\sum_{l\in W\backslash\{i\}} c_l))\\
 D&=\frac{w}{w+1}\\
 F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
-\end{align}</script><p>可以看到每个R的决策会受到其他R决策的影响。本文的思路是证明函数$v_j$是convex的，从而最优策略就可以通过一阶导来找，而这需要二阶导为正。</p>
-<h3 id="总博弈的均衡"><a href="#总博弈的均衡" class="headerlink" title="总博弈的均衡"></a>总博弈的均衡</h3><h2 id="数值分析"><a href="#数值分析" class="headerlink" title="数值分析"></a>数值分析</h2><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><ol>
+\end{align}</script><p>可以看到每个R的决策会受到其他R决策的影响。本文的思路是证明函数$v_j$是convex的，从而最优策略就可以通过一阶导来找，而这需要二阶导为正，直接对公式36求导即可证明。一阶导得到的$b_j^\ast$就是均衡解。</p>
+<p>这里存在一个问题：一阶导写出来是如下的形式：</p>
+<script type="math/tex; mode=display">
+v_j^\prime=2(D-D^2)b_j\rho_j+(F-2DF)\rho_j-\beta_j\frac{\delta_jD\rho_j}{1+\delta_j(D\rho_jb_j+F\rho_j)}</script><p>这其中涉及的参数包括：</p>
+<ol>
+<li>$b_j$：是要计算的策略</li>
+<li>$\rho_j$：R的数据量需求边际递减率，大致就是当数据量多起来以后，R就不那么需要数据了</li>
+<li>$\beta_j$：R通过训练能得到的收益</li>
+<li>$\delta_j$：R对训练数据价值的估值</li>
+<li>D：涉及workers的数量</li>
+<li>F：涉及所有workers的单位成本</li>
+</ol>
+<p>前五个都好说，是公开的，第6个应该没法获取吧，即便让workers都主动说，也很可能报个假的</p>
+<h3 id="总博弈的均衡"><a href="#总博弈的均衡" class="headerlink" title="总博弈的均衡"></a>总博弈的均衡</h3><p>前面两部分合起来就形成了总的均衡，因此整体流程如下：</p>
+<ol>
+<li>根据已有信息构造公式36的一阶导；</li>
+<li>计算一阶导对应的零点得到$b_j^\ast$；</li>
+<li>把前面这步得到的结果代入公式34，得到$s_{ij}^\ast$</li>
+</ol>
+<p>然后分析了算法复杂度。</p>
+<h2 id="数值分析"><a href="#数值分析" class="headerlink" title="数值分析"></a>数值分析</h2><ol>
+<li>简而言之，W的效用与需求直接相关，与供应成反比。与此相反，R的成本随需求增加而增加，但随着供应增加而大致保持不变。得出这一结果的理由是，在斯塔克尔伯格博弈中，作为领导者的R比W具有先发优势，因此请求者总能优化自己的结果。</li>
+<li>简而言之，W的单位计算成本越高（即 ci 值越大），其效用就越低，但效用与工人的计算能力（$\lambda_i$)无关。</li>
+<li>总之，当某个工人的延迟成本较高（即 λi 值较大）或请求者以较高的价格评估延迟成本（即 αj 值较大）时，请求者的成本就会增加。如果某个请求者 j 更看重相同数量的训练数据（即具有更大的βj 或δj 值），或为相同数量的数据支付更少的单位数据费用（即具有更大的ρj 值），那么请求者本身和所有工作者都会受益，而所有其他请求者则会付出较小的代价。<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2>关注RR之间的互动，证明了均衡解存在</li>
+</ol>
+<h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><ol>
 <li>Section 3第一章最后一句出现了energy，这个词应该是指computing power？建议相同的词统一表述，后面还出现了computation capability</li>
 </ol>
+<h3 id="审稿意见"><a href="#审稿意见" class="headerlink" title="审稿意见"></a>审稿意见</h3><h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p>本文关注联邦学习场景requesters和workers之间的博弈，将requesters确定基本单价、workers随之确定数据量分配方案的过程建模为stackelberg博弈，并使用推导+逆向归纳的方法寻找该博弈的均衡解。与已有研究不同在于本文重点关注requesters之间的interaction。最后通过数值分析得出了一系列与requesters成本和workers效用相关的结论。</p>
+<p>This paper focuses on the game between requesters and workers in the context of federated learning. It models the process where requesters set the basic unit price and workers subsequently determine their data allocation schemes as a Stackelberg game. The equilibrium solution of this game is derived using forward and backward induction methods. Unlike existing studies, this paper emphasizes the interaction between requesters. Finally, numerical analysis is conducted to draw a series of conclusions related to the costs of requesters and the utilities of workers.</p>
+<h4 id="Strength"><a href="#Strength" class="headerlink" title="Strength"></a>Strength</h4><ol>
+<li>作者关注了requesters之间对workers算力和数据的竞争博弈这一被其他研究所忽略的问题，which is innovative.</li>
+<li>作者通过巧妙的矩阵运算得到了一组可行的均衡解，which is XX.</li>
+<li>The main idea of this paper is described clearly and the research work is complete, containing detailed data analysis.</li>
+</ol>
+<ul>
+<li>The authors focus on the competitive game between requesters for workers’ computational power and data, an issue overlooked by other studies, which is innovative.</li>
+<li>The authors have derived a set of feasible equilibrium solutions through ingenious matrix operations, which is commendable.</li>
+<li>The main idea of this paper is described clearly, and the research work is complete, containing detailed data analysis.</li>
+</ul>
+<h4 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h4><ol>
+<li>作者声称requesters之间的interaction鲜有研究讨论，但有一些关注该问题的论文并没有在related works中列出，例如”Digital Twins Enabled On-Demand Matching for Multi-Task Federated Learning in HetVNets”. 另一方面，本文中对联邦学习场景下requesters之间博弈的处理方式与crowdsourcing场景下的requesters之间的博弈分析非常相似。如果将调研拓展到crowdsourcing领域，则有更多这方面的研究。建议作者进行更充分的调研。</li>
+<li>本文对requester成本函数、workers收益函数以及双方博弈的建模过于理论化，建议补充一些实际数据以说明函数和参数设计的合理性。</li>
+<li>本文的主要目的是帮助requesters设计以基础单价为核心的激励机制，那么该机制与其他联邦学习中的用户激励机制相比有怎样的优势呢？</li>
+<li>本文在数值分析中的各参数取值有什么依据？这样完全由虚拟数据得到的实验现象说服力较弱。</li>
+<li>本文中先后出现了energy、computing power和computation capability，根据我的理解，这三个词表述的应该是相同含义，建议作者统一前后文的表述。</li>
+<li>本文的模型中涉及许多参数，而作者没有介绍这些参数是公开信息还是私有信息。</li>
+<li>Requesters需要根据公式38来计算最优策略，这看起来要求每个requester都了解所有workers的单位成本，which is 不合理的。在实际场景中，workers并不会公开自己的训练成本，即便强制要求公开，workers也很可能谎报。</li>
+</ol>
+<ul>
+<li>The authors claim that the interaction between requesters has been rarely discussed in research, but some papers that address this issue are not listed in the related works section, such as “Digital Twins Enabled On-Demand Matching for Multi-Task Federated Learning in HetVNets.” On the other hand, the approach to modeling the game between requesters in federated learning scenarios is very similar to the analysis of games between requesters in crowdsourcing scenarios. Expanding the research to include the crowdsourcing field would reveal more studies on this topic. The authors are advised to conduct a more comprehensive literature review.</li>
+<li>The modeling of the requester cost function, workers’ utility function, and the game between both parties is overly theoretical. It is recommended to supplement with actual data to demonstrate the reasonableness of the function and parameter design.</li>
+<li>The main purpose of this paper is to help requesters design incentive mechanisms centered around the basic unit price. What are the advantages of this mechanism compared to other user incentive mechanisms in federated learning?</li>
+<li>What is the basis for the parameter values used in the numerical analysis? The experimental phenomena derived from entirely virtual data are less convincing.</li>
+<li>The terms “energy,” “computing power,” and “computation capability” appear sequentially in the paper. According to my understanding, these terms should represent the same concept. It is recommended that the authors unify the terminology throughout the text.</li>
+<li>The model in this paper involves numerous parameters, but the authors do not clarify whether these parameters are public information or private information.</li>
+<li>Requesters need to calculate the optimal strategy based on Equation 38, which appears to require each requester to know the unit cost of all workers. This is unrealistic. In practical scenarios, workers do not disclose their training costs, and even if forced to do so, they are likely to misreport.</li>
+</ul>
  
       <!-- reward -->
       
@@ -272,12 +326,12 @@ F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2024/06/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Incentive%20Mechanism%20for%20Multiple%20Requesters%20in%20Federated%20Learning%20a%20Multi-Leader%20Stackelberg%20Game%20Approach/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2024/06/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Incentive%20Mechanism%20for%20Multiple%20Requesters%20in%20Federated%20Learning%20a%20Multi-Leader%20Stackelberg%20Game%20Approach/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/federated-learning/" rel="tag">federated-learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mechanism-design/" rel="tag">mechanism-design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stackelberg-game/" rel="tag">stackelberg-game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/federated-learning/" rel="tag">federated-learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mechanism-design/" rel="tag">mechanism-design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/stackelberg-game/" rel="tag">stackelberg-game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
 
     </footer>
   </div>
@@ -286,7 +340,7 @@ F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
   <nav class="article-nav">
     
     
-      <a href="/2024/05/30/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95-20240530/" class="article-nav-link">
+      <a href="/blog/2024/05/30/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95-20240530/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">生活记录-20240530</div>
       </a>
@@ -402,37 +456,29 @@ F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer.png" alt="左边"></a>
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
+      <a class="nav-item-link" href="/blog/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
+      <a class="nav-item-link" href="/blog/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
+      <a class="nav-item-link" href="/blog/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
+      <a class="nav-item-link" href="/blog/tags">标签</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-ch">个人简历</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-en">Resume</a>
+      <a class="nav-item-link" href="/blog/friends">友链</a>
     </li>
     
   </ul>
@@ -484,15 +530,15 @@ F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
   </div>
 </div>
     
-<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
 
 
-<script src="/js/lazyload.min.js"></script>
+<script src="/blog/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
 
 
-<script src="/js/tocbot.min.js"></script>
+<script src="/blog/js/tocbot.min.js"></script>
 
 <script>
   tocbot.init({
@@ -512,7 +558,7 @@ F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
+<script src="/blog/dist/main.js"></script>
 
 <!-- ImageViewer -->
 
@@ -662,7 +708,7 @@ F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
 <!-- CodeCopy -->
 
 
-<link rel="stylesheet" href="/css/clipboard.css">
+<link rel="stylesheet" href="/blog/css/clipboard.css">
 
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>

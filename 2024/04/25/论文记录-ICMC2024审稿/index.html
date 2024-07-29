@@ -18,11 +18,11 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   
   
-<link rel="stylesheet" href="/dist/main.css">
+<link rel="stylesheet" href="/blog/dist/main.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
   
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/blog/css/custom.css">
 
   
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
@@ -60,11 +60,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-ICMC2024%E5%AE%A1%E7%A8%BF/" class="article-date">
+      <a href="/blog/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-ICMC2024%E5%AE%A1%E7%A8%BF/" class="article-date">
   <time datetime="2024-04-25T01:23:00.000Z" itemprop="datePublished">2024-04-25</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
   </div>
   
 <div class="word_count">
@@ -101,21 +101,35 @@
 <h3 id="Strength"><a href="#Strength" class="headerlink" title="Strength"></a>Strength</h3><ol>
 <li>The paper stands out for its novel approach to integrating link uncertainty and heterogeneity into the network model, which offers a more realistic representation of actual network conditions compared to the traditional static models.</li>
 <li>The authors provide a thorough analysis, including a proof of NP-hardness which solidifies the theoretical foundation of the research problem. The dynamic programming-based strategy for optimal defense adds depth to the methodology.</li>
-<li>The use of both synthetic and real-world data to demonstrate the effectiveness of the proposed strategies under diverse attacking patterns ensures that the results are robust and applicable in various settings.<h3 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>The use of both synthetic and real-world data to demonstrate the effectiveness of the proposed strategies under diverse attacking patterns ensures that the results are robust and applicable in various settings.</li>
+</ol>
+<h3 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
 <li>The paper lacks a discussion of recent developments in the field, particularly from the last three years. Including and discussing contemporary research could significantly strengthen the paper’s relevance and depth, showcasing how the proposed solutions fit within the latest advancements in network security and resilience.</li>
-<li>Although the strategies proposed are innovative, the paper lacks a detailed comparison with existing methods. A more comprehensive analysis comparing these new strategies to current best practices would underline the improvements and practical applicability of the proposed methods, offering clearer insights into their benefits and drawbacks.<h2 id="Submission-13"><a href="#Submission-13" class="headerlink" title="Submission 13"></a>Submission 13</h2>分布式存储中最优节点修复的MSR代码构建，权衡最小存储再生和最小带宽再生<h3 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h3>This paper presents a comprehensive study on the development and optimization of multi-layer Minimum Storage Regenerating (MSR) codes. The primary focus of the paper is on enhancing the efficiency and reliability of node repairs within distributed storage systems, which is crucial for applications requiring high availability and data integrity. The authors explore the theoretical underpinnings of regenerating codes and propose a novel construction method using a product-matrix framework that optimizes the trade-off between storage overhead and repair bandwidth. The paper includes a thorough analysis of the performance of these codes through theoretical bounds and numerical simulations, addressing both node failure scenarios and adversarial attacks.<h3 id="Strength-1"><a href="#Strength-1" class="headerlink" title="Strength"></a>Strength</h3></li>
+<li>Although the strategies proposed are innovative, the paper lacks a detailed comparison with existing methods. A more comprehensive analysis comparing these new strategies to current best practices would underline the improvements and practical applicability of the proposed methods, offering clearer insights into their benefits and drawbacks.</li>
+</ol>
+<h2 id="Submission-13"><a href="#Submission-13" class="headerlink" title="Submission 13"></a>Submission 13</h2><p>分布式存储中最优节点修复的MSR代码构建，权衡最小存储再生和最小带宽再生</p>
+<h3 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h3><p>This paper presents a comprehensive study on the development and optimization of multi-layer Minimum Storage Regenerating (MSR) codes. The primary focus of the paper is on enhancing the efficiency and reliability of node repairs within distributed storage systems, which is crucial for applications requiring high availability and data integrity. The authors explore the theoretical underpinnings of regenerating codes and propose a novel construction method using a product-matrix framework that optimizes the trade-off between storage overhead and repair bandwidth. The paper includes a thorough analysis of the performance of these codes through theoretical bounds and numerical simulations, addressing both node failure scenarios and adversarial attacks.</p>
+<h3 id="Strength-1"><a href="#Strength-1" class="headerlink" title="Strength"></a>Strength</h3><ol>
 <li>The paper introduces an innovative approach to constructing MSR codes using a multi-layer framework. This method addresses practical issues such as node failures and adversarial attacks, and significantly enhances the error correction capabilities beyond traditional Reed-Solomon codes.    </li>
 <li>The authors provide a detailed theoretical analysis accompanied by numerical simulations that demonstrate the efficacy of the proposed codes under various conditions. This thorough examination adds a robust layer of validation to their claims.    </li>
-<li>The paper is well-organized, with clear sections that logically flow from the introduction of basic concepts to more complex discussions on code optimization and performance analysis.<h3 id="Weakness-1"><a href="#Weakness-1" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>The paper is well-organized, with clear sections that logically flow from the introduction of basic concepts to more complex discussions on code optimization and performance analysis.</li>
+</ol>
+<h3 id="Weakness-1"><a href="#Weakness-1" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
 <li>The paper could strengthen its impact by providing a more extensive comparison with existing methods. Specifically, a detailed discussion on how the proposed MSR codes compare to other state-of-the-art regenerating codes in terms of both performance and computational efficiency would be valuable.</li>
 <li>The manuscript does not sufficiently describe the experimental setup, including the specific parameters and environments in which the simulations were conducted. </li>
 <li>The manuscript contains several typos and grammatical errors such as:<ol>
 <li>“The sentence ‘It can observed from Fig. 6 that as…’ should be corrected to ‘It can be observed from Fig. 6 that as…’ to include the missing verb ‘be’, ensuring grammatical correctness.”</li>
-<li>In Theorem 1, the phrase ‘in defined’ should be revised to ‘as defined’ to correct the preposition use and enhance the clarity of the statement.<h2 id="Submission-15"><a href="#Submission-15" class="headerlink" title="Submission 15"></a>Submission 15</h2>DT辅助边缘计算中推理服务的累积保真度最大化<h3 id="Summary-2"><a href="#Summary-2" class="headerlink" title="Summary"></a>Summary</h3>The manuscript presents a detailed study on the optimization of service model fidelity in Digital Twin (DT)-assisted edge computing environments, emphasizing the deployment of 6G communication technologies. The authors propose a novel accumulative fidelity maximization problem that focuses on the strategic placement of DTs and models to minimize resource consumption while maximizing service fidelity. The paper offers a comprehensive methodology that includes formulating the problem, developing algorithms for DT and model placement, and devising a scheduling algorithm for updating model data using IoT devices. The efficacy of the proposed solutions is evaluated through a series of simulations, which demonstrate significant improvements over baseline models.<h3 id="Strength-2"><a href="#Strength-2" class="headerlink" title="Strength"></a>Strength</h3></li>
+<li>In Theorem 1, the phrase ‘in defined’ should be revised to ‘as defined’ to correct the preposition use and enhance the clarity of the statement.</li>
 </ol>
 </li>
+</ol>
+<h2 id="Submission-15"><a href="#Submission-15" class="headerlink" title="Submission 15"></a>Submission 15</h2><p>DT辅助边缘计算中推理服务的累积保真度最大化</p>
+<h3 id="Summary-2"><a href="#Summary-2" class="headerlink" title="Summary"></a>Summary</h3><p>The manuscript presents a detailed study on the optimization of service model fidelity in Digital Twin (DT)-assisted edge computing environments, emphasizing the deployment of 6G communication technologies. The authors propose a novel accumulative fidelity maximization problem that focuses on the strategic placement of DTs and models to minimize resource consumption while maximizing service fidelity. The paper offers a comprehensive methodology that includes formulating the problem, developing algorithms for DT and model placement, and devising a scheduling algorithm for updating model data using IoT devices. The efficacy of the proposed solutions is evaluated through a series of simulations, which demonstrate significant improvements over baseline models.</p>
+<h3 id="Strength-2"><a href="#Strength-2" class="headerlink" title="Strength"></a>Strength</h3><ol>
 <li>The paper tackles an emerging issue in edge computing with a novel and timely approach. The integration of DTs in edge computing for enhancing service model fidelity using 6G technology is a forward-thinking solution that aligns well with current technological advancements.</li>
-<li>The simulation results are thorough and provide a convincing argument for the effectiveness of the proposed algorithms. The comparison with baseline models is helpful in illustrating the improvements and practical applicability of the research.<h3 id="Weakness-2"><a href="#Weakness-2" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>The simulation results are thorough and provide a convincing argument for the effectiveness of the proposed algorithms. The comparison with baseline models is helpful in illustrating the improvements and practical applicability of the research.</li>
+</ol>
+<h3 id="Weakness-2"><a href="#Weakness-2" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
 <li>It is recommended that the authors include a table of mathematical symbols and their definitions. This would aid in the reader’s understanding of the mathematical expressions and algorithms discussed throughout the paper, ensuring that the technical content is accessible to a broader audience.</li>
 <li>The paper lacks a detailed discussion on potential future research directions. Expanding on how these algorithms could be adapted or extended to other scenarios or technologies would be beneficial for readers and could spur further research.</li>
 </ol>
@@ -124,7 +138,9 @@
 <h3 id="Strength-3"><a href="#Strength-3" class="headerlink" title="Strength"></a>Strength</h3><ol>
 <li>FuzzLaPRO’s use of NLP to comprehend the logic of smart contracts represents a novel approach in the realm of fuzzing tools. By mimicking human auditor thought processes, the tool is capable of uncovering complex vulnerabilities that are typically undetectable through standard code pattern matching.</li>
 <li>The tool significantly enhances adaptability to various Ethereum Virtual Machine (EVM) versions and distributed applications (Dapps) through dynamic version discovery and implicit contract bridging, aligning it closely with real-world applications.</li>
-<li>In practical tests, FuzzLaPRO surpassed existing state-of-the-art fuzzing tools in coverage efficiency and bug discovery rate, identifying 79 new vulnerabilities at the smart contract level and 4 at the Dapp level, demonstrating superior testing effectiveness.<h3 id="Weakness-3"><a href="#Weakness-3" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>In practical tests, FuzzLaPRO surpassed existing state-of-the-art fuzzing tools in coverage efficiency and bug discovery rate, identifying 79 new vulnerabilities at the smart contract level and 4 at the Dapp level, demonstrating superior testing effectiveness.</li>
+</ol>
+<h3 id="Weakness-3"><a href="#Weakness-3" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
 <li>Due to its complex logic understanding and extensive contract interaction simulations, the tool may incur high computational costs and time consumption, particularly in large-scale applications, posing potential challenges in performance efficiency. The paper does not sufficiently analyze the complexity of the proposed method or the various costs associated with its implementation. Understanding these aspects is crucial for evaluating the practicality and scalability of the tool in different environments.</li>
 <li>The manuscript would benefit from linguistic polishing to enhance readability and professional appearance. Additionally, the use of terminology and formatting needs standardization; for instance, the inconsistent capitalization of “figure” in some instances and “Figure” in others should be unified to maintain a consistent style throughout the document.</li>
 </ol>
@@ -180,12 +196,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-ICMC2024%E5%AE%A1%E7%A8%BF/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-ICMC2024%E5%AE%A1%E7%A8%BF/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
 
     </footer>
   </div>
@@ -193,7 +209,7 @@
    
   <nav class="article-nav">
     
-      <a href="/2024/05/30/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95-20240530/" class="article-nav-link">
+      <a href="/blog/2024/05/30/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95-20240530/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -203,7 +219,7 @@
       </a>
     
     
-      <a href="/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-WASA2024%E5%AE%A1%E7%A8%BF/" class="article-nav-link">
+      <a href="/blog/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-WASA2024%E5%AE%A1%E7%A8%BF/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">论文记录-WASA2024审稿</div>
       </a>
@@ -319,37 +335,29 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer.png" alt="左边"></a>
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
+      <a class="nav-item-link" href="/blog/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
+      <a class="nav-item-link" href="/blog/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
+      <a class="nav-item-link" href="/blog/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
+      <a class="nav-item-link" href="/blog/tags">标签</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-ch">个人简历</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-en">Resume</a>
+      <a class="nav-item-link" href="/blog/friends">友链</a>
     </li>
     
   </ul>
@@ -401,15 +409,15 @@
   </div>
 </div>
     
-<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
 
 
-<script src="/js/lazyload.min.js"></script>
+<script src="/blog/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
 
 
-<script src="/js/tocbot.min.js"></script>
+<script src="/blog/js/tocbot.min.js"></script>
 
 <script>
   tocbot.init({
@@ -429,7 +437,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
+<script src="/blog/dist/main.js"></script>
 
 <!-- ImageViewer -->
 
@@ -579,7 +587,7 @@
 <!-- CodeCopy -->
 
 
-<link rel="stylesheet" href="/css/clipboard.css">
+<link rel="stylesheet" href="/blog/css/clipboard.css">
 
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
