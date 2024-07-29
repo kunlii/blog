@@ -11,8 +11,12 @@
             "id": "ed888964081ee5dd",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -130,7 +136,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md"
+              }
             }
           }
         ],
@@ -152,13 +160,13 @@
   },
   "active": "ed888964081ee5dd",
   "lastOpenFiles": [
+    "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
     "hexo-next-github配置blog.md",
     "论文记录-Arthur Gervais论文记录.md",
     "论文记录-An Efficient Anonymous Authentication and Reputation Management Scheme for Mobile Crowdsensing in Vehicular Networks.md",
     "论文记录-WASA2024审稿.md",
     "论文记录-INFOCOM 2024审稿.md",
     "论文记录-ICMC2024审稿.md",
-    "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
     "python课程记录-13.md",
     "python课程记录-9.md",
     "python课程记录-4.md",

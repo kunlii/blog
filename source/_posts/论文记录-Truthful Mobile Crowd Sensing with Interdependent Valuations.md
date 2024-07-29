@@ -42,7 +42,7 @@ description: 具有相互依赖的估值的真实移动群智感知
 2. MCS任务旨在估计一组可分割资源$\mathcal{N}={1\leq n\leq N}$的可访问性和质量
 3. 用户既是MCS任务的worker，也是资源的消费者
 ### System Overview
-1. 世界状态：$\omega \triangleq\left\{\omega_n\right\}_{n \in \mathcal{N}}$表示未知随机的世界状态，$\Omega$表示所有可能的世界状态组成的有限集合，每个条目$\omega_n$代表资源$n$的质量和可用性，例如，无线信道$n$上的干扰级别或第$n个WiFi接入点的拥塞级别。
+1. 世界状态：$\omega \triangleq\left\{\omega_n\right\}_{n \in \mathcal{N}}$表示未知随机的世界状态，$\Omega$表示所有可能的世界状态组成的有限集合，每个条目$\omega_n$代表资源$n$的质量和可用性，例如，无线信道$n$上的干扰级别或第$n$个WiFi接入点的拥塞级别。
 2. 传感数据： 每个用户$i$获取随机传感数据$\theta_i\in \Theta_i$，可被用于估计世界状态$\omega$，需要提交给平台。上报的传感数据记作$\tilde{\theta}_i \in \Theta_i$，该数据可能是谎报的。$\theta_i$可能是多维的，$\theta \triangleq\left\{\theta_i\right\}_{i \in I} \in \Theta$表示用户传感数据概况。在所有其他用户的传感数据公开之前，每个用户对其他用户的数据$\theta_{-i} \triangleq\left\{\theta_j\right\}_{j \neq i}$有自己的先验信念，该信念用条件概率$P_{\Theta_{-i}}\left(\theta_{-i} \mid \theta_i\right)$来表示。通过收集所有用户的感官数据$\theta$，我们可以使用条件概率函数$P_{\Omega}(\omega \mid \theta)$来进行贝叶斯估计。
 3. 网络资源： 资源发现平台旨在有效地将资源集分配给用户。令$x_i=\left\{x_{i, n}\right\}_{n \in \mathcal{N}} \in \mathbb{R}_{+}^N$表示平台的分配决策，其中$x_{i, n}$表示分配给用户$i$的资源量$n$（例如，第$n$频谱通道分配给用户$i$的时间份额）。用$x=\left\{x_i\right\}_{i \in I}$表示分配概况，$\mathcal{X}$表示所有$x$的集合，则：		
 	$$
