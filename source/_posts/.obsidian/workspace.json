@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
+                "file": "论文记录-Max Attestation Matters Making Honest Parties Lose Their Incentives in Ethereum PoS.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
+                "file": "论文记录-Max Attestation Matters Making Honest Parties Lose Their Incentives in Ethereum PoS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
+                "file": "论文记录-Max Attestation Matters Making Honest Parties Lose Their Incentives in Ethereum PoS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md"
+                "file": "论文记录-Max Attestation Matters Making Honest Parties Lose Their Incentives in Ethereum PoS.md"
               }
             }
           }
@@ -160,6 +160,16 @@
   },
   "active": "ed888964081ee5dd",
   "lastOpenFiles": [
+    "论文略读记录.md",
+    "生活记录-20240815.md",
+    "论文记录-Max Attestation Matters Making Honest Parties Lose Their Incentives in Ethereum PoS.md",
+    "Cryptography课程记录-Week 1_Course overview and stream ciphers.md",
+    "ck3mod制作笔记-1.md",
+    "使用算法和数据结构解决问题-1.md",
+    "论文记录-A Bayesian Truth Serum for Subjective Data.md",
+    "区块链行业总结.md",
+    "生活记录-20240530.md",
+    "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
     "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
     "hexo-next-github配置blog.md",
     "论文记录-Arthur Gervais论文记录.md",
@@ -175,17 +185,7 @@
     "python-sklearn-keras-lstm回归预测问题.md",
     "Let-s-Build-A-Simple-Interpreter笔记-8.md",
     "Leetcode记录-2.md",
-    "Cryptography课程记录-Week 1_Course overview and stream ciphers.md",
     "Echarts的配置.md",
-    "ck3mod制作笔记-6.md",
-    "ck3mod制作笔记-2.md",
-    "blender学习记录-2.md",
-    "仙境之夜攻略记录.md",
-    "使用算法和数据结构解决问题-1.md",
-    "生活记录-20240530.md",
-    "区块链行业总结.md",
-    "生活记录-20240315.md",
-    "论文略读记录.md",
     "daily-1 2.jpg",
     "daily-1 1.jpg",
     "daily-1.jpg"
