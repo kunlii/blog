@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "f65764a32b0556ce",
+        "id": "1383ca6815980b7c",
         "type": "tabs",
         "children": [
           {
-            "id": "7a1abb99df76940c",
+            "id": "b9d9ce2913cfc70e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "论文记录-MSN2024审稿.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -69,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316.5
+    "width": 229.5
   },
   "right": {
     "id": "e91e74292be9f775",
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "论文记录-MSN2024审稿.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "论文记录-MSN2024审稿.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,9 +130,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "论文记录-MSN2024审稿.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -158,10 +150,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "7a1abb99df76940c",
+  "active": "b9d9ce2913cfc70e",
   "lastOpenFiles": [
-    "论文记录-ICMC2024审稿.md",
     "论文记录-MSN2024审稿.md",
+    "论文记录-ICMC2024审稿.md",
     "hexo-next-github配置blog.md",
     "python-sklearn-keras-lstm回归预测问题.md",
     "overleaf的本地同步配置.md",
