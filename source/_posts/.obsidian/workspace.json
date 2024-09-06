@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "论文记录-MSN2024审稿.md",
+                "file": "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "2e3b4b4962c08574",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "论文记录-MSN2024审稿.md",
+                "file": "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "论文记录-MSN2024审稿.md",
+                "file": "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,15 +137,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "论文记录-MSN2024审稿.md"
+                "file": "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -157,6 +158,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "ea8a95da1060e88e",
-  "lastOpenFiles": []
+  "active": "87beb04eb519a7b6",
+  "lastOpenFiles": [
+    "论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning.md",
+    "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
+    "论文记录-Dynamic-Task-Pricing-in-Multi-Requester-Mobile-Crowd-Sensing-with-Markov-Correlated-Equilibrium.md",
+    "论文记录-Evolution of cooperation in stochastic games.md",
+    "论文记录-MSN2024审稿.md"
+  ]
 }
