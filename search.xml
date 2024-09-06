@@ -1,6 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>论文记录-Libra: An Efficient Mechanism for Merging Cross-chain Transactions Verification</title>
+    <url>/blog/2024/09/06/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Libra%20An%20Efficient%20Mechanism%20for%20Merging%20Cross-chain%20Transactions%20Verification/</url>
+    <content><![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>跨链交易验证主要方法是看这个交易的Merkle证明，但是不同跨链交易的Merkle证明可能有重叠，这增加了计算开销。本文提出了Libra，设计了构造合并Merkle证明的递归算法，考虑到执行限制问题，设计了近似比率分析的启发式算法，把跨链交易划分开，然后合并每组的Merkle证明。仿真实验评估了验证开销，存储量和计算量分别减少了1.4 ~ 5.2倍和1.5 ~ 5.2倍。</p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>跨链交易的简单支付验证（SPV）的核心思路是检查被验证交易的哈希及其父节点和一路往上的若干节点的哈希值是否能计算得到区块头中存储的根哈希。当有很多跨链交易需要验证时，现有的方案是挨个验证，但不同跨链交易转到同一个目标链时，大概率会有一部分相同的路径哈希，这样挨个验证就会产生重复计算。例如，在比特币中，给定$n$笔交易，$m$笔跨链交易，目标链上的验证具有$O（mlog n）$的时间和空间复杂度。如果跨链事务在树中相邻，则冗余重叠至少为$O（m · log（n m））$，因为从它们的共同祖先到根的路径在每个跨链事务的Merkle证明中重复。</p>
+<p>由此，本文提出Libra，在证明时降低冗余，允许目标链以较低的成本验证一组跨链交易。这需要解决两个问题：</p>
+<ol>
+<li>如何高效去重？本文设计了递归默克尔证明合并算法，实现去除默克尔证明过程中的冗余计算。</li>
+<li>如何处理证明聚合的大小限制？设计了启发式算法，对跨链交易分组，仅合并同组的默克尔证明，避免证明量超过目标链的限制。</li>
+</ol>
+<p>本文第一个关注这个问题并解决，主要贡献概括如下：</p>
+<ol>
+<li>提出了Libra机制，这是一种在考虑目标链执行限制的情况下，提高跨链交互验证效率的机制。Libra设计了两个核心模块：首先使用模块2对交易进行分区，然后使用模块1为每个组构建和验证合并的Merkle证明。 </li>
+<li>针对模块1中减少冗余验证的问题，提出了一种递归算法来在构建过程中派生合并的Merkle证明以及相应的验证算法，并分析了其性能。 </li>
+<li>针对模块2中确保合并验证保持在执行限制内的跨链交易分区问题，提出了一种启发式算法，并分析了该NP难题的近似比。 </li>
+<li>通过实验模拟评估了所提出算法的性能。结果显示，Libra可以将存储和计算开销分别减少1.4倍至5.2倍和1.5倍至5.2倍。</li>
+</ol>
+<h2 id="PRELIMINARY"><a href="#PRELIMINARY" class="headerlink" title="PRELIMINARY"></a>PRELIMINARY</h2><h3 id="跨链系统"><a href="#跨链系统" class="headerlink" title="跨链系统"></a>跨链系统</h3><p>$CS = (B_{src}\cup B_{dst} \cup R_c \cup Info_c)$，括号里的四个东西分别表示源链、目标链、中继节点和跨链交易</p>
+<h2 id="总体意见"><a href="#总体意见" class="headerlink" title="总体意见"></a>总体意见</h2><ol>
+<li><p>summary</p>
+</li>
+<li><p>strength：</p>
+</li>
+<li><p>weakness：</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>论文</category>
+      </categories>
+      <tags>
+        <tag>blockchain</tag>
+        <tag>审稿意见</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文记录-MSN2024审稿</title>
+    <url>/blog/2024/08/17/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-MSN2024%E5%AE%A1%E7%A8%BF/</url>
+    <content><![CDATA[<h2 id="2570-4"><a href="#2570-4" class="headerlink" title="2570-4"></a>2570-4</h2><p>Research on the Application Algorithm of Dynamic Item Representation in E-Commerce Recommendation System（电商推荐系统中动态商品表示应用算法的研究）</p>
+<p>标题里的这个“动态商品表示”不太理解，也没搜到这方面的内容，可能是作者自己提的吧，先继续看看。</p>
+<p>摘要说了三个技术：缩放点积注意力技术、多头注意力机制、隐藏层维度扩展，但它们可以合起来看作是用transformer来做推荐系统。</p>
+<p>大致背景是电商推荐中，商品往往的动态的、随时间变化的，这不利于推荐系统抓取，所以本文搞了动态商品表示。</p>
+<p>概括下来就是两层神经网络加了attention机制</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>This paper introduces the ProxyCrossAttn model, a novel approach to improving item representation in e-commerce recommendation systems. The authors address the limitations of traditional static item representation methods by integrating a dynamic representation framework that leverages scaled dot-product attention and multi-head attention mechanisms. The paper presents the theoretical foundation of the model, details its implementation, and provides experimental results that demonstrate the model’s effectiveness in enhancing recommendation accuracy and efficiency.</p>
+<h3 id="Strength"><a href="#Strength" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The ProxyCrossAttn model is a significant contribution to the field of recommendation systems, offering a dynamic and flexible item representation method that surpasses traditional static approaches. The integration of attention mechanisms is well-justified and clearly articulated.</li>
+<li>The authors provide thorough experimental results that compare the ProxyCrossAttn model against several advanced models. The metrics used, such as Recall@10 and NDCG@10, are appropriate for evaluating the performance of recommendation systems, and the model’s superior performance is convincingly demonstrated.</li>
+<li>The paper is well-organized, with a clear flow from the introduction of the problem to the proposed solution and the experimental validation. The explanations of the attention mechanisms and the model’s architecture are detailed and easy to follow.</li>
+</ol>
+<h3 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>有大量长段落，建议适当分段，精炼语言</li>
+<li>已经有很多LLM电商推荐系统，应该在related work中介绍并对比</li>
+<li>一些符号表示缺少必要的解释</li>
+<li>图1太小，建议图中的字放大点</li>
+<li><p>实验部分给了召回率，但没对比准确率的数据</p>
+</li>
+<li><p>Some sections of the paper contain long paragraphs and dense language, making it harder for readers to follow the flow of ideas. Introducing more paragraph breaks and simplifying the language would improve clarity and make the paper more engaging.</p>
+</li>
+<li>Although the paper covers existing approaches in recommendation systems, it overlooks recent advancements in large language models (LLMs) applied to e-commerce recommendations. Adding a comparative analysis of these LLM-based systems would position the ProxyCrossAttn model more effectively within the current state of the art.</li>
+<li>Some of the symbols and mathematical notations introduced in the model are not clearly defined or explained. Providing more context and detailed explanations for these symbols would enhance the paper’s accessibility, especially for readers less familiar with the notation.</li>
+<li>Figure 1 is too small, with text that is difficult to read. Enlarging the figure and increasing the font size would improve readability and comprehension, particularly for those reading the paper on smaller screens.</li>
+<li>While the paper reports recall metrics, it does not provide accuracy data, which is a key measure of recommendation system performance. Including accuracy comparisons would give a more complete picture of the model’s strengths and limitations.</li>
+</ol>
+<h2 id="6214-3"><a href="#6214-3" class="headerlink" title="6214 - 3"></a>6214 - 3</h2><p>Tensor Light Graph Convolutional Network for Dynamic Graph Representation Learning（用于动态图表示学习的张量光图卷积网络）</p>
+<p>这篇乍一看还行</p>
+<h3 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h3><p>The paper titled proposes a novel approach to dynamic graph convolutional networks (DGCNs) through the introduction of the Tensor Light Graph Convolutional Network (TLGCN). The primary aim is to address the decoupling issues found in traditional DGCNs, which often disrupt spatio-temporal dependencies. By leveraging the tensor M-product framework, the authors aim to model spatial and temporal information propagation jointly. The paper demonstrates the effectiveness of TLGCN through experiments on four real-world datasets, showing superior performance in weight estimation tasks compared to state-of-the-art models.</p>
+<h3 id="Strength-1"><a href="#Strength-1" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper introduces a new framework for dynamic graph learning using the tensor M-product, which is a novel and valuable contribution to the field.</li>
+<li>The authors validate their proposed model through experiments on multiple real-world datasets, ensuring that the results are both robust and broadly applicable.</li>
+<li>The design of the Tensor Light Graph Convolution by omitting feature transformation and nonlinear activation simplifies the implementation while improving performance, which is both practical and effective.</li>
+<li>The paper clearly articulates the problem with traditional DGCNs and offers a well-justified solution in the form of the TLGCN framework.<h3 id="Weakness-1"><a href="#Weakness-1" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>Although the paper compares TLGCN with other models, the discussion could benefit from a more detailed analysis of why TLGCN outperforms each baseline and what specific advantages it offers over them.</li>
+<li>The hyperparameter choices, such as the number of layers (L) and feature dimensions (f), are briefly discussed but lack sufficient justification for why specific values were chosen or how they impact the overall performance.</li>
+<li>Although the paper mentions the efficiency of the model, there is no detailed analysis of the computational efficiency and resource consumption across different data scales. This could help readers better understand the trade-offs between accuracy and performance, especially for larger datasets.</li>
+<li>The paper does not discuss the scalability or flexibility of the model when applied to larger or more complex dynamic graphs. A more comprehensive analysis of how the model performs with increasing graph sizes or more complex temporal dynamics would be valuable for assessing its practical utility in real-world applications.</li>
+</ol>
+<h2 id="6518-6"><a href="#6518-6" class="headerlink" title="6518 - 6"></a>6518 - 6</h2><p>A method for detecting key points of students’ posture in a smart math room based on improved YOLOv8-Pose（学生姿态检测）</p>
+<p>这篇不行，问题太多</p>
+<h3 id="Summary-2"><a href="#Summary-2" class="headerlink" title="Summary"></a>Summary</h3><p>This paper presents a novel method named YOLOv8-PoseRoom for detecting key points in students’ posture within smart classrooms. The authors aim to improve the accuracy of motion keypoint detection, especially for small objects and complex scenes, by integrating several enhancements, including the Channel Attention Module (CBAM) and a modified loss function (SIoU). The approach demonstrates better performance on COCO and MPII datasets compared to baseline models. Experimental results show improved detection accuracy and a reduction in missed small targets, making the model highly suitable for smart classroom applications.</p>
+<h3 id="Strength-2"><a href="#Strength-2" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The integration of the CBAM and the SIoU loss function enhances detection accuracy, particularly for small targets and complex scenes, as demonstrated in the experiments.</li>
+<li>The use of multiple scale detection heads and cross-level cascade fusion improves the detection of individuals of varying sizes and reduces missed detections.</li>
+<li>Despite its improved performance, the model maintains relatively low computational requirements, making it applicable in resource-constrained environments.</li>
+<li>The method is rigorously validated using well-established datasets (COCO and MPII), and the results are clearly presented with comparative performance metrics.<h3 id="Weakness-2"><a href="#Weakness-2" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>用给定的模板</li>
+<li>单词换行要加换行符</li>
+<li>CBAM是Channel Attention Module的一种，但这样直接放括号里容易引起误会，建议使用原本的完整名称</li>
+<li>一些用词不统一，例如SIOU和SIoU</li>
+<li>图都太小了，非常影响阅读</li>
+<li>除了把已有的方法结合起来，有什么创新吗？</li>
+<li>表格建议直接用表格，别用图，或者放大一些，真的看不清</li>
+<li><p>参考文献太少，与已有研究对比的创新点不明确</p>
+</li>
+<li><p>The paper does not fully adhere to the required conference template. It is crucial to ensure that the formatting matches the provided guidelines, particularly in terms of section structure, font size, and spacing.</p>
+</li>
+<li>In the paper, some words are broken across lines without proper hyphenation or line breaks. This can hinder readability and should be addressed.</li>
+<li>There are inconsistencies in the use of terms such as “SIOU” and “SIoU.” Consistency in capitalization and terminology is important for clarity and professionalism.</li>
+<li>The figures in the paper are too small, which makes them difficult to read. It would be beneficial to increase their size for better clarity and understanding.</li>
+<li>While the method combines several existing techniques, it is not entirely clear what specific innovations are introduced beyond the integration of these existing methods. A more explicit explanation of the novel contributions would strengthen the paper.</li>
+<li>Several comparisons are presented in the form of small graphs, which are difficult to interpret. It is recommended to use tables instead for clearer data representation or to enlarge the graphs significantly.</li>
+<li>The paper includes relatively few references. A broader discussion of related work and how the proposed method advances the field is necessary. This could include more comparisons with recent studies to better position the contribution of the work.<h2 id="7093-2"><a href="#7093-2" class="headerlink" title="7093 - 2"></a>7093 - 2</h2>Spatio-Temporal Graph Convolutional Networks for Traffic Prediction Considering Multiple Spatio-Temporal Information（考虑多时空信息的时空图卷积网络交通预测）</li>
+</ol>
+<p>这篇看图挺好，要看看方法细节上有没有什么新意</p>
+<p>从摘要和intro概括来看是时间+空间信息的CNN来预测交通流量，时间维度上用了多头注意力，空间维度上融合图卷积</p>
+<h3 id="Summary-3"><a href="#Summary-3" class="headerlink" title="Summary"></a>Summary</h3><p>The paper titled presents a novel framework designed to address the challenges of complex spatio-temporal dependencies in traffic data. The key contribution is the introduction of a multi-scale local multi-head self-attention module for handling temporal dependencies and a fusion graph convolution module for addressing multiple spatial dependencies in traffic networks. The authors propose a solution to overcome the limitations of existing traffic prediction models, which either fail to consider multi-scale characteristics of time series or ignore the diverse spatial relationships in road networks. The model’s performance is validated on two real-world datasets, demonstrating state-of-the-art accuracy in traffic flow predictions compared to existing baseline models.</p>
+<h3 id="Strength-3"><a href="#Strength-3" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper proposes a novel architecture, STGCN-MI, which significantly improves on previous traffic prediction models by integrating both multi-scale temporal information and multiple spatial dependencies. The introduction of the multi-scale local multi-head self-attention mechanism is particularly innovative, as it allows for a better representation of time series across different scales.</li>
+<li>The methodology is detailed, with clear explanations of each component of the proposed model, including the multi-scale attention mechanism, fusion graph convolution, and the transform layer. The integration of multiple spatial relationships (neighborhood graph, pattern similarity graph, and trend similarity graph) is a notable strength, providing a more accurate depiction of real-world traffic networks.</li>
+<li>The model is evaluated rigorously on two large datasets (PEMS-BAY and METR-LA), and the results show that the proposed method outperforms multiple baseline models. The inclusion of multiple evaluation metrics (MAE, RMSE, MAPE) adds robustness to the experimental results, reinforcing the paper’s claims of superior performance.</li>
+<li>The paper is well-structured and easy to follow. Complex technical concepts are explained clearly, and the figures and tables (e.g., performance comparisons) effectively support the narrative.<h3 id="Weakness-3"><a href="#Weakness-3" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>The multi-scale attention mechanism and the fusion graph convolution modules add significant complexity to the model.   While this complexity yields performance gains, it might raise concerns regarding the model’s scalability, especially in terms of training and deployment on larger datasets or in real-time environments.   A brief discussion on computational overhead or model efficiency (e.g., memory usage, inference time) would address these concerns.</li>
+<li>The paper discusses the model’s effectiveness in traffic prediction, but it would be valuable to include a discussion on how the model could be applied in real-world Intelligent Transportation Systems (ITS) or other spatio-temporal prediction tasks. Providing practical use cases, challenges in deployment, or insights into how the model could enhance decision-making in smart cities would enhance the impact of the research.</li>
+<li>While the paper is mostly clear and well-structured, there are occasional grammar and phrasing issues that could benefit from further refinement. </li>
+</ol>
+<h2 id="8516-5"><a href="#8516-5" class="headerlink" title="8516 - 5"></a>8516 - 5</h2><p>A “Drilling” Evaluation Method for Data Value Security（数据价值安全评估）</p>
+<p>说实话标题和摘要都没看明白它要做什么，不太行</p>
+<p>大致背景是说，数据泄露了一部分，但有可能可以从中推测出整体数据的分布等信息，这导致没法判断泄露数据到底有多少价值。同时在流数据的场景下，评估价值也面临各种问题。</p>
+<p>流数据采样方法：无偏采样，可能无法正确反映数据分布；有偏采样，选择与整体数据更相似的那些数据，同时一些特例也要保留。</p>
+<h3 id="Summary-4"><a href="#Summary-4" class="headerlink" title="Summary"></a>Summary</h3><p>The paper proposes a novel framework for evaluating the value security of large-scale streaming data through a “drilling” sampling approach. The method aims to address the challenge of assessing the risk associated with data leakage by analyzing the statistical characteristics of sampled data in comparison to the overall dataset. The paper presents a data security level evaluation application based on the proposed framework, and experimental results demonstrate the method’s effectiveness compared to existing techniques, such as the SWIFT method.</p>
+<h3 id="Strength-4"><a href="#Strength-4" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper introduces a creative “drilling” sampling method inspired by mineral exploration, which effectively captures the statistical characteristics of large-scale streaming data. This novel approach is well thought out and addresses a significant challenge in the field of data security evaluation.</li>
+<li>The development of a data security level evaluation application showcases the practical relevance of the proposed method. This application has the potential to assist organizations in assessing the security risks associated with streaming data, particularly in scenarios involving data leakage.</li>
+<li>The authors provide a comprehensive experimental comparison between the proposed method and the SWIFT method. The results, which indicate a near 90% accuracy in value evaluation at a lower streaming data access rate, are impressive and underscore the method’s effectiveness.</li>
+<li>The paper is well-organized, with a logical flow from the introduction of the problem to the presentation of the proposed solution, related work, and experimental results. The use of figures and tables enhances the clarity of the paper.</li>
+</ol>
+<h3 id="Weakness-4"><a href="#Weakness-4" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>intro说缺少基于统计特征的数据价值评估，但这不太可能吧，应该有不少做这个的</li>
+<li>图太小看不清</li>
+<li>和“A Dynamic Drilling Sampling Method and Evaluation Model for Large-Scale Streaming Data”有什么区别吗？</li>
+<li>The paper does not provide a detailed analysis of the scalability of the proposed “drilling” method when applied to extremely large datasets or in real-time environments with high data velocity. A discussion on how the method scales with increasing data volumes and the computational resources required would strengthen the paper.</li>
+<li><p>本文的方法看上去更像是通过评估采样数据来评估一份大数据的价值，这和前面摘要与intro提到的数据泄露以及数据安全也没啥关系吧</p>
+</li>
+<li><p>In the introduction, the paper claims that there is limited research on evaluating data value based on statistical features. However, there are significant prior works in this area, particularly in data mining, statistics, and machine learning fields. The authors should conduct a more thorough review of existing literature and methodologies that also focus on evaluating data value using statistical characteristics.</p>
+</li>
+<li>The figures included in the paper (e.g., diagrams showing the sampling framework and experimental results) are too small, making it difficult to interpret the details. Enlarging these figures and ensuring that all textual elements are readable would significantly improve clarity.</li>
+<li>The paper should provide more detailed comparisons with other existing techniques, particularly the “Dynamic Drilling Sampling Method and Evaluation Model for Large-Scale Streaming Data.” It is not entirely clear how the proposed method differs technically or if it improves upon this existing method. Addressing this will clarify the novelty and contribution of the work.</li>
+<li>The paper lacks a thorough discussion about the scalability of the proposed method in extreme data environments. For example, while the method is designed for large-scale streaming data, there is no detailed analysis of its performance when dealing with extremely large datasets or real-time data with high velocity. Including a discussion on computational resource requirements and how the method scales with increasing data volumes would strengthen the paper.</li>
+<li>The method presented in the paper seems more focused on evaluating the value of sampled data in relation to the overall dataset, rather than directly addressing issues of data leakage and security. The abstract and introduction suggest that the method will focus on data breaches and security, but the actual method appears to be more about sampling efficiency and value assessment. The authors should clarify this discrepancy and better tie the proposed method to data security, as it currently reads more like a data value evaluation method rather than a security assessment tool.</li>
+</ol>
+<h2 id="9933-1"><a href="#9933-1" class="headerlink" title="9933 - 1"></a>9933 - 1</h2><p>Federated Hypothesis Transfer for Decentralized Multi-Source Domain Adaptation（分散多源域适应的联邦假设转移）</p>
+<p>多源数据涉及隐私问题，不能直接拿来训练自适应模型，所以用联邦学习来解决这个问题，本文主要关注如何避免自适应时的负迁移。方法上应该创新一般，本地模型按照目标优化，然后各给权重，全局聚合一下，但在这几篇里不错了，实验数据很丰富。</p>
+<h3 id="Summary-5"><a href="#Summary-5" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents a novel approach named Federated Hypothesis Transfer (FedHT) for decentralized multi-source domain adaptation (MUDA). This work addresses the challenge of transferring knowledge from multiple source domains to a target domain in decentralized settings, where data privacy concerns prevent the direct sharing of data. FedHT combines hypothesis transfer learning and federated learning, leveraging local models trained on source domains and aggregating them to construct a generalized global model. A dynamic weighting strategy is proposed to avoid negative transfer, which assigns weights to each source domain during model aggregation. The model is fine-tuned without accessing source data using information maximization and self-supervised learning techniques. The approach is evaluated on four benchmarks, showing significant improvements over baseline methods.</p>
+<h3 id="Strength-5"><a href="#Strength-5" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper introduces a new decentralized MUDA framework that merges the benefits of hypothesis transfer and federated learning, which is an innovative combination. This framework addresses a practical problem by handling decentralized data without violating privacy constraints, making it applicable to real-world scenarios like healthcare or finance, where data sharing is limited.</li>
+<li>The dynamic weighting strategy to alleviate negative transfer is a strong contribution. By adjusting the importance of different source domains based on their relevance to the target task, the approach enhances the model’s generalization ability without degrading performance due to domain discrepancies.</li>
+<li>The paper provides thorough experimental validation on four well-known datasets. FedHT significantly outperforms both centralized and decentralized methods, demonstrating its effectiveness in handling domain shifts and reducing negative transfer.</li>
+<li>The detailed explanation of the FedHT process—from local model optimization to global model aggregation and fine-tuning—shows a well-thought-out design that maximizes the use of both source and target domain knowledge. The use of clustering and information maximization techniques is well-supported by prior research.</li>
+<li>The methodology aligns well with growing concerns about data privacy and regulatory constraints such as GDPR. The federated learning approach makes this method highly relevant for industries dealing with sensitive data.<h3 id="Weakness-5"><a href="#Weakness-5" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li><p>缺少对全局聚合过程中安全性的简单讨论，建议至少在future work中提一句</p>
+</li>
+<li><p>The paper does not address the security concerns related to the global model aggregation process, which is crucial in federated learning scenarios. Given that multiple local models are aggregated, potential risks such as data leakage, model inversion, or adversarial attacks could arise. It would be beneficial to include a brief discussion on security measures, or at least acknowledge these concerns in the “Future Work” section, proposing potential strategies to enhance security in future implementations.</p>
+</li>
+<li>The paper’s language could benefit from further refinement to improve clarity and conciseness. In several sections, sentences are lengthy or redundant, which may affect readability and the impact of key ideas. Simplifying complex sentences and avoiding repetitive phrases would enhance the overall presentation and make the paper more accessible to a wider audience. It is recommended to revise and polish the language to ensure the concepts are conveyed in a clear and straightforward manner.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>论文</category>
+      </categories>
+      <tags>
+        <tag>blockchain</tag>
+        <tag>审稿意见</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>生活记录-20240815</title>
+    <url>/blog/2024/08/15/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95-20240815/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="17eab1d050fa64454efbef89807ca74e2b93290c37107520f6f5211347f7addf">37677482e0ad0b0303755495d26d33f4a93b1a1e589fb3af150bbc5463635ce9ef6df5bae457b232868338a82128f0c08bae19896c8202e5eb8bf94db73505b3b52277511f522b5e84d71795a485550515a86374b2d0823794c96c8bbb2c143aaeaef08acce81e1c365d021298c872afd98282b9f55c1e58f58409a946b42ec4ba8663b4b55a3bc269dc2c69ef682d33ffd8babfd5b0d96b378442d0aaf373f479ef63b3e61d15c13f31b3e23e611b4a99e65440246369f4069a54c83cf3987de45cdc9cf198a8650fb7374fbbe14c1f17d810472688519523feec8756153b57ec19375636154ef56eaf1fd06df261da6e3c0d37da1cc3fde12434e04b3681099490c8ec392336e7b704e185174c4e59e2b3d9520efd5698dc09c8202b86e665a923c1c1074c56add433b8ceb7081295cd95cceb0ab36de1e20507d76a4e0ca5251335b2397d9ab971171d27e1e2e97eb5d67b90cb4d2c56ddd172b38412a6c7ff622e589bb8c634fb0fdbcaa63d415a01c38ab5e29bee9f1b0c702a711c2e5a00fc594ba5ca6d2b06accb1d9024c9ceba2f34ad9df4f7c9ead70b49bb79cdc500a2fd8a4c687b1286a7eaa80626d26e63d80ef083f0de784de275af387e440f24c8ecba484783fd2b4e833dff3259a0e1257926a2098cb17bafa545bb473083a68ac44fe1bd64531650661db5cc347775d1e193166c96ee108fb17bfd10c551a3ece520db21227233bc3c895090619933a9149871ff3cb82fa0e90f50c3eb14d818ba633520331cf448028ad18f635ab92c0e61fb92f7ba2b25403f763a9fe47d552d6c60a6edce3a5d02163ceb27bf741493ffa4dacc57578307d85cba11258c0abcfff1940f341e6e5f0bd8a8e4100e5372b6ce41148991fd6a7b50253b9cb0f8bc634dd5f004679ba7bf1672f717627258d61fbc44451124be4fe1a64d87d6e3a55e9380c718bda1f1752f6c4c30a8340ba35c13aa3be492e949868954127db6a38f18e74f9692511758c038b900a6c1cfd2bb17e1f80690bb647966618abc7d005bf011a1faaf42cfd1d7d9eda0b99ae3d8690b7d90a69ee6d13a8f7dc5d7beb7628e18c4d81163435ad86d22e1260885d52d2dabff65329923e13ea73747dfa0181e0083e1271dfbf33c7624614d2c5d210ba7a16d296f0eef98ea86005a6e24acfc7720df4d31e321b0f0b07fd2f6035fb0b04f8725f211fb06bbc3307325fa742de20ffccbac6e85551ea981634f7a3ac6c23a016c1186b98a4d3ed83a2db4cd11db5e1f650604e6b40a3f2df6f38a243a7feb91e3dddc6ee8ec5d6f0af237e9dcf18c3c75f4c3cf31d2566c9048db01915bc7eaae55af9ae7e43742cef4705425fc364aaa2350731fe5cd947c2a3999b5a2436bf2f0f4bf0ad71756101861adfdec72d93e0556255cb94ed7d605168181f691a4cc05a2f9d35cd8934b522ed3e1bf58679e54c185983bf72950aa94396a84a6bea88941818de16cb1f6631195ae8d4745a0a28e7e5884b06768f770ed0996c5e3b66736169a92c84c368072bee692885ae408c936fde466f65570b16204ad960bca568c129dcbc078519aba7ccb9a12310b29e54b9ba401bd67166e486de33b8996b8c0b285f4c8be7b783b8999292794d43d3050f5afc2c57ad8186c616bf91dccab14fb3bc2fb0a2e0813d37d29b366057832769d08e9e8ab4396d953a6a94850a4547ae7f8a0c76f68f1248c3fb6a5714efcbdc027efdfa21301979fe9cdfdcb2821b21ae12f3ae8117f747e3264a3dd9c15b4551c3d280a3df3dea98d5c6966d2453cfb5ad4393cfcba72099730821d5fb4d8095ad92a5aeef7e5bfbae7f8697247749f2a162f96fed1d092e4157b48cc16a040e8a5f63239c5bd4300590a11aca0434ddb39358ef929fc0713387bb29565fb76fb4d098f1fe5478a4135ba5e57e8891eec2032125dbab7dcec49e61cd3fb6f931bfafe141a2fe254b867a3a047d7a6749d4ad6600edfcb84c2525b90d0a8d3c267a593ece6243b9d6fce453c4978b72cf20ea82513392697ef5e7d73f31357b4e737c30001d628000e42c635ad018b6ece334da77a86a9064cb3b41a4d393963fc8179f60881c595bb6f0b7310f9fefb60578228d34d641f5265f044d5fe7d3be4dbf764cce68a93546b34233fb94de75f1d8fb7a8045f6381da3ad55a4574f5a0dc95cbabbcf7a1684f31e4d163380d52d0d1a536f39575b8100a64901b299b69e12adaa8eef221985fee7fb0c1caf60607d2d07c77cf0ee79c987f53dc94920f2a09da4b7cbf3dd311260ca0f01b999fdf4494477ccbdbd6b0df5a290a6fe5585c143689be5265829ccb0ae46352b4ef3dea4d7327837820eaa79f94189d17388fefbae6af5fc7089ddbb066d800ee69294af0a6fcc4210fe46155c9eb18180884dfcd0cb2d92dda655cdb6b4e0cf1c2e371b66e0d5e44b76d8d69e91967ad2405761df0f53e4319efd8d4d3b6e6d45fbaac86e221a7c19c24376e5c51c72fd090c7a75f5d01e90aea1ff587d1ecd1ee82d8ac518e73caa02474aca20636ec1099702dd7c24445f20674f6d3b6e70cc677869b6d99a7d919fa14c6ed11f48080a1b70b739623729d15a7fef245ace11552f50fd57ff5d701f50059207f91f2cfd5c1</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/blog/lib/hbe.js"></script><link href="/blog/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>生活记录</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文记录-Max Attestation Matters: Making Honest Parties LoseTheir Incentives in Ethereum PoS</title>
+    <url>/blog/2024/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Max%20Attestation%20Matters%20Making%20Honest%20Parties%20Lose%20Their%20Incentives%20in%20Ethereum%20PoS/</url>
+    <content><![CDATA[<h1 id="Max-Attestation-Matters-Making-Honest-Parties-Lose-Their-Incentives-in-Ethereum-PoS"><a href="#Max-Attestation-Matters-Making-Honest-Parties-Lose-Their-Incentives-in-Ethereum-PoS" class="headerlink" title="Max Attestation Matters: Making Honest Parties Lose Their Incentives in Ethereum PoS"></a>Max Attestation Matters: Making Honest Parties Lose Their Incentives in Ethereum PoS</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>攻击对象：以太坊2.0的PoS激励机制<br>攻击效果：诚实验证者会受到惩罚<br>攻击条件：控制29.6%股权<br>攻击原理：与验证者的数量和证明的最大数量（也就是票数）<code>MAX_ATTESTATIONS</code>相关。当前系统设置下（900,000 validators and MAX_ATTESTATIONS =128)，攻击成功率80.25%。</p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>以太坊2.0采用PoS，其核心共识是Gasper，BFT协议</p>
+<ol>
+<li>传统BFT假设攻击者无法控制超过$\frac{1}{3}$节点（验证者）</li>
+<li>中本聪共识（比特币和以太坊1.0）假设攻击者控制不超过50%算力</li>
+<li>PoS假设攻击者控制不超过$\frac{1}{3}$股权，股权通常等价于验证者的账户余额</li>
+</ol>
+<p>以太坊的PoS假设了一个部分同步网络，存在消息处理与传输的未知上界，该协议是Casper FFG和HLMD GHOST的结合，协议的基本单元是epoch，每个epoch根据物理时钟划分为多个slot。HLMD GHOST在每个epoch从收到的区块proposal中选择规范链，Casper用于计票。</p>
+<p>几乎所有PoS都作出了类似BFT的假设：</p>
+<ol>
+<li>所有诚实验证者总是在线</li>
+<li>系统不支持未知数量的验证者沉睡</li>
+</ol>
+<p>显然这两个假设有点离谱，一些研究关注沉睡共识，而以太坊设计了一些激励机制来鼓励验证者在线，由奖励和惩罚两部分组成。</p>
+]]></content>
+      <categories>
+        <category>论文</category>
+      </categories>
+      <tags>
+        <tag>blockchain</tag>
+        <tag>game-theory</tag>
+        <tag>PoS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning: a Multi-Leader Stackelberg Game Approach</title>
     <url>/blog/2024/06/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Incentive%20Mechanism%20for%20Multiple%20Requesters%20in%20Federated%20Learning%20a%20Multi-Leader%20Stackelberg%20Game%20Approach/</url>
     <content><![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>联邦学习是分布式学习技术，需要激励机制来使得用户愿意参与。现有激励机制普遍针对单个请求者（requester），个别研究会考虑多个请求者，但限制了worker同时训练多个模型的可能性。本文移除了这个约束，除了常规的workers之间以及workers与请求者之间的互动外，还关注了请求者之间的互动。建模为stackelberg博弈，推导+逆向归纳确定均衡。进行了一系列分析研究workers和请求者之间的均衡，结果说明了请求者的先发优势，揭示了请求者和工人之间互利的可能性。</p>
@@ -6574,11 +6786,11 @@ Rs_{V_i}^\omega=\frac{F_f\omega_{i-1}+B_\omega s_i}{(F_f\omega_{i-1}+B_\omega s_
 <p>所有数据是直接在<code>web.js</code>中写好的，并不是从其他文件读取，且文件开头的<code>var scatter_origin_data</code>其实可以删了。此外，这份文件中的个人和组织项目散点图我并不需要，因此也直接删了。</p>
 <p>接下来将<code>web.js</code>中的数据修改成前面统计好的数据，打开<code>web.html</code>就可以看到图表了。</p>
 <p>由于hexo博客也可以显示echarts，因此我就把图表放这里了。</p>
-<div id="echarts7817" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts4903" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7817'));
+        var myChart = echarts.init(document.getElementById('echarts4903'));
         // 指定图表的配置项和数据
         var option = {
 title: {
@@ -6634,11 +6846,11 @@ title: {
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts1334" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts9431" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts1334'));
+        var myChart = echarts.init(document.getElementById('echarts9431'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -6688,11 +6900,11 @@ title: {
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<div id="echarts6753" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts5132" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts6753'));
+        var myChart = echarts.init(document.getElementById('echarts5132'));
         // 指定图表的配置项和数据
         var option = {
         title : {
@@ -12368,11 +12580,11 @@ p_l(\mu_{high}^{post,str}|k_p^{anu}(\epsilon)P_{k^{high}}^{majority}+\mu_{low}^{
 </ol>
 <p>到此为止就可以了，新建一个markdown文件，把下列代码放进去就可以看到本页最下面的echarts示例了。（直接复制粘贴，<strong>不要</strong>放代码块里）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% echarts 400 &#39;85%&#39; %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: &quot;某站点用户访问来源&quot;,</span><br><span class="line">        subtext: &quot;ECharts示例&quot;,</span><br><span class="line">        x: &quot;center&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: &quot;item&quot;,</span><br><span class="line">        formatter: &quot;&#123;a&#125; &lt;br&#x2F;&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        orient: &quot;vertical&quot;,</span><br><span class="line">        x: &quot;left&quot;,</span><br><span class="line">        data: [&quot;直接访问&quot;, &quot;邮件营销&quot;, &quot;联盟广告&quot;, &quot;视频广告&quot;, &quot;搜索引擎&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        show: true,</span><br><span class="line">        feature: &#123;</span><br><span class="line">            mark: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            dataView: &#123;</span><br><span class="line">                show: true,</span><br><span class="line">                readOnly: true</span><br><span class="line">            &#125;,</span><br><span class="line">            restore: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;,</span><br><span class="line">            saveAsImage: &#123;</span><br><span class="line">                show: true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    calculable: true,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name: &quot;访问来源&quot;,</span><br><span class="line">            type: &quot;pie&quot;,</span><br><span class="line">            radius: &quot;55%&quot;,</span><br><span class="line">            center: [&quot;50%&quot;, &quot;60%&quot;],</span><br><span class="line">            data: [</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 335,</span><br><span class="line">                    name: &quot;直接访问&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 310,</span><br><span class="line">                    name: &quot;邮件营销&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 234,</span><br><span class="line">                    name: &quot;联盟广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 135,</span><br><span class="line">                    name: &quot;视频广告&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    value: 1548,</span><br><span class="line">                    name: &quot;搜索引擎&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
-<div id="echarts5475" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts1381" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts5475'));
+        var myChart = echarts.init(document.getElementById('echarts1381'));
         // 指定图表的配置项和数据
         var option = {
     title: {
