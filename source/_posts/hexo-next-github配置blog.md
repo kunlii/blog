@@ -922,12 +922,21 @@ index_generator:
 	url: https://kunlii.github.io/blog
 	root: /blog/
 	```
-4. 主题配置文件`_config.yml`中，“网站图标和侧边栏logo”和“封面配置”这两部分涉及的网站logo以及封面图的链接需要改成`/blog/images/ayer.png`以及`/blog/images/cover1.png`，这里很奇怪，其他图标等都不需要改，只有这俩图得改。
+4. 主题配置文件`_config.yml`中，“网站图标和侧边栏logo”和“封面配置”这两部分涉及的网站logo以及封面图的链接需要改成`/blog/images/ayer.png`以及`/blog/images/cover1.png`，这里很奇怪，其他图标等都不需要改，只有这俩图得改。补充一下，`favicon`也得改。
 5. 本地先分别`hexo d`以及`git push`，主要是前者，把我们的网页传到这个仓库中。
 6. 进入仓库的`settings`页面，在左侧边栏找到`Pages`，在右边修改`Build and deployment`部分：
 	1. `Source`中选择Deploy from a branch，这里如果选GitHub action，则可以搞在线编译部署，不过有点麻烦，以后再研究吧。
 	2. `Branch`选`master/root`，这里因为本地博客编译后的文件是传master分支的，如果传了别的分支则改成对应的分支。
 	3. `Custom domain`那里设置一下希望用的域名，比如`kunlii.github.io/blog/`，保存后，就可以用这个域名访问博客了。
+7. 经过很长时间的使用，我才忽然发现改了以后的博客没加载日历、标签云和雷达图等，检索和询问claude之后，意识到是js文件的引用路径出了问题，它没识别到根路径变了，于是加载js文件的路径就错了，漏掉了`/blog/`，claude给出了好几种解决方案，经过对比我发现还是直接一步到位指定路径比较靠谱，目前找到的主题文件夹中需要修改的如下：
+	1. `/layout/_partial/head.ejs`中确认以下这句是加了根路径的：`<link rel="stylesheet" type="text/css" href="/blog/css/matery.css">`；
+	2. `/layout/_widget/post-calendar.ejs`中确认以下这句是加了根路径的：`<script type="text/javascript" src="/blog/js/echarts.min.js"></script>`；
+	3.  `/layout/_widget/tag-cloud.ejs`中同样确认echarts.min.js，这个文件中如果没这句话就忽略这条；
+	4.  `/layout/_widget/category-radar.ejs`中同样确认echarts.min.js，这个文件中如果没这句话就忽略这条；
+	5. 注意，虽然category-radar、post-calendar和tag-cloud这三个文件在其他各页面也有相似的路径，但是改了echarts之后，不用管其他，日历、标签云和雷达图已经能正常显示了；
+	6.  `/layout/layout.ejs`中拉到最下面，修改与live2d相关的两个路径，修改后的内容：`<script src="/blog/dist/live2d_bundle.js"></script>`和`<script async type="module" src="/blog/js/waifu-tips.js"></script>`
+	7. `\source\js\waifu-tips.js`中的`const live2d_settings`里面，`'modelUrl'`改为`'/blog/model'`，`'tipsMessage'`改为`'/blog/js/waifu-tips.json'
+	8. `\source\model\gongzi\gongzi.model3.json`
 
 ## 参考链接：
 
