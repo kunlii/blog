@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "5db9d97fbebe46b8",
+        "id": "9a16eacaf0d4ab17",
         "type": "tabs",
         "children": [
           {
-            "id": "34a98ba14940fe6a",
+            "id": "9596636bc7e22e44",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,9 +130,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -158,10 +150,13 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "34a98ba14940fe6a",
+  "active": "9596636bc7e22e44",
   "lastOpenFiles": [
-    "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
+    "科研入门指引.md",
+    "vscode的一系列配置.md",
+    "hexo-next-github配置blog.md",
     "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
+    "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
     "论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning.md",
     "论文记录-Dynamic-Task-Pricing-in-Multi-Requester-Mobile-Crowd-Sensing-with-Markov-Correlated-Equilibrium.md",
     "论文记录-Evolution of cooperation in stochastic games.md",
