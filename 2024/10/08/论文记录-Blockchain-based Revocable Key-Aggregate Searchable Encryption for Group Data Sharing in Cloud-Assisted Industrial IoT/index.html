@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="TII的审稿" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    论文记录-Blockchain-based Revocable Key-Aggregate SearchableEncryption for Group Data Sharing in Cloud-AssistedIndustrial IoT |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  论文记录-Blockchain-based Revocable Key-Aggregate SearchableEncryption for Group Data Sharing in Cloud-AssistedIndustrial IoT
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2024/10/08/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Blockchain-based%20Revocable%20Key-Aggregate%20Searchable%20Encryption%20for%20Group%20Data%20Sharing%20in%20Cloud-Assisted%20Industrial%20IoT/" class="article-date">
+  <time datetime="2024-10-08T08:59:36.000Z" itemprop="datePublished">2024-10-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>数据安全共享在工业物联网领域内很重要，为了实现选择性的数据共享，大部分人采用密钥聚合可搜索加密（KASE），但现有方案很少考虑用户撤销的问题，面临：数据所有者要和云交互、未被撤销的用户可能意外撤销 这两个问题。本文提出基于区块链的可撤销KASE系统（BC-RKASE），实现了非交互撤销和可信撤销用户管理。实验表明方法的有效性和先进性。</p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>这一章的内容基本上是摘要的扩写，没什么新的信息。但是提出了一个新的现有方法存在的问题：被撤销的用户可能和云共谋来恢复权限。这部分的概括与摘要中的描述是不一致的，倒是不冲突，但还是建议统一。</p>
+<p>本文核心贡献是两个：</p>
+<ol>
+<li>非交互的密钥撤销</li>
+<li>可信的用户管理</li>
+</ol>
+<h2 id="问题形式化"><a href="#问题形式化" class="headerlink" title="问题形式化"></a>问题形式化</h2><h3 id="系统模型"><a href="#系统模型" class="headerlink" title="系统模型"></a>系统模型</h3><p>系统由四个实体组成：</p>
+<ol>
+<li>数据所有者DO</li>
+<li>数据用户DU</li>
+<li>云服务CS</li>
+<li>区块链BC</li>
+</ol>
+<p>系统的工作流程：</p>
+<ol>
+<li>系统初始化阶段：DO和DU生成初始化参数以及各自的公钥与私钥，然后DO分发聚合密钥给授权用户，让他们可以访问需要的数据类。</li>
+<li>数据外包阶段：DO加密传感器收集上来的数据，并外包给CS。</li>
+<li>数据共享阶段：DO为每个未被撤销的用户生成密钥更新，这些用户的身份在当前时间间隔内未被包括在撤销列表中，还生成一个防止篡改的证据。这些密钥更新被存储在CS上以释放用户的移动的设备上的成本。</li>
+<li>数据检索阶段：当用户需要检索加密数据时，他们使用聚合密钥生成一个陷门并将其提交给BC，BC记录搜索信息并创建一个调整后的陷门。然后，CS使用该调整后的陷门和对应于用户的密钥更新来检索和部分解密数据，从而进一步减少用户的移动的设备上的负担。将部分解密的结果返回给用户以获得原始数据。</li>
+<li>用户撤销阶段：DO将包含被撤销用户的标识的间隔撤销列表上传到BC。最后，CS根据该列表删除所有先前的密钥更新。</li>
+</ol>
+<h3 id="威胁模型"><a href="#威胁模型" class="headerlink" title="威胁模型"></a>威胁模型</h3><ol>
+<li>CS半可信：遵循协议，但会尝试破解加密的工业数据</li>
+<li>DO完全可信</li>
+<li>未授权的DU可能伪造成未撤销的DU</li>
+</ol>
+<p>考虑：</p>
+<ol>
+<li>选择明文攻击下的不可否认性（IND-CPA）安全性：被信任的云服务器和未授权的用户不能区分两个挑战明文的密文</li>
+<li>关键字对自适应选择关键字攻击的不可否认性（IND-CKA）安全性：半信任的云服务器和未授权的用户不能区分两个挑战关键字的密文</li>
+</ol>
+<p>我的问题：<br>不太理解这里CS是干啥的，都区块链了为啥还要把数据存CS，直接形成分布式group就可以吧</p>
+<h2 id="系统说明"><a href="#系统说明" class="headerlink" title="系统说明"></a>系统说明</h2><h3 id="系统初始化"><a href="#系统初始化" class="headerlink" title="系统初始化"></a>系统初始化</h3><ol>
+<li>DO和DU生成初始参数：DO生成双线性对$BG=(G,G_T,p,e:G\times G\rightarrow G_T)$，其中$p$是$G,G_T$的阶，从$G$随机选出$g$，从$Z_p^\ast$随机选$\alpha$，计算$g_i=g^{\alpha^i}$，其中$i\in\{1,2n\}(i\neq n+1)$。选两个哈希函数$H:\{0,1\}^\ast\rightarrow G, H_1:G\times G\rightarrow G$，然后设置系统参数$pp=\{BG,(g,g_i),H,H_1\}(i\in\{1,2n\}, i\neq n+1)$。然后随机选择$v,y\in Z_p$并设置$mpk=(V,Y)=(g^v,g^y),msk=(v,y)$，选择随机值$t_0\in Z_p$来初始时间间隔$T_0$，其中$pk_{own,0}=g^{t_0}, sk_{own,0}=t_0$。最后初始化撤销列表$RL_0=\emptyset$。</li>
+<li>DO和DU生成公私钥：每个$DU_i$随机选择$\gamma \in Z_p$，计算公私钥$(pk_i,sk_i)=(g^\gamma,\gamma)$。</li>
+<li>DU将身份发给DO，DO生成聚合密钥发回去：DO收到身份标识$UID_i$和需要的分类集$S_i$，随机选择满足$q_i(0)=v$的多项式$q_i$，计算聚合密钥$K_{S_i}=\prod_{k\in S_i}(g_{n+1-k})^{q_i(1)/y}$。</li>
+</ol>
+<p>这部分是可搜索加密的基础操作，没什么新东西。</p>
+<h3 id="数据外包"><a href="#数据外包" class="headerlink" title="数据外包"></a>数据外包</h3><p>为了安全共享数据，DO把加密的工业数据外包给CS存储：</p>
+<ol>
+<li>DO随机选择$t_j\in Z_p$并更新$(pk_{own,j},sk_{own,j})=(g^{t_j},t_j)$</li>
+<li>针对输入的数据$M,(mpk, msk, pk_{own,j})$,以及时间间隔$T_j$对应的分类$l$的关键字集合KW，DO随机选择$z\in Z_p$并输出$CT_{l,j}=\{C_{l,0}, C_{l,1}, C_{l,2}, C_{l,3},CM_l, CW_l\}$，其中，$C_{l,0}=g^z,C_{l,1}=(V\cdot g_l^y)^z,C_{l,2}=Y^z,C_{l,3}=(pk_{own,j})^z,CM_l=M\cdot e(g_1,g_n)^{yz},CW_l =e(\prod_{w\in KW}H(w),Y)^z/e(g_1,g_n)^{yz}$</li>
+</ol>
+<h3 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h3><p>为了确保安全，DO要每隔一段时间更新一次聚合密钥，然后发给CS。具体来说，DO收到UID后，重新调用多项式$q_i$和新的随机数，计算新的密钥和相应的证明。然后把UID、密钥和证明一起发给CS。CS收到之后，校验密钥和证明以及UID是否属于未撤销用户。</p>
+<p>这里的问题是，我知道RL_j表示撤销列表，但IRL_j是什么呢？没看到解释，感觉是相似的东西。看到后面知道了，是当前时间段的撤销列表。</p>
+<h3 id="数据检索"><a href="#数据检索" class="headerlink" title="数据检索"></a>数据检索</h3><ol>
+<li>DU首先用聚合密钥生成陷门发给BC。</li>
+<li>BC记录检索请求并调用调整算法来调整陷门以访问各类数据。</li>
+<li>CS接收到调整后的陷门，运行Test算法检索数据。</li>
+<li>CS执行Transform算法把解密后的数据传给DU。</li>
+</ol>
+<h3 id="用户撤销"><a href="#用户撤销" class="headerlink" title="用户撤销"></a>用户撤销</h3><p>每个时间段输入上一时间段的撤销列表、当前时间段、当前时间段要撤销的列表，DO把当前撤销列表和上一时间段撤销列表合并起来，得到新的时间段撤销列表，发给BC，BC存起来，CS删去更新的密钥。</p>
+<h2 id="安全证明"><a href="#安全证明" class="headerlink" title="安全证明"></a>安全证明</h2><p>常规的证明</p>
+<h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><p>实验是用以太坊和华为服务器做的，分析了加密解密的时间开销、以太坊的gas消耗等。</p>
+<h2 id="总体意见"><a href="#总体意见" class="headerlink" title="总体意见"></a>总体意见</h2><p>看下来最主要的感受就是不知道这里区块链是用来干啥的，以及区块链系统本身要怎么维持下去。</p>
+<p>先说区块链的作用，看起来是用来存撤销用户列表的，但是用户管理问题是由中心CS的不可靠引起的，现在都区块链了，为啥不直接分布式服务器自动校验密钥来传数据呢？</p>
+<p>从实验部分看，论文用的是以太坊这样的区块链平台，运行智能合约所需要消耗的gas等要用户出吗？和其他方法相比，这需要用户支付更多的费用，用户愿意吗？以及如何确保信息及时上链。</p>
+<p>总体来说创新性不强，感觉就是可搜索加密结合了一下区块链，而在如何结合区块链这方面也没重点讲。</p>
+<h3 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h3><p>This article presents a blockchain-based revocable key-aggregate searchable encryption (BC-RKASE) system for group data sharing in cloud-assisted industrial IoT environments. The system allows for secure and efficient data sharing among groups while enabling the revocation of access rights for users who leave the group. It employs a searchable encryption scheme that supports aggregate keys for efficient data retrieval and a blockchain to manage user revocation. The paper details the system’s design, including user registration, data outsourcing, data sharing, data retrieval, and user revocation phases. It also provides a correctness analysis and security proof based on the Decisional Bilinear Diffie-Hellman (DBDH) assumption. The system’s performance is evaluated through experiments using a cloud server and IoT devices, demonstrating its practicality and efficiency for real-world applications.</p>
+<h3 id="strength："><a href="#strength：" class="headerlink" title="strength："></a>strength：</h3><ol>
+<li>The paper integrates blockchain technology with searchable encryption to enable secure and efficient data sharing in industrial IoT environments. It  proposes a system that achieves IND-CPA and IND-CKA security, which are strong security guarantees for encrypted data storage and retrieval.</li>
+<li>The paper addresses the challenge of user revocation, ensuring that once a user leaves a group, their access to the data is immediately revoked, which is crucial for maintaining data integrity and security.</li>
+<li>The paper considers the constraints of IoT devices and aims to minimize the computational and communication overhead, making the solution suitable for resource-constrained environments. The use of a real-world dataset for performance evaluation adds to the paper’s strength by demonstrating the system’s applicability to real-world scenarios.</li>
+</ol>
+<h3 id="weakness："><a href="#weakness：" class="headerlink" title="weakness："></a>weakness：</h3><ol>
+<li>The paper may not thoroughly address how the proposed system scales with an increasing number of users or data volume. As the user base grows, the complexity of managing keys and revocation lists could become significant.</li>
+<li>The system’s reliance on blockchain for storing revocation lists and other metadata means it is subject to the throughput and latency of the blockchain network, which might not be optimal for real-time industrial applications.</li>
+<li>The manuscript identifies user management issues stemming from the inherent unreliability of the centralized CS. Given that the authors propose integrating a blockchain system, it would be logical to explore the complete removal of the CS and instead utilize a fully decentralized blockchain-based infrastructure for both managing and transmitting data. This approach could potentially offer a more robust solution to the identified problems. The authors should justify their design choice if they opt not to follow this route.</li>
+<li>The implementation of blockchain technology introduces new operational costs, such as gas fees. The paper does not clarify whether these costs should be absorbed by DUs, CS, or DO. A clear economic model is needed to address how these entities can be incentivized to participate in the system despite the added financial burden. The authors need to elaborate on this aspect to ensure practical feasibility.</li>
+<li>The paper employs a significant number of symbolic representations, which can be challenging for readers to follow. To enhance readability and comprehension, it would be beneficial for the authors to compile a comprehensive table summarizing all the symbols used in the manuscript, along with their meanings and contexts.</li>
+<li>The language used throughout the paper could be improved to enhance clarity and professionalism. The authors are encouraged to revise the text to ensure it is precise, concise, and free of any ambiguities that might detract from the quality of the work.</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2024/10/08/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Blockchain-based%20Revocable%20Key-Aggregate%20Searchable%20Encryption%20for%20Group%20Data%20Sharing%20in%20Cloud-Assisted%20Industrial%20IoT/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/blog/2024/09/30/%E7%A7%91%E7%A0%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%BC%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">科研入门指引</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2024
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="MSN2024的6篇审稿" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    论文记录-MSN2024审稿 |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-论文记录-MSN2024审稿"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  论文记录-MSN2024审稿
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2024/08/17/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-MSN2024%E5%AE%A1%E7%A8%BF/" class="article-date">
+  <time datetime="2024-08-17T03:09:00.000Z" itemprop="datePublished">2024-08-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">20 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="2570-4"><a href="#2570-4" class="headerlink" title="2570-4"></a>2570-4</h2><p>Research on the Application Algorithm of Dynamic Item Representation in E-Commerce Recommendation System（电商推荐系统中动态商品表示应用算法的研究）</p>
+<p>标题里的这个“动态商品表示”不太理解，也没搜到这方面的内容，可能是作者自己提的吧，先继续看看。</p>
+<p>摘要说了三个技术：缩放点积注意力技术、多头注意力机制、隐藏层维度扩展，但它们可以合起来看作是用transformer来做推荐系统。</p>
+<p>大致背景是电商推荐中，商品往往的动态的、随时间变化的，这不利于推荐系统抓取，所以本文搞了动态商品表示。</p>
+<p>概括下来就是两层神经网络加了attention机制</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>This paper introduces the ProxyCrossAttn model, a novel approach to improving item representation in e-commerce recommendation systems. The authors address the limitations of traditional static item representation methods by integrating a dynamic representation framework that leverages scaled dot-product attention and multi-head attention mechanisms. The paper presents the theoretical foundation of the model, details its implementation, and provides experimental results that demonstrate the model’s effectiveness in enhancing recommendation accuracy and efficiency.</p>
+<h3 id="Strength"><a href="#Strength" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The ProxyCrossAttn model is a significant contribution to the field of recommendation systems, offering a dynamic and flexible item representation method that surpasses traditional static approaches. The integration of attention mechanisms is well-justified and clearly articulated.</li>
+<li>The authors provide thorough experimental results that compare the ProxyCrossAttn model against several advanced models. The metrics used, such as Recall@10 and NDCG@10, are appropriate for evaluating the performance of recommendation systems, and the model’s superior performance is convincingly demonstrated.</li>
+<li>The paper is well-organized, with a clear flow from the introduction of the problem to the proposed solution and the experimental validation. The explanations of the attention mechanisms and the model’s architecture are detailed and easy to follow.</li>
+</ol>
+<h3 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>有大量长段落，建议适当分段，精炼语言</li>
+<li>已经有很多LLM电商推荐系统，应该在related work中介绍并对比</li>
+<li>一些符号表示缺少必要的解释</li>
+<li>图1太小，建议图中的字放大点</li>
+<li><p>实验部分给了召回率，但没对比准确率的数据</p>
+</li>
+<li><p>Some sections of the paper contain long paragraphs and dense language, making it harder for readers to follow the flow of ideas. Introducing more paragraph breaks and simplifying the language would improve clarity and make the paper more engaging.</p>
+</li>
+<li>Although the paper covers existing approaches in recommendation systems, it overlooks recent advancements in large language models (LLMs) applied to e-commerce recommendations. Adding a comparative analysis of these LLM-based systems would position the ProxyCrossAttn model more effectively within the current state of the art.</li>
+<li>Some of the symbols and mathematical notations introduced in the model are not clearly defined or explained. Providing more context and detailed explanations for these symbols would enhance the paper’s accessibility, especially for readers less familiar with the notation.</li>
+<li>Figure 1 is too small, with text that is difficult to read. Enlarging the figure and increasing the font size would improve readability and comprehension, particularly for those reading the paper on smaller screens.</li>
+<li>While the paper reports recall metrics, it does not provide accuracy data, which is a key measure of recommendation system performance. Including accuracy comparisons would give a more complete picture of the model’s strengths and limitations.</li>
+</ol>
+<h2 id="6214-3"><a href="#6214-3" class="headerlink" title="6214 - 3"></a>6214 - 3</h2><p>Tensor Light Graph Convolutional Network for Dynamic Graph Representation Learning（用于动态图表示学习的张量光图卷积网络）</p>
+<p>这篇乍一看还行</p>
+<h3 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h3><p>The paper titled proposes a novel approach to dynamic graph convolutional networks (DGCNs) through the introduction of the Tensor Light Graph Convolutional Network (TLGCN). The primary aim is to address the decoupling issues found in traditional DGCNs, which often disrupt spatio-temporal dependencies. By leveraging the tensor M-product framework, the authors aim to model spatial and temporal information propagation jointly. The paper demonstrates the effectiveness of TLGCN through experiments on four real-world datasets, showing superior performance in weight estimation tasks compared to state-of-the-art models.</p>
+<h3 id="Strength-1"><a href="#Strength-1" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper introduces a new framework for dynamic graph learning using the tensor M-product, which is a novel and valuable contribution to the field.</li>
+<li>The authors validate their proposed model through experiments on multiple real-world datasets, ensuring that the results are both robust and broadly applicable.</li>
+<li>The design of the Tensor Light Graph Convolution by omitting feature transformation and nonlinear activation simplifies the implementation while improving performance, which is both practical and effective.</li>
+<li>The paper clearly articulates the problem with traditional DGCNs and offers a well-justified solution in the form of the TLGCN framework.<h3 id="Weakness-1"><a href="#Weakness-1" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>Although the paper compares TLGCN with other models, the discussion could benefit from a more detailed analysis of why TLGCN outperforms each baseline and what specific advantages it offers over them.</li>
+<li>The hyperparameter choices, such as the number of layers (L) and feature dimensions (f), are briefly discussed but lack sufficient justification for why specific values were chosen or how they impact the overall performance.</li>
+<li>Although the paper mentions the efficiency of the model, there is no detailed analysis of the computational efficiency and resource consumption across different data scales. This could help readers better understand the trade-offs between accuracy and performance, especially for larger datasets.</li>
+<li>The paper does not discuss the scalability or flexibility of the model when applied to larger or more complex dynamic graphs. A more comprehensive analysis of how the model performs with increasing graph sizes or more complex temporal dynamics would be valuable for assessing its practical utility in real-world applications.</li>
+</ol>
+<h2 id="6518-6"><a href="#6518-6" class="headerlink" title="6518 - 6"></a>6518 - 6</h2><p>A method for detecting key points of students’ posture in a smart math room based on improved YOLOv8-Pose（学生姿态检测）</p>
+<p>这篇不行，问题太多</p>
+<h3 id="Summary-2"><a href="#Summary-2" class="headerlink" title="Summary"></a>Summary</h3><p>This paper presents a novel method named YOLOv8-PoseRoom for detecting key points in students’ posture within smart classrooms. The authors aim to improve the accuracy of motion keypoint detection, especially for small objects and complex scenes, by integrating several enhancements, including the Channel Attention Module (CBAM) and a modified loss function (SIoU). The approach demonstrates better performance on COCO and MPII datasets compared to baseline models. Experimental results show improved detection accuracy and a reduction in missed small targets, making the model highly suitable for smart classroom applications.</p>
+<h3 id="Strength-2"><a href="#Strength-2" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The integration of the CBAM and the SIoU loss function enhances detection accuracy, particularly for small targets and complex scenes, as demonstrated in the experiments.</li>
+<li>The use of multiple scale detection heads and cross-level cascade fusion improves the detection of individuals of varying sizes and reduces missed detections.</li>
+<li>Despite its improved performance, the model maintains relatively low computational requirements, making it applicable in resource-constrained environments.</li>
+<li>The method is rigorously validated using well-established datasets (COCO and MPII), and the results are clearly presented with comparative performance metrics.<h3 id="Weakness-2"><a href="#Weakness-2" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>用给定的模板</li>
+<li>单词换行要加换行符</li>
+<li>CBAM是Channel Attention Module的一种，但这样直接放括号里容易引起误会，建议使用原本的完整名称</li>
+<li>一些用词不统一，例如SIOU和SIoU</li>
+<li>图都太小了，非常影响阅读</li>
+<li>除了把已有的方法结合起来，有什么创新吗？</li>
+<li>表格建议直接用表格，别用图，或者放大一些，真的看不清</li>
+<li><p>参考文献太少，与已有研究对比的创新点不明确</p>
+</li>
+<li><p>The paper does not fully adhere to the required conference template. It is crucial to ensure that the formatting matches the provided guidelines, particularly in terms of section structure, font size, and spacing.</p>
+</li>
+<li>In the paper, some words are broken across lines without proper hyphenation or line breaks. This can hinder readability and should be addressed.</li>
+<li>There are inconsistencies in the use of terms such as “SIOU” and “SIoU.” Consistency in capitalization and terminology is important for clarity and professionalism.</li>
+<li>The figures in the paper are too small, which makes them difficult to read. It would be beneficial to increase their size for better clarity and understanding.</li>
+<li>While the method combines several existing techniques, it is not entirely clear what specific innovations are introduced beyond the integration of these existing methods. A more explicit explanation of the novel contributions would strengthen the paper.</li>
+<li>Several comparisons are presented in the form of small graphs, which are difficult to interpret. It is recommended to use tables instead for clearer data representation or to enlarge the graphs significantly.</li>
+<li>The paper includes relatively few references. A broader discussion of related work and how the proposed method advances the field is necessary. This could include more comparisons with recent studies to better position the contribution of the work.<h2 id="7093-2"><a href="#7093-2" class="headerlink" title="7093 - 2"></a>7093 - 2</h2>Spatio-Temporal Graph Convolutional Networks for Traffic Prediction Considering Multiple Spatio-Temporal Information（考虑多时空信息的时空图卷积网络交通预测）</li>
+</ol>
+<p>这篇看图挺好，要看看方法细节上有没有什么新意</p>
+<p>从摘要和intro概括来看是时间+空间信息的CNN来预测交通流量，时间维度上用了多头注意力，空间维度上融合图卷积</p>
+<h3 id="Summary-3"><a href="#Summary-3" class="headerlink" title="Summary"></a>Summary</h3><p>The paper titled presents a novel framework designed to address the challenges of complex spatio-temporal dependencies in traffic data. The key contribution is the introduction of a multi-scale local multi-head self-attention module for handling temporal dependencies and a fusion graph convolution module for addressing multiple spatial dependencies in traffic networks. The authors propose a solution to overcome the limitations of existing traffic prediction models, which either fail to consider multi-scale characteristics of time series or ignore the diverse spatial relationships in road networks. The model’s performance is validated on two real-world datasets, demonstrating state-of-the-art accuracy in traffic flow predictions compared to existing baseline models.</p>
+<h3 id="Strength-3"><a href="#Strength-3" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper proposes a novel architecture, STGCN-MI, which significantly improves on previous traffic prediction models by integrating both multi-scale temporal information and multiple spatial dependencies. The introduction of the multi-scale local multi-head self-attention mechanism is particularly innovative, as it allows for a better representation of time series across different scales.</li>
+<li>The methodology is detailed, with clear explanations of each component of the proposed model, including the multi-scale attention mechanism, fusion graph convolution, and the transform layer. The integration of multiple spatial relationships (neighborhood graph, pattern similarity graph, and trend similarity graph) is a notable strength, providing a more accurate depiction of real-world traffic networks.</li>
+<li>The model is evaluated rigorously on two large datasets (PEMS-BAY and METR-LA), and the results show that the proposed method outperforms multiple baseline models. The inclusion of multiple evaluation metrics (MAE, RMSE, MAPE) adds robustness to the experimental results, reinforcing the paper’s claims of superior performance.</li>
+<li>The paper is well-structured and easy to follow. Complex technical concepts are explained clearly, and the figures and tables (e.g., performance comparisons) effectively support the narrative.<h3 id="Weakness-3"><a href="#Weakness-3" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li>The multi-scale attention mechanism and the fusion graph convolution modules add significant complexity to the model.   While this complexity yields performance gains, it might raise concerns regarding the model’s scalability, especially in terms of training and deployment on larger datasets or in real-time environments.   A brief discussion on computational overhead or model efficiency (e.g., memory usage, inference time) would address these concerns.</li>
+<li>The paper discusses the model’s effectiveness in traffic prediction, but it would be valuable to include a discussion on how the model could be applied in real-world Intelligent Transportation Systems (ITS) or other spatio-temporal prediction tasks. Providing practical use cases, challenges in deployment, or insights into how the model could enhance decision-making in smart cities would enhance the impact of the research.</li>
+<li>While the paper is mostly clear and well-structured, there are occasional grammar and phrasing issues that could benefit from further refinement. </li>
+</ol>
+<h2 id="8516-5"><a href="#8516-5" class="headerlink" title="8516 - 5"></a>8516 - 5</h2><p>A “Drilling” Evaluation Method for Data Value Security（数据价值安全评估）</p>
+<p>说实话标题和摘要都没看明白它要做什么，不太行</p>
+<p>大致背景是说，数据泄露了一部分，但有可能可以从中推测出整体数据的分布等信息，这导致没法判断泄露数据到底有多少价值。同时在流数据的场景下，评估价值也面临各种问题。</p>
+<p>流数据采样方法：无偏采样，可能无法正确反映数据分布；有偏采样，选择与整体数据更相似的那些数据，同时一些特例也要保留。</p>
+<h3 id="Summary-4"><a href="#Summary-4" class="headerlink" title="Summary"></a>Summary</h3><p>The paper proposes a novel framework for evaluating the value security of large-scale streaming data through a “drilling” sampling approach. The method aims to address the challenge of assessing the risk associated with data leakage by analyzing the statistical characteristics of sampled data in comparison to the overall dataset. The paper presents a data security level evaluation application based on the proposed framework, and experimental results demonstrate the method’s effectiveness compared to existing techniques, such as the SWIFT method.</p>
+<h3 id="Strength-4"><a href="#Strength-4" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper introduces a creative “drilling” sampling method inspired by mineral exploration, which effectively captures the statistical characteristics of large-scale streaming data. This novel approach is well thought out and addresses a significant challenge in the field of data security evaluation.</li>
+<li>The development of a data security level evaluation application showcases the practical relevance of the proposed method. This application has the potential to assist organizations in assessing the security risks associated with streaming data, particularly in scenarios involving data leakage.</li>
+<li>The authors provide a comprehensive experimental comparison between the proposed method and the SWIFT method. The results, which indicate a near 90% accuracy in value evaluation at a lower streaming data access rate, are impressive and underscore the method’s effectiveness.</li>
+<li>The paper is well-organized, with a logical flow from the introduction of the problem to the presentation of the proposed solution, related work, and experimental results. The use of figures and tables enhances the clarity of the paper.</li>
+</ol>
+<h3 id="Weakness-4"><a href="#Weakness-4" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>intro说缺少基于统计特征的数据价值评估，但这不太可能吧，应该有不少做这个的</li>
+<li>图太小看不清</li>
+<li>和“A Dynamic Drilling Sampling Method and Evaluation Model for Large-Scale Streaming Data”有什么区别吗？</li>
+<li>The paper does not provide a detailed analysis of the scalability of the proposed “drilling” method when applied to extremely large datasets or in real-time environments with high data velocity. A discussion on how the method scales with increasing data volumes and the computational resources required would strengthen the paper.</li>
+<li><p>本文的方法看上去更像是通过评估采样数据来评估一份大数据的价值，这和前面摘要与intro提到的数据泄露以及数据安全也没啥关系吧</p>
+</li>
+<li><p>In the introduction, the paper claims that there is limited research on evaluating data value based on statistical features. However, there are significant prior works in this area, particularly in data mining, statistics, and machine learning fields. The authors should conduct a more thorough review of existing literature and methodologies that also focus on evaluating data value using statistical characteristics.</p>
+</li>
+<li>The figures included in the paper (e.g., diagrams showing the sampling framework and experimental results) are too small, making it difficult to interpret the details. Enlarging these figures and ensuring that all textual elements are readable would significantly improve clarity.</li>
+<li>The paper should provide more detailed comparisons with other existing techniques, particularly the “Dynamic Drilling Sampling Method and Evaluation Model for Large-Scale Streaming Data.” It is not entirely clear how the proposed method differs technically or if it improves upon this existing method. Addressing this will clarify the novelty and contribution of the work.</li>
+<li>The paper lacks a thorough discussion about the scalability of the proposed method in extreme data environments. For example, while the method is designed for large-scale streaming data, there is no detailed analysis of its performance when dealing with extremely large datasets or real-time data with high velocity. Including a discussion on computational resource requirements and how the method scales with increasing data volumes would strengthen the paper.</li>
+<li>The method presented in the paper seems more focused on evaluating the value of sampled data in relation to the overall dataset, rather than directly addressing issues of data leakage and security. The abstract and introduction suggest that the method will focus on data breaches and security, but the actual method appears to be more about sampling efficiency and value assessment. The authors should clarify this discrepancy and better tie the proposed method to data security, as it currently reads more like a data value evaluation method rather than a security assessment tool.</li>
+</ol>
+<h2 id="9933-1"><a href="#9933-1" class="headerlink" title="9933 - 1"></a>9933 - 1</h2><p>Federated Hypothesis Transfer for Decentralized Multi-Source Domain Adaptation（分散多源域适应的联邦假设转移）</p>
+<p>多源数据涉及隐私问题，不能直接拿来训练自适应模型，所以用联邦学习来解决这个问题，本文主要关注如何避免自适应时的负迁移。方法上应该创新一般，本地模型按照目标优化，然后各给权重，全局聚合一下，但在这几篇里不错了，实验数据很丰富。</p>
+<h3 id="Summary-5"><a href="#Summary-5" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents a novel approach named Federated Hypothesis Transfer (FedHT) for decentralized multi-source domain adaptation (MUDA). This work addresses the challenge of transferring knowledge from multiple source domains to a target domain in decentralized settings, where data privacy concerns prevent the direct sharing of data. FedHT combines hypothesis transfer learning and federated learning, leveraging local models trained on source domains and aggregating them to construct a generalized global model. A dynamic weighting strategy is proposed to avoid negative transfer, which assigns weights to each source domain during model aggregation. The model is fine-tuned without accessing source data using information maximization and self-supervised learning techniques. The approach is evaluated on four benchmarks, showing significant improvements over baseline methods.</p>
+<h3 id="Strength-5"><a href="#Strength-5" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper introduces a new decentralized MUDA framework that merges the benefits of hypothesis transfer and federated learning, which is an innovative combination. This framework addresses a practical problem by handling decentralized data without violating privacy constraints, making it applicable to real-world scenarios like healthcare or finance, where data sharing is limited.</li>
+<li>The dynamic weighting strategy to alleviate negative transfer is a strong contribution. By adjusting the importance of different source domains based on their relevance to the target task, the approach enhances the model’s generalization ability without degrading performance due to domain discrepancies.</li>
+<li>The paper provides thorough experimental validation on four well-known datasets. FedHT significantly outperforms both centralized and decentralized methods, demonstrating its effectiveness in handling domain shifts and reducing negative transfer.</li>
+<li>The detailed explanation of the FedHT process—from local model optimization to global model aggregation and fine-tuning—shows a well-thought-out design that maximizes the use of both source and target domain knowledge. The use of clustering and information maximization techniques is well-supported by prior research.</li>
+<li>The methodology aligns well with growing concerns about data privacy and regulatory constraints such as GDPR. The federated learning approach makes this method highly relevant for industries dealing with sensitive data.<h3 id="Weakness-5"><a href="#Weakness-5" class="headerlink" title="Weakness"></a>Weakness</h3></li>
+<li><p>缺少对全局聚合过程中安全性的简单讨论，建议至少在future work中提一句</p>
+</li>
+<li><p>The paper does not address the security concerns related to the global model aggregation process, which is crucial in federated learning scenarios. Given that multiple local models are aggregated, potential risks such as data leakage, model inversion, or adversarial attacks could arise. It would be beneficial to include a brief discussion on security measures, or at least acknowledge these concerns in the “Future Work” section, proposing potential strategies to enhance security in future implementations.</p>
+</li>
+<li>The paper’s language could benefit from further refinement to improve clarity and conciseness. In several sections, sentences are lengthy or redundant, which may affect readability and the impact of key ideas. Simplifying complex sentences and avoiding repetitive phrases would enhance the overall presentation and make the paper more accessible to a wider audience. It is recommended to revise and polish the language to ensure the concepts are conveyed in a clear and straightforward manner.</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2024/08/17/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-MSN2024%E5%AE%A1%E7%A8%BF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/blog/2024/09/06/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Libra%20An%20Efficient%20Mechanism%20for%20Merging%20Cross-chain%20Transactions%20Verification/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            论文记录-Libra: An Efficient Mechanism for Merging Cross-chain Transactions Verification
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2024/08/15/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95-20240815/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">生活记录-20240815</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2024
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>

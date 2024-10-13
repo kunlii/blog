@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="WASA2024的10篇审稿" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    论文记录-WASA2024审稿 |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-论文记录-WASA2024审稿"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  论文记录-WASA2024审稿
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-WASA2024%E5%AE%A1%E7%A8%BF/" class="article-date">
+  <time datetime="2024-04-25T01:23:00.000Z" itemprop="datePublished">2024-04-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">6.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">37 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Submission-73-Byzantine-Robust-Federated-Learning-Based-on-Blockchain"><a href="#Submission-73-Byzantine-Robust-Federated-Learning-Based-on-Blockchain" class="headerlink" title="Submission 73 Byzantine-Robust Federated Learning Based on Blockchain"></a>Submission 73 Byzantine-Robust Federated Learning Based on Blockchain</h2><p>这篇是基于区块链的联邦学习，整体流程如下：</p>
+<ol>
+<li>创建初始全局模型，选一些客户端来训练，另一些来验证，剩下的作为空闲者，验证比训练的少；</li>
+<li>训练客户端各自进行本地训练，并把更新上传到区块链服务器；</li>
+<li>服务器计算每个客户端的更新与其他所有更新的距离，距离最大的k个被认为是恶意的，服务器去掉这些，并用剩下的更新来计算新的全局模型；</li>
+<li>验证者们各自计算新的全局模型的性能，如果觉得不好，就会投票反对，如果多数验证者都反对，服务器就重新算一个全局模型，直到多数验证者都支持；</li>
+<li>全局模型被接受后，就上链，参与了这个模型聚合的客户端们收到奖励，而被认为是恶意的k个客户端则受到惩罚；</li>
+<li>继续重复2-5，持续训练直到全局模型收敛或达到预设轮数。<br>总的来说关键点在于：</li>
+<li>从所有更新中剔除k个恶意，并聚合剩下的。这部分涉及两个问题：<ol>
+<li>怎么计算更新之间的距离——参数之间的欧氏距离</li>
+<li>这种末位淘汰的机制，会导致无论如何总有客户端受到惩罚，而算力差距导致一些性能差的客户端会频繁受罚，最终没有动机参与系统，进而退出训练，于是剩下的客户端又要再挑新的淘汰，最终导致所有客户端都不参加了</li>
+</ol>
+</li>
+<li>奖惩机制：实际上本文的训练者和验证者都有奖惩问题，与多数不同的那些会受到惩罚，同上，会面临没人愿意干的情况。</li>
+</ol>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents a novel federated learning framework named BRFL (Byzantine-Robust Federated Learning Based on Blockchain) that aims to enhance the robustness of federated learning systems against Byzantine attacks, particularly in the presence of unreliable or adversarial clients. The authors propose integrating blockchain technology into the federated learning process to record and validate model updates, which addresses the issue of trust and data integrity. The framework includes a unique aggregation rule that eliminates updates from clients whose updates deviate significantly from the norm, a reward and punishment mechanism to encourage honest participation, and a verification process to ensure the accuracy and reliability of the aggregated model. The experiments are conducted using standard datasets like MNIST and Fashion-MNIST, providing a thorough validation of the model’s resilience and efficiency. Experimental results demonstrate the effectiveness of the BRFL framework, showing superior performance over traditional methods such as FedAvg, Trimmed-mean, and FLTrust, particularly under adversarial scenarios involving a high proportion of malicious clients. </p>
+<h3 id="Strength"><a href="#Strength" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>Innovative Integration of Blockchain: The use of blockchain to enhance the security and trustworthiness of federated learning systems is innovative and timely. The decentralized nature of blockchain complements the distributed nature of federated learning well, potentially leading to improved robustness against various types of attacks.</li>
+<li>Comprehensive Methodology: The authors provide a detailed description of the BRFL framework, including the mechanisms for scoring model updates, the criteria for excluding certain updates, and the process for verifying and accepting the global model. This thorough approach ensures clarity and replicability of the research.</li>
+<li>Empirical Evaluation: The experimental section demonstrates the effectiveness of the proposed framework under various adversarial conditions using standard datasets like MNIST and Fashion-MNIST. The comparison with existing methods such as FedAvg, Trimmed-mean, and FLTrust highlights the improvements offered by BRFL.</li>
+</ol>
+<h3 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>Risk of Disincentivizing Participation: The proposed reward and punishment mechanism, which continuously penalizes the k clients with the highest deviation scores, might inadvertently discourage participation. This “bottom k elimination” approach assumes these deviations are always indicative of malicious intent, which may not be the case. In environments where client capabilities vary, consistently penalizing those with less computational power could lead to their eventual withdrawal from the system, reducing diversity and potentially degrading the model’s effectiveness. A suggestion to mitigate this would be to introduce a “passing threshold.” If a client’s update, despite being one of the k highest deviations, still meets this predefined standard of quality or contribution, they should not be penalized. This adjustment could prevent the discouragement of clients who are contributing positively but are not among the top performers.</li>
+<li>Potential Redundancy in Re-aggregation Without Randomness or Additional Exclusions: The paper does not explicitly address whether any randomness or additional exclusion of model updates is introduced during the re-aggregation process after a global model is rejected by the majority of verifiers. If the same set of model updates is used for re-aggregation without introducing any new elements or excluding additional updates, the resultant global model may end up being identical to the previously rejected one. This would render the re-aggregation process ineffective and redundant. Clarifying this aspect would be crucial to understand the efficacy and logic behind the re-aggregation process when the initial aggregation fails to be endorsed by the verifiers.</li>
+</ol>
+<h2 id="Submission-225-A-framework-for-analyzing-and-predicting-spatial-temporal-data-in-real-time-to-ensure-the-security-of-maritime-communication"><a href="#Submission-225-A-framework-for-analyzing-and-predicting-spatial-temporal-data-in-real-time-to-ensure-the-security-of-maritime-communication" class="headerlink" title="Submission 225 A framework for analyzing and predicting spatial-temporal data in real-time to ensure the security of maritime communication"></a>Submission 225 A framework for analyzing and predicting spatial-temporal data in real-time to ensure the security of maritime communication</h2><p>这篇读下来就是把一个数据集塞给三个已有的模型，跑个结果出来对比一下精确度和方差，没啥创新的样子。</p>
+<h3 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents a framework for predicting atmospheric duct height (ADH) using deep neural networks (DNNs) with attention mechanisms. The authors developed three models utilizing multi-layer perceptron (MLP), long-short term memory (LSTM), and gated recurrent unit (GRU) architectures. They leverage historical meteorological data to predict ADH, which is critical for electromagnetic signal propagation and maritime communications security. The approach is aimed at improving prediction performance, reducing reliance on real-time data collection, and minimizing operational costs.</p>
+<h3 id="Strength-1"><a href="#Strength-1" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Innovative Use of Attention Mechanisms</strong>: Incorporating attention mechanisms in traditional DNN architectures to predict ADH is innovative, enabling the model to focus on the most relevant features in the data, which enhances prediction accuracy and robustness.    </li>
+<li><strong>Comprehensive Evaluation</strong>: The paper provides a thorough evaluation of the models using various metrics, including MSE, accuracy, and R2 score. The results show that models enhanced with attention mechanisms outperform conventional models, underscoring the effectiveness of this novel approach.    </li>
+<li><strong>Real-time Application</strong>: The capability to predict ADH in real-time represents a significant advance for maritime communication security, potentially optimizing navigation and communication strategies to counteract risks associated with atmospheric ducts.</li>
+</ol>
+<h3 id="Weakness-1"><a href="#Weakness-1" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Misalignment of Title and Content</strong>: The paper’s title, “A framework for analyzing and predicting spatial-temporal data in real-time to ensure the security of maritime communication,” does not adequately reflect the specific focus on ADH prediction. A more precise title could better encapsulate the paper’s primary objective and scope.</li>
+<li><strong>Lack of Comparative Analysis</strong>: The discussion on related works is not sufficiently thorough, lacking depth in reviewing existing literature. The paper could be improved by including a comparative analysis with other state-of-the-art techniques outside the traditional DNN spectrum, which would bolster the claimed effectiveness of the proposed methods.</li>
+<li><strong>Why the Unconventional Architecture Design?</strong>: Most research on LSTM+attention and GRU+attention models place attention mechanisms after the recurrent layers, as this approach typically yields better results. Why does this paper choose to apply attention before LSTM/GRU layers?</li>
+</ol>
+<h2 id="Submission-310-Deep-Reinforcement-Learning-based-Economic-Dispatch-with-Cost-Constraint-in-Cyber-Physical-Energy-System"><a href="#Submission-310-Deep-Reinforcement-Learning-based-Economic-Dispatch-with-Cost-Constraint-in-Cyber-Physical-Energy-System" class="headerlink" title="Submission 310 Deep Reinforcement Learning based Economic Dispatch with Cost Constraint in Cyber Physical Energy System"></a>Submission 310 Deep Reinforcement Learning based Economic Dispatch with Cost Constraint in Cyber Physical Energy System</h2><p>基于深度强化学习的低成本能源调度方案，实际上是智能电网方案</p>
+<h3 id="Summary-2"><a href="#Summary-2" class="headerlink" title="Summary"></a>Summary</h3><p>The paper introduces a novel economic dispatch strategy for cyber-physical energy systems incorporating renewable energy and carbon capture technologies. The strategy utilizes a two-stage dispatch approach optimized via deep reinforcement learning. The first stage focuses on minimizing operational costs without carbon constraints, while the second optimizes for low emissions with cost considerations. Experimental results demonstrate that the model effectively reduces both costs and carbon emissions compared to conventional methods, with SAC algorithm showing the best overall performance in simulations based on real-world data.</p>
+<h3 id="Strength-2"><a href="#Strength-2" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Innovative Integration of Technologies</strong>: The paper effectively combines renewable energy sources with carbon capture systems within a cyber-physical framework, presenting a forward-thinking approach to traditional economic dispatch problems.</li>
+<li><strong>Advanced Computational Techniques</strong>: The use of deep reinforcement learning (DRL) to solve the dispatch problem is commendable. It represents a cutting-edge application of AI technologies in power systems, providing a robust solution to the complex optimization problem under uncertainty.</li>
+<li><strong>Comprehensive Model Validation</strong>: The experimental setup and validation are thorough, with detailed scenarios that demonstrate the effectiveness of the proposed models under various operational constraints. The use of comparative analysis with multiple DRL algorithms (DDPG, SAC, TD3) provides a solid foundation for the claimed improvements in cost and emission reductions.</li>
+<li><strong>Environmental Impact</strong>: The paper addresses the crucial aspect of carbon emissions, proposing a model that not only optimizes economic dispatch but also significantly reduces environmental impact, aligning well with global sustainability goals.</li>
+</ol>
+<h3 id="Weakness-2"><a href="#Weakness-2" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Lack of Detailed Experimental Data Sources and Environment</strong>: The paper lacks clarity regarding the sources of data and the experimental settings, such as the hardware and software environments, simulation tools, and specific configurations or parameters. These details are essential for validating the model’s effectiveness and ensuring its reproducibility.</li>
+<li><strong>Clarity Issues with Formula Representation in Figure 1</strong>: The mathematical formulas presented in Figure 1 are unclear and difficult to read, which may hinder understanding of the foundational principles behind the model’s optimization process. It is recommended to replace the current image with a high-resolution vector graphic that clearly delineates all variables and symbols, ensuring that readers can easily grasp the mathematical framework and computational methods used in the study.</li>
+</ol>
+<h2 id="Submission-330-Enhancing-Network-Performance-Measurement-Through-Orchestration"><a href="#Submission-330-Enhancing-Network-Performance-Measurement-Through-Orchestration" class="headerlink" title="Submission 330 Enhancing Network Performance Measurement Through Orchestration"></a>Submission 330 Enhancing Network Performance Measurement Through Orchestration</h2><p>粗略读了一下大致是测量网络性能，通过合理的安排测量时间等，使得网络性能测量不影响正常的web使用。</p>
+<h3 id="Summary-3"><a href="#Summary-3" class="headerlink" title="Summary"></a>Summary</h3><p>The paper introduces an orchestrated approach to network performance measurements that aims to balance the accuracy of network diagnostics and the Quality of Experience (QoE) for users . Traditional methods like active probing disrupt user activities due to their intrusiveness, especially in high-density environments. The proposed methodology schedules and manages the execution of network performance tests across multiple users and devices to minimize test overlap and network load. This is validated through simulation-based analysis, demonstrating significant improvements in measurement accuracy and user experience.</p>
+<h3 id="Strength-3"><a href="#Strength-3" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Innovative Approach:</strong> The paper presents a novel orchestrated measurement strategy that addresses the main limitations of traditional network measurement techniques by reducing their intrusiveness and improving the accuracy of data collected .    </li>
+<li><strong>Strong Empirical Validation:</strong> The authors provide a thorough empirical validation of their approach using simulation-based analysis, which showcases significant improvements in both measurement accuracy and QoE. This empirical evidence strongly supports the viability and effectiveness of the proposed method .    </li>
+<li><strong>Introduction of New Metric (PIF):</strong> The introduction of the Performance Impact Factor (PIF) as a new metric to quantify the influence of network measurements on user-perceived performance is a notable contribution. This metric provides a nuanced understanding of the trade-offs involved in network performance assessment .</li>
+</ol>
+<h3 id="Weakness-3"><a href="#Weakness-3" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>Insufficient Detail on Experimental Environment: The paper does not sufficiently describe the hardware and software environments used during the simulation tests. Providing detailed specifications of the experimental setup, such as the types of network hardware and operating systems would help in replicating the study and understanding the context in which the results were obtained.</li>
+<li>Presence of Spelling Errors: The document contains some spelling mistakes that could detract from its professional quality. For example, in Section 2.2, the phrase “and and our new measurement, PIF (Performance Impact Factor)” includes a duplicated word “and” which should be corrected. </li>
+</ol>
+<h2 id="Submission-233-An-Efficient-Fire-Detection-Algorithm-with-Dataset-Augumentation-Based-on-Diffusion"><a href="#Submission-233-An-Efficient-Fire-Detection-Algorithm-with-Dataset-Augumentation-Based-on-Diffusion" class="headerlink" title="Submission 233 An Efficient Fire Detection Algorithm with Dataset Augumentation Based on Diffusion"></a>Submission 233 An Efficient Fire Detection Algorithm with Dataset Augumentation Based on Diffusion</h2><p>基于Yolo的火灾检测，以及基于扩散的图像数据生成。大致是对yolov8做了一些改动，然后用公开数据集结合自己生成的图像做了测试</p>
+<h3 id="Summary-4"><a href="#Summary-4" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents a novel fire detection model that integrates YOLOv8 with Swin Transformer and Slim Neck, accompanied by a new loss function, WIoUv3. Additionally, an innovative dataset generation tool, Fire-Generator, is introduced for creating high-quality fire scene training data. The experimental section demonstrates superior accuracy and speed of the proposed model over existing technologies.</p>
+<h3 id="Strength-4"><a href="#Strength-4" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Innovative Approach</strong>: The combination of cutting-edge deep learning architectures like Swin Transformer and Slim Neck, along with the novel WIoUv3 loss function, showcases significant performance improvements in fire detection tasks.</li>
+<li><strong>Practicality</strong>: The development of Fire-Generator addresses the lack of adequate training data in real-world applications, offering a practical solution with strong potential for deployment.</li>
+<li><strong>Comprehensive Experimental Evaluation</strong>: The paper provides an extensive experimental analysis, comparing the model with several existing methods and discussing performance enhancements across various metrics.</li>
+</ol>
+<h3 id="Weakness-4"><a href="#Weakness-4" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Model Complexity</strong>: Although the performance benefits of the model are highlighted, the paper does not adequately address the computational complexity and runtime overhead of the model. This aspect is crucial for real-world applications, especially in resource-constrained environments.</li>
+<li><strong>Grammar and Spelling Errors</strong>: The manuscript needs proofreading for grammatical and spelling errors. For instance, the final sentences in sections 3.3 and 4.1 lack periods. Additionally, the first sentence on page 10 should start with a capitalized ‘When’.</li>
+<li><strong>Explanation of Figures</strong>: The paper should include explanations for the figures presented rather than placing them without any descriptive text. For example, although the title of Figure 3 may convey its purpose, an accompanying explanation in the main text is necessary for clarity.</li>
+</ol>
+<h2 id="Submission-234-MPAM-Dual-Transformer-for-Millimeter-Wave-Sensing-Based-Multi-person-Activity-Monitoring-System"><a href="#Submission-234-MPAM-Dual-Transformer-for-Millimeter-Wave-Sensing-Based-Multi-person-Activity-Monitoring-System" class="headerlink" title="Submission 234 MPAM: Dual-Transformer for Millimeter-Wave Sensing Based Multi-person Activity Monitoring System"></a>Submission 234 MPAM: Dual-Transformer for Millimeter-Wave Sensing Based Multi-person Activity Monitoring System</h2><p>基于Transformer结构的毫米波多人活动监测</p>
+<h3 id="Summary-5"><a href="#Summary-5" class="headerlink" title="Summary"></a>Summary</h3><p>The paper discusses an innovative multi-person activity monitoring system using millimeter-wave (MMWave) radar, focusing on resolving point cloud confusion and maintaining trajectory continuity in multi-person scenarios. The system utilizes a new dual-transformer architecture, which consists of a Transformer In Transformer Network (TITNet) designed to process sparse point clouds effectively and manage the inconsistency in the number of points across frames. The system achieves high accuracy rates of 94.5% in single-person scenarios and 89.09% in multi-person scenarios, based on the use of commercial MMWave radar sensors for real-time indoor monitoring .</p>
+<h3 id="Strength-5"><a href="#Strength-5" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Innovative Approach</strong>: The paper introduces a novel dual-transformer network that effectively addresses the challenge of sparse and inconsistent point clouds in radar data, which is a significant advancement over existing technologies.</li>
+<li><strong>High Accuracy</strong>: The system demonstrates high accuracy rates in both single-person (94.5%) and more challenging multi-person (89.09%) scenarios, indicating robust performance and potential for real-world applications .</li>
+<li><strong>Detailed Validation</strong>: The experimental setup is well-detailed, with comprehensive validation against other methods, showcasing the system’s superior performance in handling real-time human activity recognition .</li>
+</ol>
+<h3 id="Weakness-5"><a href="#Weakness-5" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Insufficient Research on Multi-Person Dynamics</strong>: The article mentions that the system using millimeter-wave radar does not consider multi-person scenarios in-depth. However, there is existing research in this area that should have been reviewed. It is recommended that the authors conduct a more thorough investigation and refine this aspect to strengthen their contributions.</li>
+<li><strong>Structural Issues in Chapter 1</strong>: The content of the first chapter should be divided into more distinct sections for better readability and structure.</li>
+<li><strong>Spelling and Grammatical Errors</strong>: There appears to be a typographical error in Formula 3, where “lOU” is likely meant to be “IOU”. The authors are advised to check the entire document for similar spelling and grammatical issues to maintain the professional quality of the publication.</li>
+</ol>
+<h2 id="Submission-235-S-TSG-Description-Model-of-Transient-Execution-Attacks-in-Intel-SGX"><a href="#Submission-235-S-TSG-Description-Model-of-Transient-Execution-Attacks-in-Intel-SGX" class="headerlink" title="Submission 235 S-TSG: Description Model of Transient Execution Attacks in Intel SGX"></a>Submission 235 S-TSG: Description Model of Transient Execution Attacks in Intel SGX</h2><h3 id="Summary-6"><a href="#Summary-6" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents a detailed study on enhancing the security of Intel Software Guard Extensions (SGX) against transient execution attacks such as Spectre and Meltdown. The paper introduces the S-TSG model, an adaptation of the Topological Sort Graph model, tailored to map out these attacks within SGX environments comprehensively. The model highlights several key phases of transient execution attacks, including attack setup, trigger window, load secret, send secret, and decode secret, providing a structured framework to analyze potential vulnerabilities and formulate defensive strategies.</p>
+<h3 id="Strength-6"><a href="#Strength-6" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Innovative Approach</strong>: The introduction of the S-TSG model is a significant strength of this paper. This novel model helps fill a research gap by providing a systematic approach to analyze transient execution attacks specifically within the context of SGX, a topic that has not been exhaustively covered in existing literature.    </li>
+<li><strong>Comprehensive Analysis</strong>: The paper excels in its thorough analysis and clear presentation of the transient execution attack phases. The detailed breakdown helps in understanding the complexity and intricacies of these attacks.</li>
+<li><strong>Clarity and Structure</strong>: The paper is well-organized, with clear subheadings and a logical flow. The use of diagrams and models aids in visualizing the concepts and enhances understanding.</li>
+</ol>
+<h3 id="Weakness-6"><a href="#Weakness-6" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Unclear Innovation</strong>: The paper’s innovative contribution to the existing body of knowledge could be more explicitly articulated. While the S-TSG model is presented as a new approach, the paper could better highlight how this model diverges significantly from existing models, what new insights it provides, and why these insights are critical for advancing the field of cybersecurity, particularly in the context of SGX environments.</li>
+<li><ul>
+<li><strong>Proofreading Issues</strong>: The paper contains several grammatical and spelling errors which detract from its overall quality. Here are some corrections needed:    <ul>
+<li>“predictably processor manner” should be “predictable manner.”</li>
+<li>“resent works have shown” should be “recent works have shown.”</li>
+<li>“attacker receives and decodes the sensitive data obtained through covert channel” should be “attacker receives and decodes the sensitive data obtained through a covert channel.”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Submission-236-On-Pursuit-of-Sleep-scheduling-Scheme-for-IIoT-A-Non-linear-AoI-Optimization-Perspective"><a href="#Submission-236-On-Pursuit-of-Sleep-scheduling-Scheme-for-IIoT-A-Non-linear-AoI-Optimization-Perspective" class="headerlink" title="Submission 236 On Pursuit of Sleep-scheduling Scheme for IIoT: A Non-linear AoI Optimization Perspective"></a>Submission 236 On Pursuit of Sleep-scheduling Scheme for IIoT: A Non-linear AoI Optimization Perspective</h3><p>针对数据新鲜度的研究，信息年龄（AoI）普遍是线性函数，本文设计了非线性函数，考虑到传感器故障问题引入了睡眠机制。整体背景是工业物联网，不过内容没太体现。</p>
+<h3 id="Summary-7"><a href="#Summary-7" class="headerlink" title="Summary"></a>Summary</h3><p>The submitted manuscript addresses the optimization of the Age of Information (AoI) in the context of the Industrial Internet of Things (IIoT) through a novel sleep-scheduling algorithm. The authors propose a non-linear AoI model that adjusts AoI growth based on sensor activity, which more accurately represents information freshness than traditional linear models. They introduce a Proximal Policy Optimization-based Sleep-Scheduling (PSS) algorithm aimed at minimizing AoI while managing energy usage and sensor utilization effectively. The manuscript includes comparative simulations with other scheduling algorithms, highlighting the benefits and efficacy of the proposed approach.</p>
+<h3 id="Strength-7"><a href="#Strength-7" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Innovative Approach:</strong> The introduction of a non-linear AoI model is a significant improvement over existing linear models, providing a more realistic depiction of information freshness in dynamic IIoT environments.</li>
+<li><strong>Detailed Simulations:</strong> The comprehensive simulation scenarios presented in the manuscript effectively demonstrate the practical advantages of the proposed PSS algorithm over traditional methods like Genetic Sleep-Scheduling (GSS) and Random Sleep-Scheduling (RSS).</li>
+<li><strong>Balance of Objectives:</strong> The manuscript commendably addresses the dual challenges of AoI minimization and energy conservation, which are critical for the sustainable operation of IIoT systems.</li>
+</ol>
+<h3 id="Weakness-7"><a href="#Weakness-7" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Complexity and Scalability:</strong> While the proposed PSS algorithm shows promising results in single-sensor scenarios, the manuscript does not address its complexity and scalability to multi-sensor environments comprehensively. This limitation could impact the practical applicability of the model in larger, more complex IIoT systems.</li>
+<li><strong>Lack of Experimental Detail:</strong> The experimental section of the manuscript lacks detailed information about the data sources and the experimental setup. This omission could limit the reproducibility of the research and hinder the understanding of how the proposed algorithm performs under varied real-world conditions.</li>
+<li><strong>Paragraph Structure:</strong> Some sections of the manuscript feature excessively long paragraphs, which can hinder readability and comprehension. Breaking these into shorter segments could enhance clarity and improve the overall presentation of the material.</li>
+</ol>
+<h2 id="Submission-238-An-AI-Based-Task-Offloading-Strategy-for-Vehicular-Edge-Cloud-Computing"><a href="#Submission-238-An-AI-Based-Task-Offloading-Strategy-for-Vehicular-Edge-Cloud-Computing" class="headerlink" title="Submission 238 An AI-Based Task Offloading Strategy for Vehicular Edge Cloud Computing"></a>Submission 238 An AI-Based Task Offloading Strategy for Vehicular Edge Cloud Computing</h2><p>车联网任务卸载算法</p>
+<h3 id="Summary-8"><a href="#Summary-8" class="headerlink" title="Summary"></a>Summary</h3><p>This paper investigates a Vehicle Edge Cloud Computing (VECC) task offloading strategy based on the Distributed Deterministic Policy Gradient (D4PG) algorithm, aimed at optimizing the processing of latency-sensitive tasks generated by vehicles. The authors propose a multi-layer VECC architecture utilizing the D4PG algorithm to optimize task offloading decisions to reduce overall system latency and energy consumption. The proposed method is validated through simulations using Veins, Sumo, and Omnet++, demonstrating significant improvements in latency and energy consumption over traditional methods.</p>
+<h3 id="Strength-8"><a href="#Strength-8" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Robust Validation Methodology</strong>: The use of three distinct and well-established simulation tools—Veins, Sumo, and Omnet++—significantly strengthens the validation process of the proposed task offloading strategies, enhancing both the reliability and applicability of the findings.</li>
+<li><strong>Detailed Mathematical Framework</strong>: The article provides an in-depth mathematical framework for the task offloading problem in vehicular networks. This comprehensive approach not only aids in understanding the intricate dynamics of the system but also facilitates replication and further exploration by other researchers in the field.</li>
+</ol>
+<h3 id="Weakness-8"><a href="#Weakness-8" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Inadequate Review of Related Literature</strong>: The introduction claims that existing studies have not considered the balance between latency and energy. However, a significant body of literature in edge computing and vehicular networks does address this balance. It is recommended that the authors broaden their literature review to accurately reflect the current state of research in this area.</li>
+<li><strong>Methodological Concerns</strong>: The methodology section lacks a clear justification for the choice of simulation parameters and scenarios. This omission can raise questions about the validity of the simulation results and their applicability to real-world scenarios. A more thorough explanation and rationale for these choices are necessary to substantiate the research findings and increase the paper’s credibility.</li>
+<li><strong>Need for Improved Proofreading</strong>: There are several grammatical and spelling errors that need attention. For example, “cloud execution delay” on page 5 should be capitalized as “Cloud execution delay”. In Figures 6, 7, and 8, “Nunber of Task” should be corrected to “Number of Tasks”. Additionally, on page 11, “criteric networks” should be corrected to “critic networks”. These corrections are essential for maintaining the professional quality of the publication.</li>
+</ol>
+<h2 id="Submission-239-Accelerated-Federated-Learning-Led-by-Bat-Algorithm"><a href="#Submission-239-Accelerated-Federated-Learning-Led-by-Bat-Algorithm" class="headerlink" title="Submission 239 Accelerated Federated Learning Led by Bat Algorithm"></a>Submission 239 Accelerated Federated Learning Led by Bat Algorithm</h2><p>在联邦学习中，模拟蝙蝠回声定位的机制，调整全局搜索与局部搜索的权重，优化联邦学习的准确率、通信开销等。</p>
+<h3 id="Summary-9"><a href="#Summary-9" class="headerlink" title="Summary"></a>Summary</h3><p>The paper introduces a new approach in federated learning, dubbed FedBat, which merges the characteristics of the bat algorithm with the traditional Federated Averaging (FedAvg) method. This hybrid method aims to tackle the challenge of client drift and improve model performance in the presence of data heterogeneity. The authors propose this integration as a solution to balance local and global optimization challenges in federated learning settings, where data privacy and non-iid data across multiple clients are predominant issues. The paper details the algorithmic framework of FedBat and provides simulation results to demonstrate its potential improvements over FedAvg in terms of convergence speed and prediction accuracy. However, the paper lacks extensive real-world testing and thorough theoretical analyses which are essential for validating the proposed method’s efficacy and applicability in diverse environments.</p>
+<h3 id="Strength-9"><a href="#Strength-9" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li><strong>Integration of Bio-inspired Algorithms:</strong> The paper creatively applies the bat algorithm, typically used in single machine learning environments, to the federated learning context. This integration is innovative as it explores how bio-inspired strategies can potentially enhance distributed learning systems.</li>
+<li><strong>Addressing Data Heterogeneity:</strong> By focusing on client drift due to data heterogeneity, the paper tackles a significant challenge in federated learning. It recognizes and attempts to mitigate the impact of non-identically distributed data among clients, which is a prevalent issue in real-world applications of federated learning.</li>
+<li><strong>Algorithmic Development:</strong> The development and description of the FedBat algorithm, which incorporates elements from both the bat algorithm and federated averaging, represent a concrete methodological contribution. This development includes modifications tailored to federated settings, demonstrating a thoughtful adaptation of existing algorithms to new problems.</li>
+<li><strong>Empirical Evaluation:</strong> The paper provides empirical results that indicate FedBat’s effectiveness in improving convergence speeds and prediction accuracy compared to traditional FedAvg. These results, although preliminary, suggest potential practical benefits of the proposed method.</li>
+</ol>
+<h3 id="Weakness-9"><a href="#Weakness-9" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li><strong>Insufficient Experimental Details:</strong> The experiments presented lack detailed information regarding the computing environments, hardware configurations, and specific parameters used. This omission makes it difficult for other researchers to replicate the results and verify the claims made in the paper.    </li>
+<li><strong>Generalizability and Scalability Concerns:</strong> There is a lack of discussion on how well the FedBat algorithm scales with an increasing number of clients or larger datasets, which is crucial for federated learning applications. This gap raises concerns about the algorithm’s applicability to large-scale environments and its performance stability across different network conditions.</li>
+<li><strong>Comparison with State-of-the-Art:</strong> The paper insufficiently compares FedBat with current state-of-the-art federated learning algorithms. Inclusion of more comparative analysis would provide a clearer picture of where FedBat stands in relation to existing methods, especially in terms of efficiency, accuracy, and resource utilization.</li>
+<li><strong>Grammatical and Spelling Errors:</strong> The document contains several grammatical and spelling errors that compromise its professionalism. For example, “Each client has a local datasets” should be corrected to “Each client has a local dataset.” </li>
+<li><strong>Paragraph Structure:</strong> The paper occasionally employs long, unbroken paragraphs that could hinder readability and comprehension. Breaking these paragraphs into smaller, more focused sections would enhance the clarity of the presentation and make the paper more accessible to readers, facilitating better understanding of the complex concepts discussed.</li>
+</ol>
+<h2 id="Submission-274-Optimal-Channel-Allocation-Based-on-Channel-Hopping-Sequence"><a href="#Submission-274-Optimal-Channel-Allocation-Based-on-Channel-Hopping-Sequence" class="headerlink" title="Submission 274 Optimal Channel Allocation Based on Channel Hopping Sequence"></a>Submission 274 Optimal Channel Allocation Based on Channel Hopping Sequence</h2><p>关于时隙信道跳频的研究，通过生成最佳信道跳频序列来提高数据包传输率和抗干扰性能，使用近端策略优化算法预测信道质量。</p>
+<p>时隙信道跳频：为提高通信质量，IEEE802.15.4-2015提出了时隙信道跳跃（TSCH）技术。该技术利用伪随机信道跳变，通过使用多信道来确保更高的可靠性。 TSCH将一段时间划分为固定长度的时隙。在TSCH中，当通过某个信道发送数据包时，如果所选信道受到干扰等破坏性因素的影响，则可以在另一个时隙在不同的信道上重传。 TSCH 可以在 16 个不同的信道上采用周期性跳频模式。</p>
+<p>这篇论文关注的是跳频时别跳到一些高干扰的信道，用的方法是近端策略优化</p>
+<h3 id="Summary-10"><a href="#Summary-10" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents an innovative approach to channel allocation for Time Slotted Channel Hopping (TSCH) within the IEEE 802.15.4 standard, aiming to enhance packet delivery ratio (PDR) and reduce interference. The authors propose a framework leveraging the Proximal Policy Optimization (PPO) algorithm to predict channel quality and dynamically adjust the channel hopping sequence. This approach is novel in that it seeks to generate an optimal channel hopping sequence that meets the Lempel-Greenberger bound, thereby improving the reliability and anti-interference capabilities of wireless networks.</p>
+<h3 id="Strength-10"><a href="#Strength-10" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The use of PPO for optimizing TSCH channel hopping is a significant departure from traditional Q-Learning methods. This introduces a new avenue for leveraging recent advances in machine learning to enhance network performance.</li>
+<li>he detailed description of the experimental setup, including parameter settings and the network model, adds to the reproducibility of the results and provides a clear guideline for others to validate or extend the work.</li>
+<li>The authors provide a thorough set of simulations to validate their claims. The improvement of 7.9% in PDR over existing methods is statistically significant and indicates a robust enhancement brought about by their methodology.</li>
+</ol>
+<h3 id="Weakness-10"><a href="#Weakness-10" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>The research relies heavily on simulated data. While simulations are necessary and useful, the absence of real-world testing might limit the applicability of the findings under practical scenarios where environmental variables can be unpredictable.</li>
+<li>The paper does not address the scalability of the proposed solution extensively. The computational overhead introduced by the PPO algorithm and its impact on network resources during larger scale deployments would be an important aspect to discuss.</li>
+<li>There are several typographical and grammatical errors throughout the document. While these do not undermine the scientific validity of the paper, they do detract from its overall readability and professional quality.<ol>
+<li>Original:  “TSCH divides a peciod of time into fixed length time slots.” Correction: Replace “peciod” with “period”.</li>
+<li>Original: “3 Proximal Policy Optimization Seletion”  Correction: Replace “Seletion” with “Selection”.</li>
+<li>The document repeats several sections verbatim, which might not necessarily be a typo but could be an issue with document formatting or structure. Ensure each section is unique or clearly delineated if repeated for specific reasons.</li>
+</ol>
+</li>
+<li>The paper does not provide detailed information about the dataset used, including its source, size, and how it was divided into training and testing sets. Additionally, the specifics of the simulation environment and platform, such as simulation software versions and parameter settings, are not adequately described.</li>
+<li>The images, when enlarged, exhibit noticeable aliasing. It is recommended to utilize vector graphics to improve image clarity and scalability.</li>
+<li>The paper occasionally employs long, unbroken paragraphs that could hinder readability and comprehension. Breaking these paragraphs into smaller, more focused sections would enhance the clarity of the presentation and make the paper more accessible to readers, facilitating better understanding of the complex concepts discussed.</li>
+</ol>
+<h2 id="Submission-277-Mar-DSL-A-Domain-Specific-Language-for-IoT-Systems-Implementation"><a href="#Submission-277-Mar-DSL-A-Domain-Specific-Language-for-IoT-Systems-Implementation" class="headerlink" title="Submission 277 Mar-DSL: A Domain-Specific Language for IoT Systems Implementation"></a>Submission 277 Mar-DSL: A Domain-Specific Language for IoT Systems Implementation</h2><p>简单来说是一个适用于特定物联网领域的代码生成器，可以理解为它能自动适应不同协议、不同设备的代码语言需求。</p>
+<p>实验对比了用这个新的开发框架和python、java、c++的开发时间和代码行数，我觉着用代码行数对比不太合适吧，其他语言也有很多半自动化的开发框架，这么比有点不合适。</p>
+<h3 id="Summary-11"><a href="#Summary-11" class="headerlink" title="Summary"></a>Summary</h3><p>The paper presents Mar-DSL, a domain-specific language aimed at simplifying the development of Internet of Things (IoT) systems by abstracting away the complexities of dealing with heterogeneous devices, protocols, and data formats. The authors employ domain-driven design principles to model IoT system components, interfaces, and library files at a higher level of abstraction using Mar-DSL constructs. A code generator then automatically generates executable code from these DSL descriptions using template-based techniques. The paper demonstrates the approach with a simple example and provides experimental results showing improved development efficiency compared to traditional programming languages.</p>
+<h3 id="Strength-11"><a href="#Strength-11" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper addresses an important problem in IoT system development – the need to manage diverse devices, protocols, and data formats, which can be challenging and error-prone when done manually.</li>
+<li>The use of domain-driven design and model-driven development principles is a sound approach for creating a DSL that captures domain concepts and generates code automatically.</li>
+<li>The paper provides a clear description of the Mar-DSL constructs (components, interfaces, library files) and their usage, supported by examples.</li>
+<li>The experimental evaluation, although limited, demonstrates the potential benefits of Mar-DSL in terms of reduced code volume and development time compared to traditional programming languages.</li>
+</ol>
+<h3 id="Weakness-11"><a href="#Weakness-11" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>The images, when enlarged, exhibit noticeable aliasing. It is recommended to utilize vector graphics to improve image clarity and scalability.</li>
+<li>The scope and capabilities of Mar-DSL are not clearly defined. The paper does not provide sufficient details on the types of IoT systems and scenarios that Mar-DSL can effectively handle, and what limitations or assumptions are made.</li>
+<li>The description of the code generation process and the template-based approach is relatively brief and lacks technical details. More information on the techniques used, challenges faced, and any optimizations or transformations performed would be beneficial.</li>
+<li>The experimental evaluation is rather simplistic, involving only a simple echo server program and a basic network topology. A more comprehensive evaluation with realistic IoT system scenarios and a comparison with existing IoT programming frameworks or approaches would strengthen the paper’s claims.</li>
+<li>The paper lacks a discussion on the potential limitations, scalability, and maintainability concerns of the proposed approach, especially as IoT systems grow in complexity.</li>
+<li>On page 3, paragraph 1, line 3, there is a spelling mistake in the sentence “Mar-DSL abstracts the data commonalities between various network protocols at a higher level.” The word “between” should be replaced with “among”, as it involves more than two network protocols. The corrected sentence should read: “Mar-DSL abstracts the data commonalities among various network protocols at a higher level.”</li>
+</ol>
+<h2 id="Submission-286-NA-net-Fusing-Geometric-Structure-for-3D-Point-Cloud-Semantic-Segmentation"><a href="#Submission-286-NA-net-Fusing-Geometric-Structure-for-3D-Point-Cloud-Semantic-Segmentation" class="headerlink" title="Submission 286 NA-net: Fusing Geometric Structure for 3D Point Cloud Semantic Segmentation"></a>Submission 286 NA-net: Fusing Geometric Structure for 3D Point Cloud Semantic Segmentation</h2><p>3D点云分割，也是搞了注意力机制等，没啥新的东西</p>
+<h3 id="Summary-12"><a href="#Summary-12" class="headerlink" title="Summary"></a>Summary</h3><p>This paper proposes a new deep learning framework called NA-net for the task of 3D point cloud semantic segmentation. The core innovations include the Neighborhood Feature Enhancement and Aggregation (NFEA) module to capture geometric and semantic information at multiple scales, the Regularized Cross-Attention (DCA) module to improve information flow between encoder and decoder, and a novel loss function to handle class imbalance and encourage recovery of important features. Extensive experiments on the Semantic3D and SemanticKITTI datasets demonstrate NA-net’s state-of-the-art performance, outperforming prior methods especially on segmenting large scenes and small objects.</p>
+<h3 id="Strength-12"><a href="#Strength-12" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>The paper is technically sound and proposes novel modules like NFEA and DCA to better leverage geometric and semantic information for point cloud segmentation.</li>
+<li>The loss function design effectively tackles class imbalance and promotes retention of significant features, important challenges in this task.</li>
+<li>Comprehensive experiments across multiple datasets validate NA-net’s superiority over previous state-of-the-art, with thorough ablation studies analyzing each component’s impact.</li>
+<li>The paper is well-written overall and motivates the research problem clearly by highlighting limitations of prior work.</li>
+</ol>
+<h3 id="Weakness-12"><a href="#Weakness-12" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>Although the paper claims that NA-net performs well on segmentation of large scenes and small objects, the quantitative results analysis section does not specifically quantify and compare the performance gains for these two types of targets. Adding this aspect of the analysis would be more convincing.</li>
+<li>The paper introduces the regularized cross-attention (DCA) module in Section 2.3, but the difference with some other point cloud segmentation methods based on the attention mechanism (e.g., PointTransformer) is not very obvious. Further clarification of the innovation of the DCA module and its difference from related work would strengthen the novelty of the paper.</li>
+</ol>
+<h2 id="Submission-290-Arabic-Sentiment-Analysis-of-Consumer-Reviews-Machine-Learning-and-Deep-Learning-Methods-Based-on-NLP-for-Content-Evaluation"><a href="#Submission-290-Arabic-Sentiment-Analysis-of-Consumer-Reviews-Machine-Learning-and-Deep-Learning-Methods-Based-on-NLP-for-Content-Evaluation" class="headerlink" title="Submission 290 Arabic Sentiment Analysis of Consumer Reviews: Machine Learning and Deep Learning Methods Based on NLP for Content Evaluation"></a>Submission 290 Arabic Sentiment Analysis of Consumer Reviews: Machine Learning and Deep Learning Methods Based on NLP for Content Evaluation</h2><h3 id="Summary-13"><a href="#Summary-13" class="headerlink" title="Summary"></a>Summary</h3><p>This paper presents a comprehensive approach to Arabic sentiment analysis of consumer reviews for Samsung phones. The authors collected a large dataset of 32,500 Arabic reviews which were manually annotated. They employed various machine learning classifiers like SVM, Naive Bayes, Logistic Regression as well as deep learning models including CNN, BiLSTM, and CNN-BiLSTM architectures. Different word embedding techniques like Word2Vec and FastText were explored. An extensive evaluation was carried out using metrics such as accuracy, F1-score, precision, recall, AUC, and MCC. The results showed the deep learning models outperformed traditional machine learning classifiers, with the CNN-BiLSTM model incorporating FastText embeddings achieving the highest MCC of 92.97%.</p>
+<h3 id="Strength-13"><a href="#Strength-13" class="headerlink" title="Strength"></a>Strength</h3><ol>
+<li>A sizeable, manually annotated dataset of 32,500 Arabic reviews, which is valuable for Arabic NLP research.</li>
+<li>A thorough evaluation of various machine learning and deep learning models, providing helpful benchmarks.</li>
+<li>Exploration of different word embedding techniques like Word2Vec and FastText, analyzing their impact.</li>
+<li>Rigorous tuning of hyperparameters through techniques like grid search.</li>
+<li>Comprehensive metrics for evaluation, including MCC which measures the quality of binary classifications.</li>
+<li>Novel deep learning architectures tailored for Arabic text like the CNN-BiLSTM model.</li>
+</ol>
+<h3 id="Weakness-13"><a href="#Weakness-13" class="headerlink" title="Weakness"></a>Weakness</h3><ol>
+<li>The paper could have included more qualitative analysis and error examples to gain insights into the performance differences.</li>
+<li>The evaluation is limited to binary (positive/negative) sentiment analysis. Multi-class evaluation spanning nuanced sentiments would have been valuable.</li>
+<li>There is no comparison to existing state-of-the-art Arabic sentiment analysis models/results.</li>
+<li>Minimal discussion on the computational resources required to train the deep learning models.</li>
+<li>The writing can be improved in certain sections for better clarity and flow.</li>
+<li>The paper occasionally employs long, unbroken paragraphs that could hinder readability and comprehension. Breaking these paragraphs into smaller, more focused sections would enhance the clarity of the presentation and make the paper more accessible to readers, facilitating better understanding of the complex concepts discussed.</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-WASA2024%E5%AE%A1%E7%A8%BF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/blog/2024/04/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-ICMC2024%E5%AE%A1%E7%A8%BF/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            论文记录-ICMC2024审稿
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2024/04/24/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-%E6%8E%92%E9%98%9F%E8%AE%BA%E5%85%AC%E5%BC%8F%E7%90%86%E8%A7%A3/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">论文记录-排队论公式理解</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2024
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>

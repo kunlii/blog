@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="三月樱，六月雪，也望尘莫及" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    overleaf的本地同步配置 |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-overleaf的本地同步配置"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  overleaf的本地同步配置
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2024/04/20/overleaf%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2024-04-20T06:04:33.000Z" itemprop="datePublished">2024-04-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E7%BC%96%E8%BE%91%E5%99%A8%E9%85%8D%E7%BD%AE/">编辑器配置</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>因为有多人同步写论文的需求，所以还是用overleaf方便一些，但是我又不习惯在线编辑，更习惯本地vscode写论文，在<a href="https://www.overleaf.com/learn/how-to/Git_integration" target="_blank" rel="noopener">overleaf的网站上</a>看到说可以用git同步，于是研究一下，以下内容基本上是对这个页面的翻译。</p>
+<p>bts，网上的很多资料是关于overleaf+GitHub的教程，但是overleaf绑定GitHub得付费升级，而git是免费的。</p>
+<h3 id="什么是-Overleaf-Git-集成？"><a href="#什么是-Overleaf-Git-集成？" class="headerlink" title="什么是 Overleaf Git 集成？"></a>什么是 Overleaf Git 集成？</h3><p>Overleaf 的 Git 整合功能允许你从 Overleaf 项目中获取 Git URL，并将其视为远程 Git 仓库（repo）。您可以将项目克隆到本地 Git 仓库，并在本地处理项目，从本地机器向项目推送更改，并将 Overleaf 在线编辑器中的更新拉到本地仓库。  </p>
+<p>这样，当在线工作不可行时，您就可以在本地处理项目；在处理 Overleaf 项目时，您可以选择使用不同的本地编辑器；还可以轻松地将其他本地软件的输出添加到 Overleaf 项目中。  </p>
+<p>你可以从项目 Overleaf 菜单的 Git 选项中获取项目的 Git URL 和克隆命令。</p>
+<h3 id="使用-Git-集成时如何进行身份验证"><a href="#使用-Git-集成时如何进行身份验证" class="headerlink" title="使用 Git 集成时如何进行身份验证"></a>使用 Git 集成时如何进行身份验证</h3><p>当你执行克隆、拉取或推送到远程 Overleaf 项目等 Git 操作时，系统会要求你进行身份验证。Overleaf 的 Git 整合有两种身份验证方法。  </p>
+<ol>
+<li><p>基于 Overleaf 令牌的身份验证（首选方法）。具体步骤请参见 基于<a href="https://www.overleaf.com/learn/how-to/Git_integration_authentication_tokens" target="_blank" rel="noopener">令牌</a>的身份验证。  </p>
+</li>
+<li><p>Overleaf 基于密码的身份验证（已弃用）。分步说明请参阅 <a href="https://www.overleaf.com/learn/how-to/Git_integration_password-based_authentication" target="_blank" rel="noopener">基于密码的身份验证</a>  </p>
+</li>
+</ol>
+<p>请注意，令牌认证是 Overleaf Cloud 用户的首选登录方式，也是 Overleaf Server Pro 用户的唯一登录方式。基于密码的 Git 认证已经过时，今后将不再作为选项。我们鼓励所有用户在访问 Overleaf 项目时使用基于令牌的认证。</p>
+<h3 id="将项目克隆为本地仓库"><a href="#将项目克隆为本地仓库" class="headerlink" title="将项目克隆为本地仓库"></a>将项目克隆为本地仓库</h3><p>在项目的<a href="https://www.overleaf.com/learn/how-to/Using_the_Overleaf_project_menu" target="_blank" rel="noopener"><strong>菜单</strong></a>中，你可以从同步选项中选择 Git。这会弹出一个对话框，显示创建本地仓库时要使用的<code>git clone</code>命令</p>
+<p>或者，你也可以从项目 URL（进入项目时浏览器地址栏中的 URL）中找到 Git 网址。  </p>
+<h4 id="Overleaf-云"><a href="#Overleaf-云" class="headerlink" title="Overleaf 云"></a>Overleaf 云</h4><p>如果您使用的是 Overleaf Cloud，且 Overleaf 项目 URL 如下：<code>https://www.overleaf.com/project/1234567</code>  </p>
+<p>那么克隆项目的 Git 网址就是 <code>https://git.overleaf.com/1234567</code></p>
+<p>克隆该项目到本地 Git 仓库的命令是 <code>git clone https://git.overleaf.com/1234567</code></p>
+<p><strong>注意</strong>：系统可能会提示输入用户名和密码。请参阅<a href="https://www.overleaf.com/learn/how-to/Git_integration_password-based_authentication" target="_blank" rel="noopener">Git 整合密码验证</a>  </p>
+<h4 id="Overleaf-Server-Pro（4-0-或更高版本）"><a href="#Overleaf-Server-Pro（4-0-或更高版本）" class="headerlink" title="Overleaf Server Pro（4.0 或更高版本）"></a>Overleaf Server Pro（4.0 或更高版本）</h4><p><strong>注意</strong>：Server Pro 默认未启用 Git 桥集成。请参阅我们的<a href="https://github.com/overleaf/overleaf/wiki/Git-Integration" target="_blank" rel="noopener">Git</a>整合指南，了解如何启用。  </p>
+<p>如果你正在使用 Overleaf Server Pro，而你的项目 URL 看起来像这样：  <code>https://&lt;SHARELATEX_SITE_URL&gt;/project/1234567</code>    </p>
+<p>那么克隆项目时使用的 Git URL 将是 <code>https://git@&lt;SHARELATEX_SITE_URL&gt;/git/1234567</code>   </p>
+<p>使用 Git 命令行将项目克隆到本地 Git 仓库的命令是  <code>git clone git@&lt;SHARELATEX_SITE_URL&gt;/git/1234567</code></p>
+<p><strong>注意</strong>：系统可能会提示您输入密码。请参阅 <a href="https://www.overleaf.com/learn/how-to/Git_integration_authentication_tokens" target="_blank" rel="noopener">Git 整合身份验证令牌</a></p>
+<h3 id="从现有-Git-仓库创建-Overleaf-项目"><a href="#从现有-Git-仓库创建-Overleaf-项目" class="headerlink" title="从现有 Git 仓库创建 Overleaf 项目"></a>从现有 Git 仓库创建 Overleaf 项目</h3><p>如果你已有一个 Git 仓库，就可以添加 Overleaf 项目作为远程仓库。下面有几条命令，你需要运行它们才能开始工作。请注意，Overleaf 只支持每个项目一个线性历史记录。Git 集成通过将分支数量限制为一个来实现这一限制。这一个分支目前被硬编码为<code>master</code>。  </p>
+<ol>
+<li>首先，我们假设您的电脑上有一个名为<code>my-paper</code> 的文件夹中的 Git 仓库。(它也可能托管在 GitHub、GitLab 或 Bitbucket 等网站上，但也需要克隆到本地）。      </li>
+<li>在 Overleaf 上创建<a href="https://www.overleaf.com/learn/how-to/Creating_a_document_in_Overleaf" target="_blank" rel="noopener">一个新项目</a>。由于项目中的任何内容都会被覆盖，因此在创建项目时请使用 “空白 “项目选项，并删除 Overleaf 中的<code>main.tex</code>文件。   </li>
+<li>找到项目的 Git URL（见<a href="https://www.overleaf.com/learn/how-to/Git_integration%23Cloning_your_project_as_a_local_repository" target="_blank" rel="noopener">上文</a>）。</li>
+<li>将项目的 Git URL 作为远程链接添加到本地项目中。<br> <code>$ cd my-paper</code><br> <code>$ git remote add overleaf &lt;GIT-URL&gt;</code>（请务必使用你自己的链接，而不是示例链接。）</li>
+<li>从 Overleaf 项目中提取最新内容，并将其合并到你的主分支中。<br> <code>$ git checkout master</code><br> <code>$ git pull overleaf master --allow-unrelated-histories --rebase=false</code></li>
+<li>将项目推送到 Overleaf $ git push overleaf master —set-upstream 如果想在本地使用不同的分支名称，比如<code>我的</code>分支，可以使用别名推送修改：<br> <code>$ git push overleaf my-branch:master</code></li>
+<li>访问 Overleaf 上的项目。你的修改应该就在那里。(你可能需要打开 Overleaf 项目菜单，查找哪个文件被设置为主文档文件，并在可能的情况下更改初始选择）。</li>
+</ol>
+<h3 id="全流程总结"><a href="#全流程总结" class="headerlink" title="全流程总结"></a>全流程总结</h3><ol>
+<li>本地论文的文件夹里打开<code>git bash</code>并输入<code>git init</code>初始化；</li>
+<li>接着配置本地的用户名和邮箱：<code>git config --global user.email &quot;kunli@sdu.edu.cn&quot;</code> 和 <code>git config --global user.name &quot;likun&quot;</code></li>
+<li>然后添加git仓库链接：<code>git remote add overleaf https://git.overleaf.com/66235d8cacf3f13eca27714b</code></li>
+<li>接着    <code>$ git checkout master</code>和<code>$ git pull overleaf master --allow-unrelated-histories --rebase=false</code></li>
+<li>最后就可以<code>git push overleaf my-branch:master</code>了</li>
+<li>但是到第4步时，我就发现提示认证失败，经过一番尝试搜索，发现即便不用GitHub，只是git，也得付费一个月21美元，因此不继续搞了，还是老老实实写完上传吧，这篇记录就先放着，没准以后能用到。</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2024/04/20/overleaf%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/blog/2024/04/24/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-%E6%8E%92%E9%98%9F%E8%AE%BA%E5%85%AC%E5%BC%8F%E7%90%86%E8%A7%A3/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            论文记录-排队论公式理解
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2024/03/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-%E7%A9%BA%E9%97%B4%E4%BC%97%E5%8C%85%E4%BB%BB%E5%8A%A1%E5%88%86%E9%85%8D%E6%80%BB%E7%BB%93/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">论文记录-空间众包任务分配总结</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2024
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>

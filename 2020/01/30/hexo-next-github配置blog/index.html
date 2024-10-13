@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/matery.css">
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
   <meta charset="utf-8" />
     
   <meta name="description" content="三月樱，六月雪，也望尘莫及" />
@@ -15,14 +15,14 @@
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
   
   
-<link rel="stylesheet" href="/dist/main.css">
+<link rel="stylesheet" href="/blog/dist/main.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
   
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/blog/css/custom.css">
 
   
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
@@ -60,11 +60,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2020/01/30/hexo-next-github%E9%85%8D%E7%BD%AEblog/" class="article-date">
+      <a href="/blog/2020/01/30/hexo-next-github%E9%85%8D%E7%BD%AEblog/" class="article-date">
   <time datetime="2020-01-30T01:20:38.000Z" itemprop="datePublished">2020-01-30</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/">博客配置</a>
+    <a class="article-category-link" href="/blog/categories/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/">博客配置</a>
   </div>
   
 <div class="word_count">
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">10.8k</span>
+            <span class="post-count">12.2k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">45 分钟</span>
+            <span class="post-count">50 分钟</span>
         </span>
     </span>
 </div>
@@ -259,20 +259,19 @@
 </ol>
 <p><img src="https://i.loli.net/2021/02/27/4TRVLa5sFIzktBX.png" alt="image-20210227190056808"></p>
 <h2 id="如何发布新的博客"><a href="#如何发布新的博客" class="headerlink" title="如何发布新的博客"></a>如何发布新的博客</h2><ol>
-<li><p>在blog文件夹的命令行里输入<code>hexo new &quot;标题&quot;</code>，然后进入<strong>/blog/sources/_post/</strong>找到对应的markdown文件就可以开始写了，也可以直接在这个文件夹下新建一个markdown文件，然后添加对应的文件头。写博客的时候根据需求在文件头里填写tags和categories的信息，然后hexo会自动建立好tags和categories的内容并给文章分类。</p>
+<li><p>在blog文件夹的命令行里输入<code>hexo new &quot;标题&quot;</code>，然后进入<code>/blog/sources/_post/</code>找到对应的markdown文件就可以开始写了，也可以直接在这个文件夹下新建一个markdown文件，然后添加对应的文件头。写博客的时候根据需求在文件头里填写tags和categories的信息，然后hexo会自动建立好tags和categories的内容并给文章分类。</p>
 <p>文件头信息如下编写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title:</span><br><span class="line">date:</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写好以后保存，然后还是blog文件夹的命令行，输入<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>，就发布成功了。</p>
+</li>
+<li><p>如果一个文章想设置多个标签，那么在编写文件头信息的时候，要按下面的方式写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tags:</span><br><span class="line">    - tag1</span><br><span class="line">    - tag2</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p>这里<code>tags:</code> 后面一定要换行，下面的<code>-</code>后面注意有空格。</p>
 </li>
 </ol>
-<hr>
-<p>title:<br>date:<br>tags:<br>categories:</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. 写好以后保存，然后还是blog文件夹的命令行，输入&#96;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d&#96;，就发布成功了。</span><br><span class="line"></span><br><span class="line">3. 如果一个文章想设置多个标签，那么在编写文件头信息的时候，要按下面的方式写：</span><br></pre></td></tr></table></figure>
-<p>   tags:</p>
-<pre><code>   - tag1
-   - tag2
-   ...
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">这里&#96;tags:&#96; 后面一定要换行，下面的&#96;-&#96;后面注意有空格。</span><br><span class="line"></span><br><span class="line">## 一些后续问题</span><br><span class="line"></span><br><span class="line">今天（2020.03.16）突然发现当博客内容多起来以后，首页会有翻页，而翻页图标显示是乱的，查了一下发现要改&#96;&#x2F;Blog&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_partials&#x2F;pagination.swig&#96;这个文件，内容整体替换成下面的：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;html</span><br><span class="line">&#123;%- if page.prev or page.next %&#125;</span><br><span class="line"> &lt;nav class&#x3D;&quot;pagination&quot;&gt;</span><br><span class="line">&#123;&#123;</span><br><span class="line">  paginator(&#123;</span><br><span class="line">    prev_text: &#39;&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;&#39;+__(&#39;accessibility.prev_page&#39;)+&#39;&quot;&gt;&lt;&#x2F;i&gt;&#39;,</span><br><span class="line">    next_text: &#39;&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;&#39;+__(&#39;accessibility.next_page&#39;)+&#39;&quot;&gt;&lt;&#x2F;i&gt;&#39;,</span><br><span class="line">    mid_size: 1,</span><br><span class="line">    escape: false</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;&#125;</span><br><span class="line"> &lt;&#x2F;nav&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一些后续问题"><a href="#一些后续问题" class="headerlink" title="一些后续问题"></a>一些后续问题</h2><p>今天（2020.03.16）突然发现当博客内容多起来以后，首页会有翻页，而翻页图标显示是乱的，查了一下发现要改<code>/Blog/themes/next/layout/_partials/pagination.swig</code>这个文件，内容整体替换成下面的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if page.prev or page.next %&#125;</span><br><span class="line"> <span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"pagination"</span>&gt;</span></span><br><span class="line">&#123;&#123;</span><br><span class="line">  paginator(&#123;</span><br><span class="line">    prev_text: '<span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-angle-left"</span> <span class="attr">aria-label</span>=<span class="string">"'+__('accessibility.prev_page')+'"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>',</span><br><span class="line">    next_text: '<span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-angle-right"</span> <span class="attr">aria-label</span>=<span class="string">"'+__('accessibility.next_page')+'"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>',</span><br><span class="line">    mid_size: 1,</span><br><span class="line">    escape: false</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="SSH登录配置"><a href="#SSH登录配置" class="headerlink" title="SSH登录配置"></a>SSH登录配置</h2><p>每次<code>hexo d</code>的时候都要输入用户名和密码会很麻烦，所以今天做了一下这个。</p>
 <ol>
 <li><p>首先进入博客目录比如<code>C:\Users\LiKun\Documents\GitHub\blog</code>，在这个目录下右键然后打开git bash，如果右键没这个选项那就去开始菜单之类的地方打开git bash然后一点点切目录；</p>
@@ -400,6 +399,49 @@
 <li>在<code>leancloud</code>下面有<code>valine</code>字段，把<code>enable</code>设置为<code>true</code>，<code>avatar</code>和<code>placeholder</code>分别表示评论头像和评论区的提示语，可以根据喜好修改，不改也行；</li>
 <li>保存后重新生成网站就好了。</li>
 </ol>
+<h2 id="修改主页"><a href="#修改主页" class="headerlink" title="修改主页"></a>修改主页</h2><p>因为这个博客被作为个人主页了，感觉页面跳转后直接出首页的文章列表不太合适，出个主页更好一些，所以研究了一下怎么让博客地址直接跳转到简历的页面。</p>
+<ol>
+<li><p>打开博客配置文件<code>_config.yml</code>，找到其中的<code>index_generator</code>字段，该字段下原本的<code>path</code>内容是空的，现在填一个空文件夹，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">'/homepage/'</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
+<p>注意这里不需要真的去新建一个文件夹，只需要保证这个名字是博客目录中没出现过的就可以，以及注意文件夹名称首尾的斜杠也不能丢。</p>
+</li>
+<li><p>打开<code>source</code>文件夹，新建一个<code>index.md</code>，这个文件中存放要作为主页的内容即可，比如我就把简历的内容直接复制过来了。注意这里必须叫<code>index</code>这个名字，不能改别的。</p>
+</li>
+<li>正常编译再打开就能发现主页变了。</li>
+<li>我希望改进的是：现在显示的markdown页面也没法搞照片等美化效果，而且原本的首页我也挺喜欢，更希望保留博客首页的同时，能打开后先出现简历，以及最好可以搞成html网页的方式。</li>
+<li>思考了一下，觉得应该这么做，首先搞清楚原本的主页是怎么生成的，然后让主题配置文件里的<code>home</code>对应到这个主页的文件，再修改<code>hexo</code>的主页为简历页面，这样就好了，不过目前还没想到具体怎么实现。</li>
+</ol>
+<h2 id="关于GitHub改名后博客需要修改的内容"><a href="#关于GitHub改名后博客需要修改的内容" class="headerlink" title="关于GitHub改名后博客需要修改的内容"></a>关于GitHub改名后博客需要修改的内容</h2><ol>
+<li>GitHub上找到该仓库，修改仓库名。</li>
+<li>博客配置文件（<code>\blog\_config.yml</code>）中所有涉及地址等内容的都需要修改为新的博客名。</li>
+<li>所有本地仓库的<code>.git</code>文件夹中找到<code>config</code>文件，修改其中的url信息（即存本地博客的和存图的等等都需要改）。</li>
+<li>如果主题的一些js中有用到自己仓库的文件，那么也需要修改相应的存放路径。</li>
+</ol>
+<h2 id="用其他仓库的page放博客"><a href="#用其他仓库的page放博客" class="headerlink" title="用其他仓库的page放博客"></a>用其他仓库的page放博客</h2><p>因为主页的页面想搞成单纯的个人介绍，和博客分割一下，所以需要把博客放到新的仓库。流程如下：</p>
+<ol>
+<li>GitHub新建仓库，名字是<code>blog</code>。</li>
+<li>可以看到新仓库的ssh对应的url应该是<code>git@github.com:kunlii/blog.git</code>，因此在本地找到博客的<code>_config.yml</code>以及<code>.git</code>中的<code>config</code>，修改这两个文件中涉及<code>ssh</code>登录的url为新的内容。</li>
+<li>博客配置文件<code>_config.yml</code>中，前面<code>url</code>那里如下修改，注意<code>root</code>要改成<code>/blog</code>，不然页面之间的跳转会出错。 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: https://kunlii.github.io/blog</span><br><span class="line">root: /blog/</span><br></pre></td></tr></table></figure></li>
+<li>主题配置文件<code>_config.yml</code>中，“网站图标和侧边栏logo”和“封面配置”这两部分涉及的网站logo以及封面图的链接需要改成<code>/blog/images/ayer.png</code>以及<code>/blog/images/cover1.png</code>，这里很奇怪，其他图标等都不需要改，只有这俩图得改。补充一下，<code>favicon</code>也得改。</li>
+<li>本地先分别<code>hexo d</code>以及<code>git push</code>，主要是前者，把我们的网页传到这个仓库中。</li>
+<li>进入仓库的<code>settings</code>页面，在左侧边栏找到<code>Pages</code>，在右边修改<code>Build and deployment</code>部分：<ol>
+<li><code>Source</code>中选择Deploy from a branch，这里如果选GitHub action，则可以搞在线编译部署，不过有点麻烦，以后再研究吧。</li>
+<li><code>Branch</code>选<code>master/root</code>，这里因为本地博客编译后的文件是传master分支的，如果传了别的分支则改成对应的分支。</li>
+<li><code>Custom domain</code>那里设置一下希望用的域名，比如<code>kunlii.github.io/blog/</code>，保存后，就可以用这个域名访问博客了。</li>
+</ol>
+</li>
+<li>经过很长时间的使用，我才忽然发现改了以后的博客没加载日历、标签云和雷达图等，检索和询问claude之后，意识到是js文件的引用路径出了问题，它没识别到根路径变了，于是加载js文件的路径就错了，漏掉了<code>/blog/</code>，claude给出了好几种解决方案，经过对比我发现还是直接一步到位指定路径比较靠谱，目前找到的主题文件夹中需要修改的如下：<ol>
+<li><code>/layout/_partial/head.ejs</code>中确认以下这句是加了根路径的：<code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/blog/css/matery.css&quot;&gt;</code>；</li>
+<li><code>/layout/_widget/post-calendar.ejs</code>中确认以下这句是加了根路径的：<code>&lt;script type=&quot;text/javascript&quot; src=&quot;/blog/js/echarts.min.js&quot;&gt;&lt;/script&gt;</code>；</li>
+<li><code>/layout/_widget/tag-cloud.ejs</code>中同样确认echarts.min.js，这个文件中如果没这句话就忽略这条；</li>
+<li><code>/layout/_widget/category-radar.ejs</code>中同样确认echarts.min.js，这个文件中如果没这句话就忽略这条；</li>
+<li>注意，虽然category-radar、post-calendar和tag-cloud这三个文件在其他各页面也有相似的路径，但是改了echarts之后，不用管其他，日历、标签云和雷达图已经能正常显示了；</li>
+<li><code>/layout/layout.ejs</code>中拉到最下面，修改与live2d相关的两个路径，修改后的内容：<code>&lt;script src=&quot;/blog/dist/live2d_bundle.js&quot;&gt;&lt;/script&gt;</code>和<code>&lt;script async type=&quot;module&quot; src=&quot;/blog/js/waifu-tips.js&quot;&gt;&lt;/script&gt;</code></li>
+<li><code>\source\js\waifu-tips.js</code>中的<code>const live2d_settings</code>里面，<code>&#39;modelUrl&#39;</code>改为<code>&#39;/blog/model&#39;</code>，<code>&#39;tipsMessage&#39;</code>改为`’/blog/js/waifu-tips.json’</li>
+<li><code>\source\model\gongzi\gongzi.model3.json</code></li>
+</ol>
+</li>
+</ol>
 <h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://segmentfault.com/a/1190000018761324" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018761324</a></p>
 <p><a href="https://www.jianshu.com/p/3a05351a37dc" target="_blank" rel="noopener">https://www.jianshu.com/p/3a05351a37dc</a></p>
 <p><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502" target="_blank" rel="noopener">https://blog.csdn.net/nightmare_dimple/article/details/86661502</a></p>
@@ -466,12 +508,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2020/01/30/hexo-next-github%E9%85%8D%E7%BD%AEblog/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2020/01/30/hexo-next-github%E9%85%8D%E7%BD%AEblog/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li></ul>
 
     </footer>
   </div>
@@ -479,7 +521,7 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/01/30/Let-s-Build-A-Simple-Interpreter%E7%AC%94%E8%AE%B0-1/" class="article-nav-link">
+      <a href="/blog/2020/01/30/Let-s-Build-A-Simple-Interpreter%E7%AC%94%E8%AE%B0-1/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -600,37 +642,29 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer.png" alt="左边"></a>
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
+      <a class="nav-item-link" href="/blog/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
+      <a class="nav-item-link" href="/blog/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
+      <a class="nav-item-link" href="/blog/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
+      <a class="nav-item-link" href="/blog/tags">标签</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-ch">个人简历</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-en">Resume</a>
+      <a class="nav-item-link" href="/blog/friends">友链</a>
     </li>
     
   </ul>
@@ -682,15 +716,15 @@
   </div>
 </div>
     
-<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
 
 
-<script src="/js/lazyload.min.js"></script>
+<script src="/blog/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
 
 
-<script src="/js/tocbot.min.js"></script>
+<script src="/blog/js/tocbot.min.js"></script>
 
 <script>
   tocbot.init({
@@ -710,7 +744,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
+<script src="/blog/dist/main.js"></script>
 
 <!-- ImageViewer -->
 
@@ -860,7 +894,7 @@
 <!-- CodeCopy -->
 
 
-<link rel="stylesheet" href="/css/clipboard.css">
+<link rel="stylesheet" href="/blog/css/clipboard.css">
 
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
@@ -939,8 +973,8 @@
     <canvas id="live2d4" style="top:150px"></canvas>
 </div>
 <!--    src 中改为你存放的路径    -->
-<script src="/dist/live2d_bundle.js"></script>
-<script async type="module" src="/js/waifu-tips.js"></script>
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
 
 </body>
 

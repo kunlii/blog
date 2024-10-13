@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="TSC的审稿" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning: a Multi-Leader Stackelberg Game Approach |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning: a Multi-Leader Stackelberg Game Approach
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2024/06/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Incentive%20Mechanism%20for%20Multiple%20Requesters%20in%20Federated%20Learning%20a%20Multi-Leader%20Stackelberg%20Game%20Approach/" class="article-date">
+  <time datetime="2024-06-03T05:51:36.000Z" itemprop="datePublished">2024-06-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>联邦学习是分布式学习技术，需要激励机制来使得用户愿意参与。现有激励机制普遍针对单个请求者（requester），个别研究会考虑多个请求者，但限制了worker同时训练多个模型的可能性。本文移除了这个约束，除了常规的workers之间以及workers与请求者之间的互动外，还关注了请求者之间的互动。建模为stackelberg博弈，推导+逆向归纳确定均衡。进行了一系列分析研究workers和请求者之间的均衡，结果说明了请求者的先发优势，揭示了请求者和工人之间互利的可能性。</p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ol>
+<li>RR、WW和RW分别表示请求者之间、workers之间以及请求者与workers之间的互动</li>
+<li>RW建模为stackelberg博弈，R是leader，W是follower</li>
+<li>WW和RR之间的互动是两个非合作子博弈</li>
+<li>模拟实验表明：<ol>
+<li>与W相比，R有先发优势</li>
+<li>找到了影响R成本和W效用的关键因素</li>
+<li>解释了一个R和所有W可以在其他R付出小成本的情况下共赢</li>
+</ol>
+</li>
+<li>与已有研究的不同点主要在于关注了RR，已有研究中只有两个也关注RR，但这两个本质上是多个RW，做了简化。<h2 id="系统模型"><a href="#系统模型" class="headerlink" title="系统模型"></a>系统模型</h2></li>
+<li>$R=\{1,2,…,r\}$和$W=\{1,2,…,w\}$分别表示请求者和workers的集合</li>
+<li>系统中所有参与者相互独立，不共谋</li>
+<li>每个请求者有自己的全局模型，需要worker的数据和算力来训练</li>
+<li>每个worker能训练至少一个模型，但没有义务为模型训练提供数据集和算力</li>
+</ol>
+<h3 id="W的效用和R的成本"><a href="#W的效用和R的成本" class="headerlink" title="W的效用和R的成本"></a>W的效用和R的成本</h3><ol>
+<li>W的目标是通过设置给每个模型贡献的数据量来最大化自己的收益，$s_{ij}$表示worker i给请求者j的模型提供的数据量</li>
+<li>worker i的策略用向量$s_i=(s_{i1},…,s_{ir})$表示</li>
+<li>所有W的策略集用$S_i$表示</li>
+<li>假设worker i从请求者j那里收到报酬$p_j$并为单位数据的训练支出成本$c_i$，则该worker的效用函数是：<script type="math/tex; mode=display">
+u_i(s_i)=\sum_{j\in R}(p_j-c_i)s_{ij} \tag{1}</script></li>
+<li>R的成本分为两部分<ol>
+<li>训练延迟：W同时能训练多个模型，受限于W的算力和任务调度策略，R的任务不一定在什么时候完成，最差的情况要等其他R的任务完成以后才能轮到。假设单任务训练时间与数据大小成比例，为了估计训练延迟，我们用$l_{ij}=\lambda_i \sum_{k\in R\backslash\{j\}}s_{ik}$来表示延迟的最差情况，其中$\lambda_i$表示worker i的算力权重因子。这部分不由R控制。这个公式浅显一些来说，就是worker i给其他模型分配的数据量加起来，再乘以权重，直观来看是表达worker i的延迟对模型j的影响。</li>
+<li>支付给worker的报酬：与worker对模型精确度的贡献有关。$b_j\geq 0$表示基础单价，即R愿意为单位训练数据支付的最高价。请求者j为单位训练数据支付的报酬如下，其中$\rho_j&gt;0$是需求减小率，以使 $p_j$ 与为 j 的模型训练贡献的训练数据总量$\sum_{i\in W}s_{ij}$之间的关系符合供求规律。</li>
+</ol>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+p_j=b_j-\rho_j^{-1}\sum_{i\in W}s_{ij} \tag{3}</script><ol>
+<li>除了成本以外，R还会收到模型训练所带来的收益。训练数据量的大小对模型准确性的边际贡献递减，因此请求者j从训练中获得的收益如下，其中$\delta_j&gt;0$表示R对训练数据的价值评估。该参数反映了：相同数据能为不同模型带来的收益不同。</li>
+</ol>
+<script type="math/tex; mode=display">
+g_j=ln(1+\delta_j\sum_{i\in W}s_{ij})\tag{4}</script><ol>
+<li>请求者j的成本函数$v_j()$被定义为其成本减去训练所得收益，如下，其中$\alpha_j\geq 0,\beta_j\geq 0$是用于将训练延迟和训练收益转为货币的参数。R的目标函数是最小化$v_j()$。</li>
+</ol>
+<script type="math/tex; mode=display">
+v_j()=\alpha_j\sum_{i\in W}l_{ij}+p_j\sum_{i\in W}s_{ij}-\beta_jg_j\tag{5}</script><h3 id="三类交互"><a href="#三类交互" class="headerlink" title="三类交互"></a>三类交互</h3><p>根据公式3，worker的效用函数可以改写为：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+u_i(s_i,s_{-i})&=\sum_{j\in R}(p_j-c_i)s_{ij}\\
+&=\sum_{j\in R}((b_j-\rho_j^{-1}\sum_{k\in W}s_{kj})-c_i)s_{ij}
+\end{align}\tag{7}</script><p>其中$s_{-i}$表示除了i以外其他所有worker的策略向量，意味着每个worker的收益和其他worker的策略有关。worker的目标是最大化该函数。</p>
+<p>在给定$p_j&gt; c_i$的情况下，worker会尽可能设置一个大的$s_{ij}$。但这样做间接降低了其他所有workers的收益。另一方面，如果所有worker为R带来了更多收益，那么R就有更多钱能付给worker。这两个相互冲突的因素构成了WW互动。</p>
+<p>RW互动：对于给定报酬，W希望通过设置合适的$s_{ij}$来最大化自己的效用；而R希望通过设置合适的$p_j$来在最小化成本的前提下吸引W为模型贡献</p>
+<p>RR互动：每个R吸引到更多W的同时，意味着其他R面临的训练延迟更高</p>
+<h2 id="问题形式化"><a href="#问题形式化" class="headerlink" title="问题形式化"></a>问题形式化</h2><p>RW互动建模为二阶段Stackelberg博弈，R是leader，W是follower，包含两个子博弈：</p>
+<ol>
+<li>WW：当所有R的策略都给定后，W们决定自己的策略，每个W的效用取决于其他W的策略，对于给定的所有其他W的策略集而言，能最大化自己效用的策略就是最好的，所有W的最优策略组成的集合就是该子博弈的均衡解。</li>
+<li>RR：尽管R的成本与W的策略有关，但R在制定策略时并不知道W的策略。对于给定的W策略集以及其他所有R策略集而言，能最小化自己成本的策略就是最好的，所有R的最优策略组成的集合就是该子博弈的均衡解。</li>
+</ol>
+<p>总的流程就是R先制定策略，即确定$b_i$，然后W根据R的策略决定策略，即确定$s_{ij}$，上述两个子博弈的均衡解合起来组成了整个RW博弈的均衡。</p>
+<h2 id="本文方案"><a href="#本文方案" class="headerlink" title="本文方案"></a>本文方案</h2><h3 id="W博弈的均衡"><a href="#W博弈的均衡" class="headerlink" title="W博弈的均衡"></a>W博弈的均衡</h3><p>找均衡解本质上就是找收益函数的极大值，这篇论文是找公式7的一阶导和二阶导。</p>
+<p>一阶导写完整就是：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\left\{\begin{array}{c}
+\frac{\partial u_{i}(\cdot)}{\partial s_{i 1}} & = b_{1}-2 \rho_{1}^{-1} s_{i 1}-\rho_{1}^{-1} \sum_{k \in W \backslash\{i\}} s_{k 1}-c_{i} & = 0, \\
+\frac{\partial u_{i}(\cdot)}{\partial s_{i 2}} & = b_{2}-2 \rho_{2}^{-1} s_{i 2}-\rho_{2}^{-1} \sum_{k \in W \backslash\{i\}} s_{k 2}-c_{i} & = 0, \\
+\vdots \\
+\frac{\partial u_{i}(\cdot)}{\partial s_{i r}} & = b_{r}-2 \rho_{r}^{-1} s_{i r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{i\}} s_{k r}-c_{i} & = 0 .
+\end{array}\right.
+\end{align}\tag{17}</script><p>再进一步对每个$i$写完整：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\left\{\begin{array}{c}
+b_{1}-2 \rho_{1}^{-1} s_{11}-\rho_{1}^{-1} \sum_{k \in W \backslash\{1\}} s_{k 1}-c_{1} & = 0, \\
+b_{2}-2 \rho_{2}^{-1} s_{12}-\rho_{2}^{-1} \sum_{k \in W \backslash\{1\}} s_{k 2}-c_{1} & = 0, \\
+b_{r}-2 \rho_{r}^{-1} s_{1 r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{1\}} s_{k r}-c_{1} & = 0, \\
+\vdots \\
+b_{1}-2 \rho_{1}^{-1} s_{w 1}-\rho_{1}^{-1} \sum_{k \in W \backslash\{w\}} s_{k 1}-c_{w} & = 0, \\
+b_{2}-2 \rho_{2}^{-1} s_{w 2}-\rho_{2}^{-1} \sum_{k \in W \backslash\{w\}} s_{k 2}-c_{w} & = 0, \\
+\vdots \\
+b_{r}-2 \rho_{r}^{-1} s_{w r}-\rho_{r}^{-1} \sum_{k \in W \backslash\{w\}} s_{k r}-c_{w} & = 0 .
+\end{array}\right.
+\end{align}\tag{18}</script><p>这是关于W策略向量s的一组线性方程，可以转为矩阵形式：</p>
+<script type="math/tex; mode=display">
+sM=E\tag{19}</script><p>其中，$M_{w\times w}$是如下的分块矩阵：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+M(k,l)=
+\left\{\begin{array}{c}
+M_1, &if k=l\\
+M_2, &otherwise
+\end{array}\right.
+\end{align}\tag{20}</script><p>矩阵$M_1,M_2$都是$r\times r$的方阵，分别如下：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+M_1(k',l')=
+\left\{\begin{array}{c}
+2\rho_{k'}^{-1}, &if k'=l'\\
+0, &otherwise
+\end{array}\right.
+\end{align}\tag{21}</script><script type="math/tex; mode=display">
+\begin{align}
+M_2(k',l')=
+\left\{\begin{array}{c}
+\rho_{k'}^{-1}, &if k'=l'\\
+0, &otherwise
+\end{array}\right.
+\end{align}\tag{22}</script><p>矩阵$E_{1\times w}$是：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+E(1,k)&=(b_1-c_k,...,b_r-c_k)\\
+&=(\textbf{b}-c_kJ)
+\end{align}\tag{23}</script><p>其中$\textbf{b}=(b_1,…,b_r), J=(1,…,1)$</p>
+<p>一阶导为0对应的解$s$就是WW博弈的均衡解，根据公式19，$s^\ast=EM^{-1}$，所以只要矩阵$M$是可逆的，就说明存在均衡解$s^\ast$，接下来通过证明$det(M)\neq 0$来证明矩阵可逆，这里进行了一些矩阵初等变换。</p>
+<p>然后计算二阶导，并得到了新的矩阵，证明了W的收益函数是concave的，由此一阶导得到的那个点是最大值，由此可以通过$EM^{-1}$计算均衡解如下：</p>
+<script type="math/tex; mode=display">
+s_{ij}^\ast=\frac{\rho_j}{w+1}(b_j-wc_i+\sum_{k\in W\backslash\{i\}}c_k)\tag{34}</script><h3 id="R博弈的均衡"><a href="#R博弈的均衡" class="headerlink" title="R博弈的均衡"></a>R博弈的均衡</h3><p>对于R来说，他能预估到W会按照公式34的均衡解确定策略，那么就可以把公式34的结果代入到公式5中。首先把公式5写完整：</p>
+<script type="math/tex; mode=display">
+v_j()=\alpha_j\sum_{i\in W}(\lambda_i\sum_{k\in R\backslash\{j\}}s_{ik})+b_j\sum_{i\in W}s_{ij}-\rho_j^{-1}(\sum_{i\in W}s_{ij})^2-\beta_jln(1+\delta_j\sum_{i\in W}s_{ij})\tag{35}</script><p>代入$s_{ij}$后可得：</p>
+<script type="math/tex; mode=display">
+v_j()=(D-D^2)b_j^2\rho_j+(F-2DF)b_j\rho_j-F^2\rho_j+\alpha_iC-\beta_jln(1+\delta_j(Db_j\rho_j+F\rho_j))\tag{36}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C&=\sum_{i\in W}\lambda_i(\sum_{k\in R\backslash\{j\}}\frac{\rho_k}{w+1}(b_k-wc_i+\sum_{l\in W\backslash\{i\}} c_l))\\
+D&=\frac{w}{w+1}\\
+F&=-\frac{1}{w+1}\sum_{i\in W}c_i. \tag{37}
+\end{align}</script><p>可以看到每个R的决策会受到其他R决策的影响。本文的思路是证明函数$v_j$是convex的，从而最优策略就可以通过一阶导来找，而这需要二阶导为正，直接对公式36求导即可证明。一阶导得到的$b_j^\ast$就是均衡解。</p>
+<p>这里存在一个问题：一阶导写出来是如下的形式：</p>
+<script type="math/tex; mode=display">
+v_j^\prime=2(D-D^2)b_j\rho_j+(F-2DF)\rho_j-\beta_j\frac{\delta_jD\rho_j}{1+\delta_j(D\rho_jb_j+F\rho_j)}</script><p>这其中涉及的参数包括：</p>
+<ol>
+<li>$b_j$：是要计算的策略</li>
+<li>$\rho_j$：R的数据量需求边际递减率，大致就是当数据量多起来以后，R就不那么需要数据了</li>
+<li>$\beta_j$：R通过训练能得到的收益</li>
+<li>$\delta_j$：R对训练数据价值的估值</li>
+<li>D：涉及workers的数量</li>
+<li>F：涉及所有workers的单位成本</li>
+</ol>
+<p>前五个都好说，是公开的，第6个应该没法获取吧，即便让workers都主动说，也很可能报个假的</p>
+<h3 id="总博弈的均衡"><a href="#总博弈的均衡" class="headerlink" title="总博弈的均衡"></a>总博弈的均衡</h3><p>前面两部分合起来就形成了总的均衡，因此整体流程如下：</p>
+<ol>
+<li>根据已有信息构造公式36的一阶导；</li>
+<li>计算一阶导对应的零点得到$b_j^\ast$；</li>
+<li>把前面这步得到的结果代入公式34，得到$s_{ij}^\ast$</li>
+</ol>
+<p>然后分析了算法复杂度。</p>
+<h2 id="数值分析"><a href="#数值分析" class="headerlink" title="数值分析"></a>数值分析</h2><ol>
+<li>简而言之，W的效用与需求直接相关，与供应成反比。与此相反，R的成本随需求增加而增加，但随着供应增加而大致保持不变。得出这一结果的理由是，在斯塔克尔伯格博弈中，作为领导者的R比W具有先发优势，因此请求者总能优化自己的结果。</li>
+<li>简而言之，W的单位计算成本越高（即 ci 值越大），其效用就越低，但效用与工人的计算能力（$\lambda_i$)无关。</li>
+<li>总之，当某个工人的延迟成本较高（即 λi 值较大）或请求者以较高的价格评估延迟成本（即 αj 值较大）时，请求者的成本就会增加。如果某个请求者 j 更看重相同数量的训练数据（即具有更大的βj 或δj 值），或为相同数量的数据支付更少的单位数据费用（即具有更大的ρj 值），那么请求者本身和所有工作者都会受益，而所有其他请求者则会付出较小的代价。<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2>关注RR之间的互动，证明了均衡解存在</li>
+</ol>
+<h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><ol>
+<li>Section 3第一章最后一句出现了energy，这个词应该是指computing power？建议相同的词统一表述，后面还出现了computation capability</li>
+</ol>
+<h3 id="审稿意见"><a href="#审稿意见" class="headerlink" title="审稿意见"></a>审稿意见</h3><h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p>本文关注联邦学习场景requesters和workers之间的博弈，将requesters确定基本单价、workers随之确定数据量分配方案的过程建模为stackelberg博弈，并使用推导+逆向归纳的方法寻找该博弈的均衡解。与已有研究不同在于本文重点关注requesters之间的interaction。最后通过数值分析得出了一系列与requesters成本和workers效用相关的结论。</p>
+<p>This paper focuses on the game between requesters and workers in the context of federated learning. It models the process where requesters set the basic unit price and workers subsequently determine their data allocation schemes as a Stackelberg game. The equilibrium solution of this game is derived using forward and backward induction methods. Unlike existing studies, this paper emphasizes the interaction between requesters. Finally, numerical analysis is conducted to draw a series of conclusions related to the costs of requesters and the utilities of workers.</p>
+<h4 id="Strength"><a href="#Strength" class="headerlink" title="Strength"></a>Strength</h4><ol>
+<li>作者关注了requesters之间对workers算力和数据的竞争博弈这一被其他研究所忽略的问题，which is innovative.</li>
+<li>作者通过巧妙的矩阵运算得到了一组可行的均衡解，which is XX.</li>
+<li>The main idea of this paper is described clearly and the research work is complete, containing detailed data analysis.</li>
+</ol>
+<ul>
+<li>The authors focus on the competitive game between requesters for workers’ computational power and data, an issue overlooked by other studies, which is innovative.</li>
+<li>The authors have derived a set of feasible equilibrium solutions through ingenious matrix operations, which is commendable.</li>
+<li>The main idea of this paper is described clearly, and the research work is complete, containing detailed data analysis.</li>
+</ul>
+<h4 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h4><ol>
+<li>作者声称requesters之间的interaction鲜有研究讨论，但有一些关注该问题的论文并没有在related works中列出，例如”Digital Twins Enabled On-Demand Matching for Multi-Task Federated Learning in HetVNets”. 另一方面，本文中对联邦学习场景下requesters之间博弈的处理方式与crowdsourcing场景下的requesters之间的博弈分析非常相似。如果将调研拓展到crowdsourcing领域，则有更多这方面的研究。建议作者进行更充分的调研。</li>
+<li>本文对requester成本函数、workers收益函数以及双方博弈的建模过于理论化，建议补充一些实际数据以说明函数和参数设计的合理性。</li>
+<li>本文的主要目的是帮助requesters设计以基础单价为核心的激励机制，那么该机制与其他联邦学习中的用户激励机制相比有怎样的优势呢？</li>
+<li>本文在数值分析中的各参数取值有什么依据？这样完全由虚拟数据得到的实验现象说服力较弱。</li>
+<li>本文中先后出现了energy、computing power和computation capability，根据我的理解，这三个词表述的应该是相同含义，建议作者统一前后文的表述。</li>
+<li>本文的模型中涉及许多参数，而作者没有介绍这些参数是公开信息还是私有信息。</li>
+<li>Requesters需要根据公式38来计算最优策略，这看起来要求每个requester都了解所有workers的单位成本，which is 不合理的。在实际场景中，workers并不会公开自己的训练成本，即便强制要求公开，workers也很可能谎报。</li>
+</ol>
+<ul>
+<li>The authors claim that the interaction between requesters has been rarely discussed in research, but some papers that address this issue are not listed in the related works section, such as “Digital Twins Enabled On-Demand Matching for Multi-Task Federated Learning in HetVNets.” On the other hand, the approach to modeling the game between requesters in federated learning scenarios is very similar to the analysis of games between requesters in crowdsourcing scenarios. Expanding the research to include the crowdsourcing field would reveal more studies on this topic. The authors are advised to conduct a more comprehensive literature review.</li>
+<li>The modeling of the requester cost function, workers’ utility function, and the game between both parties is overly theoretical. It is recommended to supplement with actual data to demonstrate the reasonableness of the function and parameter design.</li>
+<li>The main purpose of this paper is to help requesters design incentive mechanisms centered around the basic unit price. What are the advantages of this mechanism compared to other user incentive mechanisms in federated learning?</li>
+<li>What is the basis for the parameter values used in the numerical analysis? The experimental phenomena derived from entirely virtual data are less convincing.</li>
+<li>The terms “energy,” “computing power,” and “computation capability” appear sequentially in the paper. According to my understanding, these terms should represent the same concept. It is recommended that the authors unify the terminology throughout the text.</li>
+<li>The model in this paper involves numerous parameters, but the authors do not clarify whether these parameters are public information or private information.</li>
+<li>Requesters need to calculate the optimal strategy based on Equation 38, which appears to require each requester to know the unit cost of all workers. This is unrealistic. In practical scenarios, workers do not disclose their training costs, and even if forced to do so, they are likely to misreport.</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2024/06/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Incentive%20Mechanism%20for%20Multiple%20Requesters%20in%20Federated%20Learning%20a%20Multi-Leader%20Stackelberg%20Game%20Approach/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/federated-learning/" rel="tag">federated-learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mechanism-design/" rel="tag">mechanism-design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/stackelberg-game/" rel="tag">stackelberg-game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/blog/2024/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Max%20Attestation%20Matters%20Making%20Honest%20Parties%20Lose%20Their%20Incentives%20in%20Ethereum%20PoS/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            论文记录-Max Attestation Matters: Making Honest Parties LoseTheir Incentives in Ethereum PoS
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2024/05/30/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95-20240530/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">生活记录-20240530</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2024
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>

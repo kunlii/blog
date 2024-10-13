@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/matery.css">
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
   <meta charset="utf-8" />
     
   <meta name="description" content="infocom 2024的5篇审稿" />
@@ -15,14 +15,14 @@
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
   
   
-<link rel="stylesheet" href="/dist/main.css">
+<link rel="stylesheet" href="/blog/dist/main.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
   
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/blog/css/custom.css">
 
   
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
@@ -60,11 +60,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-INFOCOM%202024%E5%AE%A1%E7%A8%BF/" class="article-date">
+      <a href="/blog/2023/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-INFOCOM%202024%E5%AE%A1%E7%A8%BF/" class="article-date">
   <time datetime="2023-08-15T01:45:36.000Z" itemprop="datePublished">2023-08-15</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
   </div>
   
 <div class="word_count">
@@ -247,7 +247,9 @@
 <li>构建交易图并根据权重划分分区，然后修改分片的做法创新性较弱，本文也没提出新的图算法；把合约放到TEE执行的做法也不少见，本文总的来说就是TEE+TCG，关注跨片合约这一点是现有研究比较少的，从实验来看性能也有提升。</li>
 </ol>
 </li>
-<li>补充：查资料的时候看到infocom2022有篇论文<strong>BrokerChain: A Cross-Shard Blockchain Protocol for Account/Balance based State Sharding</strong>也是根据历史数据做一个交易状态图并划分，然后动态调整。<h1 id="1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性"><a href="#1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性" class="headerlink" title="1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性"></a>1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性</h1></li>
+<li>补充：查资料的时候看到infocom2022有篇论文<strong>BrokerChain: A Cross-Shard Blockchain Protocol for Account/Balance based State Sharding</strong>也是根据历史数据做一个交易状态图并划分，然后动态调整。</li>
+</ol>
+<h1 id="1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性"><a href="#1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性" class="headerlink" title="1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性"></a>1570936952——Lipper：在时变对抗群体下利用分片区块链的安全性和活跃性</h1><ol>
 <li>针对问题：现有协议采用悲观方法，总是试图承受固定上限数量的对抗节点。当运行时实际存在的对手较少时，这种方法无法利用最大化事务吞吐量的机会。</li>
 <li>本文方法： Lipper，一种新颖的分片协议，可以在最大化交易吞吐量和防御对手的运行时数量之间实现权衡。更具体地说，只要对手的数量低于安全阈值，Lipper的共识推导始终保证网络的安全，而不牺牲交易吞吐量。Lipper 可以根据攻击网络活跃度的对手数量来优雅地调整交易吞吐量。当对手较多（或较少）时，Lipper 将花费更多（或更少）的努力来实现活跃性，从而降低（或增加）交易吞吐量。</li>
 <li>大量的实验结果表明，与最先进的方法相比，Lipper 在存在随时间变化的对手群体的情况下实现了卓越的交易吞吐量和鲁棒性。</li>
@@ -588,12 +590,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2023/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-INFOCOM%202024%E5%AE%A1%E7%A8%BF/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2023/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-INFOCOM%202024%E5%AE%A1%E7%A8%BF/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mechanism-design/" rel="tag">mechanism design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mechanism-design/" rel="tag">mechanism-design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%AE%A1%E7%A8%BF%E6%84%8F%E8%A7%81/" rel="tag">审稿意见</a></li></ul>
 
     </footer>
   </div>
@@ -601,7 +603,7 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/08/31/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Truthful%20Mobile%20Crowd%20Sensing%20with%20Interdependent%20Valuations/" class="article-nav-link">
+      <a href="/blog/2023/08/31/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Truthful%20Mobile%20Crowd%20Sensing%20with%20Interdependent%20Valuations/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -611,7 +613,7 @@
       </a>
     
     
-      <a href="/2023/07/20/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Evolution%20of%20cooperation%20in%20stochastic%20games/" class="article-nav-link">
+      <a href="/blog/2023/07/20/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Evolution%20of%20cooperation%20in%20stochastic%20games/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">论文记录-Evolution of cooperation in stochastic games</div>
       </a>
@@ -727,37 +729,29 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer.png" alt="左边"></a>
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
+      <a class="nav-item-link" href="/blog/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
+      <a class="nav-item-link" href="/blog/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
+      <a class="nav-item-link" href="/blog/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
+      <a class="nav-item-link" href="/blog/tags">标签</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-ch">个人简历</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-en">Resume</a>
+      <a class="nav-item-link" href="/blog/friends">友链</a>
     </li>
     
   </ul>
@@ -809,15 +803,15 @@
   </div>
 </div>
     
-<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
 
 
-<script src="/js/lazyload.min.js"></script>
+<script src="/blog/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
 
 
-<script src="/js/tocbot.min.js"></script>
+<script src="/blog/js/tocbot.min.js"></script>
 
 <script>
   tocbot.init({
@@ -837,7 +831,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
+<script src="/blog/dist/main.js"></script>
 
 <!-- ImageViewer -->
 
@@ -987,7 +981,7 @@
 <!-- CodeCopy -->
 
 
-<link rel="stylesheet" href="/css/clipboard.css">
+<link rel="stylesheet" href="/blog/css/clipboard.css">
 
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
@@ -1066,8 +1060,8 @@
     <canvas id="live2d4" style="top:150px"></canvas>
 </div>
 <!--    src 中改为你存放的路径    -->
-<script src="/dist/live2d_bundle.js"></script>
-<script async type="module" src="/js/waifu-tips.js"></script>
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
 
 </body>
 

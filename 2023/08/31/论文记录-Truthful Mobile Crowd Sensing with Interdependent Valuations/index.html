@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/matery.css">
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
   <meta charset="utf-8" />
     
   <meta name="description" content="具有相互依赖的估值的真实移动群智感知" />
@@ -15,14 +15,14 @@
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
   
   
-<link rel="stylesheet" href="/dist/main.css">
+<link rel="stylesheet" href="/blog/dist/main.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
   
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/blog/css/custom.css">
 
   
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
@@ -60,11 +60,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/08/31/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Truthful%20Mobile%20Crowd%20Sensing%20with%20Interdependent%20Valuations/" class="article-date">
+      <a href="/blog/2023/08/31/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Truthful%20Mobile%20Crowd%20Sensing%20with%20Interdependent%20Valuations/" class="article-date">
   <time datetime="2023-08-31T13:35:43.000Z" itemprop="datePublished">2023-08-31</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
   </div>
   
 <div class="word_count">
@@ -133,7 +133,7 @@
 <li>MCS系统包含一个平台（管理者）和一组用户集合$\mathcal{I}={1\leq i\leq I}$</li>
 <li>MCS任务旨在估计一组可分割资源$\mathcal{N}={1\leq n\leq N}$的可访问性和质量</li>
 <li>用户既是MCS任务的worker，也是资源的消费者<h3 id="System-Overview"><a href="#System-Overview" class="headerlink" title="System Overview"></a>System Overview</h3></li>
-<li>世界状态：$\omega \triangleq\left\{\omega_n\right\}_{n \in \mathcal{N}}$表示未知随机的世界状态，$\Omega$表示所有可能的世界状态组成的有限集合，每个条目$\omega_n$代表资源$n$的质量和可用性，例如，无线信道$n$上的干扰级别或第$n个WiFi接入点的拥塞级别。</li>
+<li>世界状态：$\omega \triangleq\left\{\omega_n\right\}_{n \in \mathcal{N}}$表示未知随机的世界状态，$\Omega$表示所有可能的世界状态组成的有限集合，每个条目$\omega_n$代表资源$n$的质量和可用性，例如，无线信道$n$上的干扰级别或第$n$个WiFi接入点的拥塞级别。</li>
 <li>传感数据： 每个用户$i$获取随机传感数据$\theta_i\in \Theta_i$，可被用于估计世界状态$\omega$，需要提交给平台。上报的传感数据记作$\tilde{\theta}_i \in \Theta_i$，该数据可能是谎报的。$\theta_i$可能是多维的，$\theta \triangleq\left\{\theta_i\right\}_{i \in I} \in \Theta$表示用户传感数据概况。在所有其他用户的传感数据公开之前，每个用户对其他用户的数据$\theta_{-i} \triangleq\left\{\theta_j\right\}_{j \neq i}$有自己的先验信念，该信念用条件概率$P_{\Theta_{-i}}\left(\theta_{-i} \mid \theta_i\right)$来表示。通过收集所有用户的感官数据$\theta$，我们可以使用条件概率函数$P_{\Omega}(\omega \mid \theta)$来进行贝叶斯估计。</li>
 <li><p>网络资源： 资源发现平台旨在有效地将资源集分配给用户。令$x_i=\left\{x_{i, n}\right\}_{n \in \mathcal{N}} \in \mathbb{R}_{+}^N$表示平台的分配决策，其中$x_{i, n}$表示分配给用户$i$的资源量$n$（例如，第$n$频谱通道分配给用户$i$的时间份额）。用$x=\left\{x_i\right\}_{i \in I}$表示分配概况，$\mathcal{X}$表示所有$x$的集合，则：        </p>
 <script type="math/tex; mode=display">
@@ -377,12 +377,12 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://likun1208.github.io/2023/08/31/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Truthful%20Mobile%20Crowd%20Sensing%20with%20Interdependent%20Valuations/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2023/08/31/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Truthful%20Mobile%20Crowd%20Sensing%20with%20Interdependent%20Valuations/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crowdsourcing/" rel="tag">crowdsourcing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design/" rel="tag">design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mechanism/" rel="tag">mechanism</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/trustworthiness/" rel="tag">trustworthiness</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/crowdsourcing/" rel="tag">crowdsourcing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mechanism-design/" rel="tag">mechanism-design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/trustworthiness/" rel="tag">trustworthiness</a></li></ul>
 
     </footer>
   </div>
@@ -390,7 +390,7 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
    
   <nav class="article-nav">
     
-      <a href="/2023/09/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-ARTHUR%20GERVAIS%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB%E8%AE%B0%E5%BD%95/" class="article-nav-link">
+      <a href="/blog/2023/09/25/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Arthur%20Gervais%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -400,7 +400,7 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
       </a>
     
     
-      <a href="/2023/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-INFOCOM%202024%E5%AE%A1%E7%A8%BF/" class="article-nav-link">
+      <a href="/blog/2023/08/15/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-INFOCOM%202024%E5%AE%A1%E7%A8%BF/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">论文记录-INFOCOM 2024审稿</div>
       </a>
@@ -516,37 +516,29 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer.png" alt="左边"></a>
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
   </div>
   
   <ul class="nav nav-main">
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
+      <a class="nav-item-link" href="/blog/">主页</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
+      <a class="nav-item-link" href="/blog/archives">归档</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
+      <a class="nav-item-link" href="/blog/categories">分类</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
+      <a class="nav-item-link" href="/blog/tags">标签</a>
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-ch">个人简历</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/cv-en">Resume</a>
+      <a class="nav-item-link" href="/blog/friends">友链</a>
     </li>
     
   </ul>
@@ -598,15 +590,15 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
   </div>
 </div>
     
-<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
 
 
-<script src="/js/lazyload.min.js"></script>
+<script src="/blog/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
 
 
-<script src="/js/tocbot.min.js"></script>
+<script src="/blog/js/tocbot.min.js"></script>
 
 <script>
   tocbot.init({
@@ -626,7 +618,7 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
+<script src="/blog/dist/main.js"></script>
 
 <!-- ImageViewer -->
 
@@ -776,7 +768,7 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
 <!-- CodeCopy -->
 
 
-<link rel="stylesheet" href="/css/clipboard.css">
+<link rel="stylesheet" href="/blog/css/clipboard.css">
 
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
@@ -855,8 +847,8 @@ J_i^{\beta_i^*}\left(\lambda^*(\theta) \mid \theta\right) \geq 0, \forall i \in 
     <canvas id="live2d4" style="top:150px"></canvas>
 </div>
 <!--    src 中改为你存放的路径    -->
-<script src="/dist/live2d_bundle.js"></script>
-<script async type="module" src="/js/waifu-tips.js"></script>
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
 
 </body>
 
