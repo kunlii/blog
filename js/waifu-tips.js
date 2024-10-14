@@ -19,8 +19,9 @@
  ****************************************************************************************************/
 const live2d_settings = {
     // 基本设置
-    'modelUrl': '/model',                        // 存放模型的文件夹路径，末尾不需要斜杠
-    'tipsMessage': 'waifu-tips.json',           // 看板娘提示消息文件的路径，可以留空不加载
+    'modelUrl': '/blog/model',                        // 存放模型的文件夹路径，末尾不需要斜杠
+    //'tipsMessage': '/blog/js/waifu-tips.json',           // 看板娘提示消息文件的路径，可以留空不加载
+    'tipsMessage': ' ',           // 看板娘提示消息文件的路径，可以留空不加载
     // 模型设置
     'modelName': 'gongzi',                      // 默认加载的模型名称，仅在无本地记录的情况下有效
     'modelStorage': false,                       // 记忆模型，下次打开页面会加载上次选择的模型
@@ -53,7 +54,7 @@ const live2d_settings = {
     'debugMousemove': false,                    // 在控制台打印指针移动坐标，仅在 debug 为 true 时可用
     'logMessageToConsole': true,                // 在控制台打印看板娘提示消息
     'l2dVersion': '2.0.0',                      // 当前版本
-    'homePageUrl': 'https://likun1208.github.io/',  // 主页地址，可选 'auto'(自动), '{URL 网址}'
+    'homePageUrl': 'https://kunlii.github.io/blog',  // 主页地址，可选 'auto'(自动), '{URL 网址}'
     'aboutPageUrl': 'https://github.com/Konata09/Live2dOnWeb/', // 关于页地址, '{URL 网址}'
     'screenshotCaptureName': 'bronyaMoe.png',   // 看板娘截图文件名，例如 'live2d.png'
 }
