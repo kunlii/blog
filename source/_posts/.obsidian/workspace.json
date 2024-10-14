@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "科研入门指引.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "科研入门指引.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "hexo-next-github配置blog.md",
+                "file": "科研入门指引.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "hexo-next-github配置blog.md"
+                "file": "科研入门指引.md"
               }
             }
           }
@@ -160,9 +160,10 @@
   },
   "active": "9596636bc7e22e44",
   "lastOpenFiles": [
+    "论文略读记录.md",
     "科研入门指引.md",
-    "vscode的一系列配置.md",
     "hexo-next-github配置blog.md",
+    "vscode的一系列配置.md",
     "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
     "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
     "论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning.md",
