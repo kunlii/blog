@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "科研入门指引.md",
+                "file": "生活记录-20241015.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "科研入门指引.md",
+                "file": "生活记录-20241015.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "科研入门指引.md",
+                "file": "生活记录-20241015.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "科研入门指引.md"
+                "file": "生活记录-20241015.md"
               }
             }
           }
@@ -160,8 +160,13 @@
   },
   "active": "9596636bc7e22e44",
   "lastOpenFiles": [
-    "论文略读记录.md",
+    "生活记录-20240815.md",
+    "生活记录-20241015.md",
+    "生活记录-20240315.md",
+    "生活记录-20240530.md",
     "科研入门指引.md",
+    "论文记录-A Bayesian Truth Serum for Subjective Data.md",
+    "论文略读记录.md",
     "hexo-next-github配置blog.md",
     "vscode的一系列配置.md",
     "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
