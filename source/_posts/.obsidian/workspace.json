@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "生活记录-20241118.md",
+                "file": "Beamer使用和配置记录.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "生活记录-20241118"
+              "title": "Beamer使用和配置记录"
             }
           }
         ]
@@ -153,10 +153,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "生活记录-20241118.md"
+                "file": "Beamer使用和配置记录.md"
               },
               "icon": "lucide-list",
-              "title": "生活记录-20241118 的大纲"
+              "title": "Beamer使用和配置记录 的大纲"
             }
           }
         ],
@@ -178,8 +178,8 @@
   },
   "active": "9596636bc7e22e44",
   "lastOpenFiles": [
-    "生活记录-20241015.md",
     "生活记录-20241118.md",
+    "生活记录-20241015.md",
     "生活记录-20240815.md",
     "生活记录-20240315.md",
     "生活记录-20240530.md",
