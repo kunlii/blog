@@ -8,7 +8,7 @@ tags:
 categories: 论文
 description: 针对以太坊PoS激励机制的攻击
 ---
-# Max Attestation Matters: Making Honest Parties Lose Their Incentives in Ethereum PoS
+ # Max Attestation Matters: Making Honest Parties Lose Their Incentives in Ethereum PoS
 
 ## Abstract
 攻击对象：以太坊2.0的PoS激励机制

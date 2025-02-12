@@ -7,6 +7,7 @@ tags:
   - 审稿意见
 categories: 论文
 description: infocom 2024的5篇审稿
+password: reisi1001
 ---
 # 1570927008——CORE： 通过区块链发布受交易承诺控制的私有数据
 1. 针对问题：区块链上交易失败后本该被撤回的私有数据却被接收方收到了

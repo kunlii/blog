@@ -7,6 +7,7 @@ tags:
   - 审稿意见
 categories: 论文
 description: HCC的审稿
+password: reisi1001
 ---
  # Intro
 1. 多主体控制研究普遍用计算机游戏来测试

@@ -6,6 +6,7 @@ tags:
   - blockchain
 categories: 论文
 description: infocom2025的审稿
+password: reisi1001
 ---
 ## Abstract
 跨链交易验证主要方法是看这个交易的Merkle证明，但是不同跨链交易的Merkle证明可能有重叠，这增加了计算开销。本文提出了Libra，设计了构造合并Merkle证明的递归算法，考虑到执行限制问题，设计了近似比率分析的启发式算法，把跨链交易划分开，然后合并每组的Merkle证明。仿真实验评估了验证开销，存储量和计算量分别减少了1.4 ~ 5.2倍和1.5 ~ 5.2倍。

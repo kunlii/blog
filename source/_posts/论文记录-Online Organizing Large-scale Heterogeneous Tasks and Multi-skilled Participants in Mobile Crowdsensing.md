@@ -2,10 +2,11 @@
 title: 论文记录-Online Organizing Large-scale Heterogeneous Tasks and Multi-skilled Participants in Mobile Crowdsensing
 date: 2021-05-26 13:26:13
 tags:
-    - crowdsourcing
-    - 审稿意见
+  - crowdsourcing
+  - 审稿意见
 categories: 论文
 description: 是TMC的审稿意见
+password: reisi1001
 ---
 # Online Organizing Large-scale Heterogeneous Tasks and Multi-skilled Participants in Mobile Crowdsensing
 
