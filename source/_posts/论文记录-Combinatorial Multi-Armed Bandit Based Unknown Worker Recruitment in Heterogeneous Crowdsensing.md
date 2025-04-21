@@ -40,7 +40,7 @@ category: 论文
 | B                                          | 预算                                                      |
 | $w_j$                                      | 第j个任务的权重，所有权重加起来的和是1                                    |
 | L                                          | 每个worker会向平台提交L个任务候选                                    |
-| $p_i^l=\langle M_i^l,c_i^l \rangle$        | 第i个worker提交的第l个选项，其中$M_i^l$表示该worker的任务候选集合，$c_i^l$表示收费 |
+| $p_i^l=\langle M_i^l,c_i^l \rangle$        | 第i个worker提交的第l个选项，其中$M_i^l$表示该worker的任务候选集合，$c_i^l$表示收费 |
 | $c_i^l=\varepsilon_i f(\vert M_i^l \vert)$ | 每个worker的收费与该选项包含的任务数正相关，每个worker的收费系数不同                |
 | $P_i=\{p_i^l \vert 1<=l<=L\}$              | 第i个worker提交的选项集合                                        |
 | $P=U_{i\in N}P_i $                         | 所有选项集合                                                  |
@@ -118,7 +118,7 @@ category: 论文
    ### 本文方法
    
    1. 新增一个符号表示：$m_i(t)=\sum_{l=1}^Ln_i^l(t)$，表示$\varepsilon_i$目前被学习过的次数（第i个worker的所有选项目前被选过的次数）
-   2. 新增另一个符号表示：$\overline \varepsilon_i (t) $，计算方法和前面p那个类似，也是[在此之前的值*在此之前的次数+这次的值]/[在此之前的次数+1]
+   2. 新增另一个符号表示：$\overline \varepsilon_i (t)$，计算方法和前面p那个类似，也是[在此之前的值*在此之前的次数+这次的值]/[在此之前的次数+1]
    3. 同样也新增了$\widehat  \varepsilon_i (t)$，和前面的一样
    4. 把之前那个目标函数里的费用部分用这里新的符号改写然后化简，但是这里化简以后的没看懂（问了一下作者，是从regret部分分析出来的，然后又看了看之前没看的证明，发现是证明部分分析的）
    5. 于是整个流程就和之前的一模一样，只是目标函数换了

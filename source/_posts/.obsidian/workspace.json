@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "38442320aa27eb1d",
+        "id": "1351dbc8d734382b",
         "type": "tabs",
         "children": [
           {
-            "id": "e45dbd05f8097dd4",
+            "id": "6caf66b6d32b4d8c",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -175,8 +175,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "e45dbd05f8097dd4",
+  "active": "6caf66b6d32b4d8c",
   "lastOpenFiles": [
+    "生活记录-20250421.md",
+    "论文记录-Combinatorial Multi-Armed Bandit Based Unknown Worker Recruitment in Heterogeneous Crowdsensing.md",
+    "论文记录-Budgeted Unknown Worker Recruitment for Heterogeneous Crowdsensing Using CMAB.md",
     "论文记录-分片相关.md",
     "论文记录-A Bayesian Truth Serum for Subjective Data.md",
     "论文记录-A Novel Paradigm for Disaster-Response Networks Framework, Strategy and Solution.md",
@@ -189,9 +192,7 @@
     "论文记录-Best reply structure and equilibrium convergence in generic games.md",
     "论文记录-BEYOND FINITE LAYER NEURAL NETWORKS BRIDGING DEEP ARCHITECTURES AND NUMERICAL DIFFERENTIAL EQUATIONS.md",
     "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
-    "论文记录-Budgeted Unknown Worker Recruitment for Heterogeneous Crowdsensing Using CMAB.md",
     "论文记录-Closed-Form Expression for the Poisson-Binomial Probability Density Function.md",
-    "论文记录-Combinatorial Multi-Armed Bandit Based Unknown Worker Recruitment in Heterogeneous Crowdsensing.md",
     "论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning.md",
     "论文记录-Dynamic-Task-Pricing-in-Multi-Requester-Mobile-Crowd-Sensing-with-Markov-Correlated-Equilibrium.md",
     "论文记录-Eliciting Information from Heterogeneous Mobile Crowdsourced Workers Without Verification.md",
@@ -201,7 +202,6 @@
     "论文记录-ICMC2024审稿.md",
     "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
     "论文记录-INFOCOM 2024审稿.md",
-    "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md",
-    "论文记录-LLM+Privacy Survey总结.md"
+    "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md"
   ]
 }
