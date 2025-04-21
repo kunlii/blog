@@ -4,11 +4,19 @@
     "type": "split",
     "children": [
       {
+<<<<<<< HEAD
         "id": "1351dbc8d734382b",
         "type": "tabs",
         "children": [
           {
             "id": "6caf66b6d32b4d8c",
+=======
+        "id": "43b95eb55ade2efb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8a9016afdc999d94",
+>>>>>>> 026ab7aea481d31b1ad82173440d0357ecf86956
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -175,27 +183,41 @@
       "command-palette:打开命令面板": false
     }
   },
+<<<<<<< HEAD
   "active": "6caf66b6d32b4d8c",
   "lastOpenFiles": [
     "生活记录-20250421.md",
     "论文记录-Combinatorial Multi-Armed Bandit Based Unknown Worker Recruitment in Heterogeneous Crowdsensing.md",
     "论文记录-Budgeted Unknown Worker Recruitment for Heterogeneous Crowdsensing Using CMAB.md",
     "论文记录-分片相关.md",
+=======
+  "active": "8a9016afdc999d94",
+  "lastOpenFiles": [
+    "论文记录-GenAI Advertising Risks of Personalizing Ads with LLMs.md",
+    "论文记录-Truthful Mobile Crowd Sensing with Interdependent Valuations.md",
+    "论文记录-Optimal and Quantized Mechanism Design for Fresh Data Acquisition.md",
+    "论文记录-Eliciting Thinking Hierarchy without a Prior.md",
+>>>>>>> 026ab7aea481d31b1ad82173440d0357ecf86956
     "论文记录-A Bayesian Truth Serum for Subjective Data.md",
-    "论文记录-A Novel Paradigm for Disaster-Response Networks Framework, Strategy and Solution.md",
-    "论文记录-A Robust Bayesian Truth Serum for Small Populations.md",
+    "论文记录-Strategic Information Revelation in Crowdsourcing Systems Without Verification.md",
+    "论文记录-Beyond Finite Layer Neural Networks Bridging Deep Architectures And Numerical Differential Equations.md",
+    "论文记录-Best reply structure and equilibrium convergence in generic games.md",
+    "论文记录-An Efficient Anonymous Authentication and Reputation Management Scheme for Mobile Crowdsensing in Vehicular Networks.md",
     "论文记录-A solution to the single-question crowd wisdom problem.md",
+    "论文记录-A Robust Bayesian Truth Serum for Small Populations.md",
+    "论文记录-A Novel Paradigm for Disaster-Response Networks Framework, Strategy and Solution.md",
+    "论文记录-Online Organizing Large-scale Heterogeneous Tasks and Multi-skilled Participants in Mobile Crowdsensing.md",
+    "论文记录-分片相关.md",
     "论文记录-A Survey of Deep Causal Model.md",
     "论文记录-A Survey on Applications of Game Theory in Blockchain.md",
-    "论文记录-An Efficient Anonymous Authentication and Reputation Management Scheme for Mobile Crowdsensing in Vehicular Networks.md",
     "论文记录-Arthur Gervais论文记录.md",
-    "论文记录-Best reply structure and equilibrium convergence in generic games.md",
     "论文记录-BEYOND FINITE LAYER NEURAL NETWORKS BRIDGING DEEP ARCHITECTURES AND NUMERICAL DIFFERENTIAL EQUATIONS.md",
     "论文记录-Blockchain-based Revocable Key-Aggregate Searchable Encryption for Group Data Sharing in Cloud-Assisted Industrial IoT.md",
     "论文记录-Closed-Form Expression for the Poisson-Binomial Probability Density Function.md",
     "论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning.md",
     "论文记录-Dynamic-Task-Pricing-in-Multi-Requester-Mobile-Crowd-Sensing-with-Markov-Correlated-Equilibrium.md",
     "论文记录-Eliciting Information from Heterogeneous Mobile Crowdsourced Workers Without Verification.md",
+<<<<<<< HEAD
     "论文记录-Eliciting Thinking Hierarchy without a Prior.md",
     "论文记录-Evolution of cooperation in stochastic games.md",
     "论文记录-Fast randomized consensus using shared memory.md",
@@ -203,5 +225,8 @@
     "论文记录-Incentive Mechanism for Multiple Requesters in Federated Learning a Multi-Leader Stackelberg Game Approach.md",
     "论文记录-INFOCOM 2024审稿.md",
     "论文记录-Libra An Efficient Mechanism for Merging Cross-chain Transactions Verification.md"
+=======
+    "论文记录-Evolution of cooperation in stochastic games.md"
+>>>>>>> 026ab7aea481d31b1ad82173440d0357ecf86956
   ]
 }
