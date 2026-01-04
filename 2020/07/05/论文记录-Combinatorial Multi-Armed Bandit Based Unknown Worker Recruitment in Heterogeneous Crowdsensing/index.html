@@ -263,7 +263,7 @@
 <li><p>问题在于：$\varepsilon_i$也需要学习，而且每一轮会被学习一次，这和之前的任务质量不太一样。</p>
 <h3 id="本文方法"><a href="#本文方法" class="headerlink" title="本文方法"></a>本文方法</h3><ol>
 <li>新增一个符号表示：$m_i(t)=\sum_{l=1}^Ln_i^l(t)$，表示$\varepsilon_i$目前被学习过的次数（第i个worker的所有选项目前被选过的次数）</li>
-<li>新增另一个符号表示：$\overline \varepsilon_i (t) $，计算方法和前面p那个类似，也是[在此之前的值*在此之前的次数+这次的值]/[在此之前的次数+1]</li>
+<li>新增另一个符号表示：$\overline \varepsilon_i (t)$，计算方法和前面p那个类似，也是[在此之前的值*在此之前的次数+这次的值]/[在此之前的次数+1]</li>
 <li>同样也新增了$\widehat  \varepsilon_i (t)$，和前面的一样</li>
 <li>把之前那个目标函数里的费用部分用这里新的符号改写然后化简，但是这里化简以后的没看懂（问了一下作者，是从regret部分分析出来的，然后又看了看之前没看的证明，发现是证明部分分析的）</li>
 <li>于是整个流程就和之前的一模一样，只是目标函数换了</li>
@@ -424,7 +424,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2020-2024
+        2020-2026
         <i class="ri-heart-fill heart_icon"></i> Kun Li
       </li>
     </ul>
