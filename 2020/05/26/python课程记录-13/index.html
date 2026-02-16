@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="三月樱，六月雪，也望尘莫及" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    python课程记录-13 |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-python课程记录-13"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  python课程记录-13
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2020/05/26/python%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-13/" class="article-date">
+  <time datetime="2020-05-26T07:43:07.000Z" itemprop="datePublished">2020-05-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">11 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>这一课讲scipy库。</p>
+<p><code>from scipy import some_module</code></p>
+<p><code>from scipy.some_module import some_function</code></p>
+<a id="more"></a>
+<h2 id="linalg模块的使用"><a href="#linalg模块的使用" class="headerlink" title="linalg模块的使用"></a>linalg模块的使用</h2><ol>
+<li><p>基本线性代数操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> linalg</span><br><span class="line">arr = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]])</span><br><span class="line"><span class="comment"># 计算矩阵的行列式</span></span><br><span class="line">linalg.det(arr)				</span><br><span class="line"><span class="comment"># output: -2.0</span></span><br><span class="line"><span class="comment"># 计算特征值和特征向量</span></span><br><span class="line">linalg.eig(arr)</span><br><span class="line"><span class="comment"># output: (array([-0.37228132+0.j,  5.37228132+0.j]), array([[-0.82456484, -0.41597356], [ 0.56576746, -0.90937671]]))</span></span><br><span class="line"><span class="comment"># 矩阵求逆</span></span><br><span class="line">linalg.inv(arr)</span><br><span class="line"><span class="comment"># output: array([[-2. ,  1. ], [ 1.5, -0.5]])</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解线性方程组：$Ax=b$，其中A是方阵：<code>solve(A, b)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> linalg</span><br><span class="line">m = <span class="number">500</span></span><br><span class="line">A=np.random.rand(m,m)</span><br><span class="line">b=np.random.rand(m)</span><br><span class="line">x1=linalg.solve(A,b)</span><br><span class="line">x2=np.dot(linalg.inv(A),b)</span><br><span class="line">print(np.allclose(x1,x2))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更一般的线性方程组：$Ax=b$，其中A不是方阵：<code>lstsq(A,q)</code>找最小二乘解</p>
+<p>例如：给定四个点<code>(1,6) (2,5) (3,7) (4,10)</code>，找拟合直线<code>y=ax+b</code> 这样的问题可以转化为：矩阵<code>A=[[1,2],[2,1],[3,1],[4,1]]</code> ，<code>b=[6, 5, 7, 10]^T</code>，<code>x=[a,b]^T</code>，求解<code>Ax=b</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> linalg</span><br><span class="line">A = np.array([[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">1</span>],[<span class="number">3</span>,<span class="number">1</span>],[<span class="number">4</span>,<span class="number">1</span>]])</span><br><span class="line">y = np.array([<span class="number">6</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">10</span>])</span><br><span class="line">c,resid,rank,sigma=linalg.lstsq(A,y)</span><br><span class="line">print(c, resid, rank, sigma)</span><br><span class="line"><span class="comment"># [1.4 3.5] 4.200000000000003 2 [5.77937881 0.77380911]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他功能：</p>
+<ol>
+<li>范数求解: <code>linalg.norm</code></li>
+<li>广义逆求解: <code>linalg.pinv, linalg.pinv2</code></li>
+<li>矩阵分解：<code>linalg.sva, linalg.lu, linalg.qr</code></li>
+</ol>
+</li>
+</ol>
+<h2 id="optimize模块的使用"><a href="#optimize模块的使用" class="headerlink" title="optimize模块的使用"></a>optimize模块的使用</h2><ol>
+<li><p>求解带约束条件的函数最小值：<code>minimize(fun, x0[,args, method, jac, hess, bounds, constrains])</code></p>
+<ol>
+<li><p>fun是目标函数 </p>
+</li>
+<li><p>x0是初始解 </p>
+</li>
+<li><p>args：需要传递给fun, jac, hess函数的额外的参数 </p>
+</li>
+<li><p>method是所选方法：Newton-CG、CG、SLSQP、Nelder-Mead…… </p>
+</li>
+<li><p>jac: Jacobian矩阵，有些方法需要给出 </p>
+</li>
+<li><p>hess: Hessian矩阵，有些方法需要给出 </p>
+</li>
+<li><p>bounds是解的约束范围， L-BFGS-B,TNC,SLSQP,trust-constr支持 </p>
+</li>
+<li><p>constrains是约束条件，COBYLA, SLSQP, trust-constr支持</p>
+<p>例如：$min x1+x2+x3$</p>
+<p>$s.t. x_1x_2x_3&gt;25$</p>
+<p>​      $x_1^2+x_2^2+x_3^2=40$</p>
+<p>​     $1&lt;=x_1, x_2&lt;=5$     $x_3&gt;=4$</p>
+<p>$x_0=(3,3,4)$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> minimize</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">objective</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.sum(x)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">constr1</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x[<span class="number">0</span>]*x[<span class="number">1</span>]*x[<span class="number">2</span>]<span class="number">-25</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">constr2</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.sum(x**<span class="number">2</span>)<span class="number">-40</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jac</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.array([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">bnds=((<span class="number">1</span>,<span class="number">5</span>),(<span class="number">1</span>,<span class="number">5</span>),(<span class="number">4</span>,<span class="literal">None</span>))</span><br><span class="line">cons1=&#123;<span class="string">'type'</span>:<span class="string">'ineq'</span>,<span class="string">'fun'</span>:constr1&#125;</span><br><span class="line">cons2=&#123;<span class="string">'type'</span>:<span class="string">'eq'</span>,<span class="string">'fun'</span>:constr2&#125;</span><br><span class="line">cons=[cons1, cons2]</span><br><span class="line">result=minimize(objective,[<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>],method=<span class="string">'SLSQP'</span>,jac=jac,bounds=bnds,constraints=cons)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment">#     fun: 9.807034491627501</span></span><br><span class="line"><span class="comment">#     jac: array([1., 1., 1.])</span></span><br><span class="line"><span class="comment"># message: 'Optimization terminated successfully.'</span></span><br><span class="line"><span class="comment">#    nfev: 7</span></span><br><span class="line"><span class="comment">#     nit: 7</span></span><br><span class="line"><span class="comment">#    njev: 7</span></span><br><span class="line"><span class="comment">#  status: 0</span></span><br><span class="line"><span class="comment"># success: True</span></span><br><span class="line"><span class="comment">#       x: array([2.11859914, 2.11859914, 5.5698362 ])</span></span><br><span class="line"><span class="comment"># result.fun可输出最小值，result.x可输出对应的x解</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>minimize是局部最优，basinhopping、shgo等可以求解全局最优</p>
+</li>
+<li><p>求解非线性方程：<code>root(fun, x0[, args, method, jac])</code></p>
+<ol>
+<li><p>fun是要求根的方程（组） </p>
+</li>
+<li><p>x0是初始猜测解 </p>
+</li>
+<li><p>args是fun以及jac中额外的参数 </p>
+</li>
+<li><p>method是所选方法： hybr, lm, broyden1/2, anderson, linearmixing, krylov, df-sane 等 </p>
+</li>
+<li><p>jac: Jacobian矩阵</p>
+<p>例如：求解 $f(x)=2x^2+3x-10$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> root</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*x**<span class="number">2</span>+<span class="number">3</span>*x<span class="number">-10</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jac</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4</span>*x+<span class="number">3</span></span><br><span class="line"></span><br><span class="line">x=np.linspace(<span class="number">-5</span>,<span class="number">3</span>)</span><br><span class="line">plt.plot(x,func(x))</span><br><span class="line">plt.plot(x,np.zeros(len(x)))</span><br><span class="line"></span><br><span class="line">result1=root(func,<span class="number">-3</span>,method=<span class="string">'hybr'</span>,jac=jac)</span><br><span class="line">result2=root(func,<span class="number">1</span>,method=<span class="string">'lm'</span>,jac=jac)</span><br><span class="line"></span><br><span class="line">print(result1.fun,result2.fun)</span><br><span class="line">print(result1.x, result2.x)</span><br><span class="line"><span class="comment"># [-1.77635684e-15] [0.]</span></span><br><span class="line"><span class="comment"># [-3.10849528] [1.60849528]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>求解非线性方程组：和前面一样，把给定的目标函数和雅可比矩阵写成函数然后运算。</p>
+</li>
+</ol>
+<h2 id="integrate模块的使用"><a href="#integrate模块的使用" class="headerlink" title="integrate模块的使用"></a>integrate模块的使用</h2><ol>
+<li><p>根据函数求解积分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> integrate</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">half_circle</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">1</span>-x**<span class="number">2</span>)**<span class="number">0.5</span></span><br><span class="line">result = integrate.quad(half_circle, <span class="number">-1</span>, <span class="number">1</span>)	<span class="comment">#积分函数和积分上下限</span></span><br><span class="line">print(result)</span><br><span class="line"><span class="comment"># quad是一重积分，dblquad()和tplquad()分别是二重和三重积分</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据样本求解积分：分布均匀用<code>romb</code>，不均匀用<code>trapz(order 1), simple(order 2)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.integrate <span class="keyword">import</span> simps</span><br><span class="line">x=np.array([<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">y=np.array([<span class="number">1</span>,<span class="number">9</span>,<span class="number">16</span>])</span><br><span class="line">result=simps(y1,x)</span><br><span class="line">print(result)	<span class="comment"># 21.0</span></span><br><span class="line"><span class="comment"># 相当于计算x的2次方在1到4的定积分</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求解常微分方程：<code>odeint(func, y0, t, args=())</code></p>
+<ol>
+<li><p>func: 计算微分方程组中每个未知函数的一阶导数值</p>
+</li>
+<li><p>y0：微分方程组中每个未知函数的初始值</p>
+</li>
+<li><p>t：需要进行数值求解的时间点 （数值解）</p>
+</li>
+<li><p>args：计算导数时的其他参数</p>
+<p>求解方程以后还可以画好看的函数图像。</p>
+<p>这个涉及的数学知识略多，暂时也不用，就先不看例子了</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="interpolate模块的使用"><a href="#interpolate模块的使用" class="headerlink" title="interpolate模块的使用"></a>interpolate模块的使用</h2><ol>
+<li><p>插值：</p>
+<ol>
+<li>一/二维插值：interp1d/interp2d </li>
+<li>多维插值：griddata </li>
+<li>其他常用插值：Spline样条插值(spl（曲线）, bispl（曲面）等)、Rbf插值</li>
+</ol>
+</li>
+<li><p><code>interp1d(x, y, kind=&#39;linear‘,……)</code></p>
+<ol>
+<li>x,y：要插值的数据点，注意x是一个递增序列 </li>
+<li>kind：插值的方法：‘linear’, ‘nearest’, ‘zero’, ‘slinear’, ‘quadratic’, ‘cubic’, ‘previous’,  ‘next’等</li>
+<li>返回值：一个用于插值的函数，调用这个函数时以新的x为参数 ，会得到对应的y值。</li>
+</ol>
+</li>
+<li><p>一维B样条插值：</p>
+<ol>
+<li>splrep(x,y,k=3,s,……)：获得一维曲线的B样条表示 </li>
+<li>splev(x, tck, der=0,……)：根据B样条表示得到对应数值 </li>
+</ol>
+<p>呜呜呜我不想看B样条了就这样把</p>
+</li>
+</ol>
+<h2 id="拟合"><a href="#拟合" class="headerlink" title="拟合"></a>拟合</h2><ol>
+<li><p>最小二乘拟合： least_squares(fun, x0, bounds=(-inf, inf), method=‘trf’, args,……) </p>
+<ol>
+<li><p>fun：计算残差向量(residuals)的函数 </p>
+</li>
+<li><p>x0：猜测的参数值𝑝0 </p>
+</li>
+<li><p>bounds：参数𝑝的约束范围，2-tuple：((𝑝i的下限),(𝑝i的上限)) </p>
+</li>
+<li><p>method： ‘trf’, ‘dogbox’, ‘lm’，其中‘lm’不支持bounds </p>
+</li>
+<li><p>args：计算fun需要的其他参数，例如样本数据x，y</p>
+<p>返回值： </p>
+</li>
+<li><p>x：求解出来使得S最小的参数𝑝 </p>
+</li>
+<li><p>fun：对应的残差向量</p>
+</li>
+</ol>
+<p>一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(x,p)</span>:</span></span><br><span class="line">    A,k,theta = p</span><br><span class="line">    <span class="keyword">return</span> A*np.sin(<span class="number">2</span>*np.pi*k*x+theta)</span><br><span class="line">x=np.linspace(<span class="number">0</span>,<span class="number">2</span>*np.pi,<span class="number">100</span>)</span><br><span class="line">A,k,theta=<span class="number">10</span>,<span class="number">0.34</span>,np.pi/<span class="number">6</span>	<span class="comment"># 真实数据的函数参数</span></span><br><span class="line">y0=func(x,[A,k,theta])		<span class="comment"># 真实数据</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)			<span class="comment"># 噪声种子</span></span><br><span class="line">y=y0+<span class="number">2</span>*np.random.randn(len(x))	<span class="comment"># 添加噪声后的数据</span></span><br><span class="line"></span><br><span class="line">plt.plot(x,y,<span class="string">"o"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">residuals</span><span class="params">(p,y,x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> y-func(x,p)</span><br><span class="line">p0=[<span class="number">7</span>,<span class="number">0.4</span>,<span class="number">0</span>]</span><br><span class="line">plsq=optimize.least_squares(residuals,p0,args=(y,x))</span><br><span class="line">print(<span class="string">"真实参数："</span>,[A,k,theta])</span><br><span class="line">print(<span class="string">"拟合参数："</span>,plsq.x)</span><br><span class="line">plt.plot(x,func(x,plsq.x))</span><br><span class="line"><span class="comment"># 真实参数： [10, 0.34, 0.5235987755982988]</span></span><br><span class="line"><span class="comment"># 拟合参数： [10.25218748  0.3423992   0.50817423]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>scipy.optimize.curve_fit</code>：实质和最小二乘一样</p>
+<p>用法上和least_squares稍有点不同：不用定义误差函数，直接 使用目标函数，且目标函数的各个待优化参数𝑝直接作为函数的参 数传入。</p>
+</li>
+<li><p>多项式拟合polyfit：</p>
+<ol>
+<li><p>numpy/scipy.polyfit(x, y, deg,……)： </p>
+<ol>
+<li>x,y：待拟合的数据 </li>
+<li>deg：多项式的次数<br>返回值：<br>p：拟合后的多项式的系数，从<strong>高</strong>位到<strong>低</strong>位</li>
+</ol>
+</li>
+<li>numpy/scipy.polyval(p, x)：计算多项式p在x处的值</li>
+</ol>
+<p>例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p = np.polyfit(x,y,<span class="number">10</span>)</span><br><span class="line">plt.plot(x,np.polyval(p,x),<span class="string">'k-'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>polynomial模块：</p>
+<ol>
+<li>拟合：和上面的区别在于，返回的多项式系数是从<strong>低</strong>到<strong>高</strong>的</li>
+</ol>
+<p>例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy.polynomial <span class="keyword">import</span> polymial <span class="keyword">as</span> P</span><br><span class="line">p2=P.polyfit(x,y,<span class="number">10</span>)</span><br><span class="line">plt.plot(x,P.polyfit(x,p2),<span class="string">'m-'</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>四则运算：<code>P.polyadd(), P.polysub(), P.polymul(), P.polydiv()</code></p>
+</li>
+<li><p>微分：<code>P.polyder()</code>用来求微分以后的多项式参数，默认是一阶导，加参数就是参数对应的导数</p>
+<p>例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)	<span class="comment"># 1+2x+3x**2+4x**3</span></span><br><span class="line">P.polyder(a)	<span class="comment"># (d/dx)(c)=2+6x+12x**2	</span></span><br><span class="line"><span class="comment"># array([ 2., 6., 12.])</span></span><br><span class="line">P.polyder(a,<span class="number">3</span>)	<span class="comment"># (d**3/dx**3)(c)=24</span></span><br><span class="line"><span class="comment"># array([ 24.])</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>积分：<code>P.polyint(c)</code>  和微分类似的用法</p>
+</li>
+<li><p>求根：<code>P.polyroots(a)</code> 和微分类似，对多项式求根，返回运算之后的参数</p>
+</li>
+</ol>
+<h2 id="随堂练习"><a href="#随堂练习" class="headerlink" title="随堂练习"></a>随堂练习</h2><p>IBM.csv中保存了2014年以来的IBM股票信息，请读入IBM的收盘价，然后选取其中2019年的数据，之后： （1）假设每天的收盘价可以用之前5天的收盘价的线性组合表示出来，由此建立一个线性模型进行收盘价的预测，求解最佳的线性组合系数，并绘制收盘价以及预测的收盘价的曲线图。 </p>
+<p>（2）采用多项式对收盘价进行拟合，尝试不同的多项式次数， 选取其中较优的结果，打印该多项式的各项系数，并绘制多项式曲线以及收盘价散点图。进一步，求解该多项式的转折点， 即一阶导数为0的点（只要实数解），并在多项式曲线上以上三角的标记绘制出来。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>首先是读取csv文件并提取2019年收盘价：</li>
+<li>接下来，第一问可以看作是求解线性方程组的系数，<code>y=a*x1+b*x2+c*x3+d*x4+e*x5+f</code>，其中<code>abcdef</code>是待求解参数，<code>x1,x2,x3,x4,x5</code>分别是连续5天的收盘价，而<code>y</code>是第六天收盘价。<ol>
+<li>建立存放<code>x</code>的列表；</li>
+<li>遍历收盘价列表，把每一组收盘价（连续5个）作为一个列表加到x中，注意这里遍历的终点是倒数第5个，因为再往后就无法凑成连续5个了；</li>
+<li>每一行<code>x</code>对应的<code>y</code>都是连续5个收盘价的下一个，也就是第6个收盘价开始，即<code>ibm_2019[5:]</code></li>
+<li><code>x</code>和<code>y</code>都要转为<code>np.array</code>，然后用<code>lstsq</code>求解系数并绘制图像即可；</li>
+</ol>
+</li>
+<li>第二问则是多项式拟合，这里我把自变量<code>x</code>设置为<code>1,2,3,...</code>，因变量<code>y</code>就是所有收盘价，然后使用<code>polyfit</code>求解并输出和绘图即可。经过尝试和比较，选择了<code>deg=17</code>。</li>
+<li>求解一阶导数为0的点，也就是先对之前的多项式求导得到新多项式，再求解新多项式的根，最后在图像中标注即可。</li>
+</ol>
+<p>整体代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> linalg</span><br><span class="line"><span class="keyword">from</span> numpy.polynomial <span class="keyword">import</span> polynomial <span class="keyword">as</span> P</span><br><span class="line">ibm = pd.read_csv(<span class="string">'IBM.csv'</span>, header=<span class="number">0</span>, index_col=<span class="number">0</span>, parse_dates=<span class="literal">True</span>)</span><br><span class="line">ibm_group = ibm.groupby(ibm.index.year)</span><br><span class="line">ibm_2019 = ibm_group.get_group(<span class="number">2019</span>)[<span class="string">'Close'</span>]</span><br><span class="line">x = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(ibm_2019)<span class="number">-5</span>):</span><br><span class="line">    tmp=[ibm_2019[i],ibm_2019[i+<span class="number">1</span>],ibm_2019[i+<span class="number">2</span>],ibm_2019[i+<span class="number">3</span>],ibm_2019[i+<span class="number">4</span>],<span class="number">1</span>]</span><br><span class="line">    x.append(tmp)</span><br><span class="line">x = np.array(x)</span><br><span class="line">y = np.array(ibm_2019[<span class="number">5</span>:])</span><br><span class="line">c,resid,rank,sigma=linalg.lstsq(x,y)</span><br><span class="line">x_1=np.linspace(<span class="number">1</span>,y.size,y.size)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(x_1,y,<span class="string">'x'</span>, x_1,x.dot(c))</span><br><span class="line">x_2=np.linspace(<span class="number">1</span>,len(ibm_2019),len(ibm_2019))</span><br><span class="line">p=P.polyfit(x_2,ibm_2019,<span class="number">17</span>)</span><br><span class="line">print(<span class="string">"多项式系数为："</span>,p)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(x_2,ibm_2019,<span class="string">'x'</span>,x_2,P.polyval(x_2,p),<span class="string">'k-'</span>)</span><br><span class="line">p2=P.polyder(p)</span><br><span class="line">root=P.polyroots(p2)</span><br><span class="line">plt.plot(root, P.polyval(root,p),<span class="string">'r^'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2020/05/26/python%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-13/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/blog/2020/06/06/vscode%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            vscode的一系列配置
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2020/05/23/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-BEYOND%20FINITE%20LAYER%20NEURAL%20NETWORKS%20BRIDGING%20DEEP%20ARCHITECTURES%20AND%20NUMERICAL%20DIFFERENTIAL%20EQUATIONS/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">论文记录-FractalNet的ODE建模</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2026
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>

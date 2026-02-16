@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="DeFi攻击的综述" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    论文记录-SoK: Decentralized Finance (DeFi) Attacks |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-论文记录-SoK Decentralized Finance (DeFi) Attacks"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  论文记录-SoK: Decentralized Finance (DeFi) Attacks
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2023/10/11/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-SoK%20Decentralized%20Finance%20(DeFi)%20Attacks/" class="article-date">
+  <time datetime="2023-10-11T07:19:40.000Z" itemprop="datePublished">2023-10-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E8%AE%BA%E6%96%87/">论文</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="SoK-Decentralized-Finance-DeFi-Attacks"><a href="#SoK-Decentralized-Finance-DeFi-Attacks" class="headerlink" title="SoK: Decentralized Finance (DeFi) Attacks"></a>SoK: Decentralized Finance (DeFi) Attacks</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文：</p>
+<ol>
+<li>建立通用的参考框架来系统地评估和比较 DeFi 事件，包括攻击和事故</li>
+<li>很少有学术论文讨论“价格预言机攻击”和“未经许可的交互”，而我们的数据表明它们是两种最常见的事件类型</li>
+<li>调查了潜在的防御，并发现：<ol>
+<li>103 (56%) 的攻击不是自动执行的，为防御者提供了救援时间； </li>
+<li>字节码相似性分析至少可以检测 31 个易受攻击的合约/23 个对抗性合约；</li>
+<li>33 (15.3%) 的对手通过与中心化交易所交互而泄露了潜在的可识别信息。<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2></li>
+</ol>
+</li>
+<li>提出了DeFi框架</li>
+<li>区分攻击者和防御者</li>
+<li>防御意外</li>
+<li>追踪资金来源<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2></li>
+</ol>
+<h3 id="系统模型"><a href="#系统模型" class="headerlink" title="系统模型"></a>系统模型</h3><h4 id="网络层：传输数据"><a href="#网络层：传输数据" class="headerlink" title="网络层：传输数据"></a>网络层：传输数据</h4><ol>
+<li>通信基础：TCP/IP、DNS等</li>
+<li>区块链和P2P网络：节点如何加入、退出、发现其他节点</li>
+<li>FaaS：让交易者不通过P2P广播的方式就能直接将交易提交给矿工，提供捆绑级原子状态转换<h4 id="共识层："><a href="#共识层：" class="headerlink" title="共识层："></a>共识层：</h4></li>
+<li>共识机制：帮助区块链网络中的节点达成一致性<ol>
+<li>一个抗 Sybil 攻击的Leader选举协议，例如PoW和PoS</li>
+<li>最新链同步协议，例如最长链</li>
+<li>CON激励机制：包括挖矿奖励和交易费在内的对良性共识的鼓励，</li>
+</ol>
+</li>
+<li>节点及其操作协议：节点负责交易排序、区块生成、数据验证、数据传播，可分为以下两类<ol>
+<li>排序器节点，即PoW中的矿工或PoS中的验证器，承担上述所有四个功能。排序器可以在协议允许的范围内插入、省略和重新排序其生成的区块中的交易； </li>
+<li>普通节点，仅执行区块链数据传播，并且可以执行数据验证。<h4 id="合约层："><a href="#合约层：" class="headerlink" title="合约层："></a>合约层：</h4></li>
+</ol>
+</li>
+<li>交易：用户在交易中指定财务操作以请求区块链状态转换。 SC层通常支持交易级原子状态转换，其中同一交易中的所有财务操作要么全部执行，要么集体失败。</li>
+<li>状态：DeFi 系统状态 S 指明 (i) 用户的加密货币资产余额，(ii) 区块链信息，如时间戳、coinbase 地址、区块编号、区块气体限制（每个区块的最大计算单位），以及 (iii) DeFi 应用程序状态。</li>
+<li>状态转换：$\mathcal{T}(S\in S,tx\in TX)\rightarrow S$是状态转换函数，表示执行交易tx后返回了新状态，其中TX表示所有有效DeFi交易集合。</li>
+<li>智能合约：智能合约是将代码转换成一个或多个状态转换函数，然后由交易触发。智能合约还可以触发其他合约的功能。在部署时，构造函数可以初始化合约的状态。</li>
+<li>区块状态转换（非通用）：以太坊和 BNB 智能链都用有序的区块列表记录交易。我们用 B 表示区块集合，用 $b_i\in B$ 表示高度为$i$的区块。每个区块$b_i$可能包括$n$个交易列表，用$\{tx^0_{b_i},…,tx^n_{b_i}\}$ 表示，$n\geq0$。区块状态$S(b_{i+1})$ 源自区块$b_{i+1}$ 中所有事务在$S(b_i)$上的顺序执行：$S(b_{i+1})=\mathcal{T}(…\mathcal{T}(\mathcal{T}(S(b_i),tx^0_{b_{i+1}}),tx^1_{b_{i+1}})…)$。</li>
+<li>智能合约和L2激励机制（非通用）：DeFi 协议可以L2系统上运行，例如侧链、提交链或其灵感继承者optimistic-rollups和zk-rollups。由于 L2 系统是在第 1 层区块链（也称为 L1，如以太坊和 BNB 智能链）之上创建的，因此 L2 系统通常会在 L1 区块链的 SC 层上实施共识激励机制，以鼓励良性活动。<h4 id="协议层：部署在合约层的DeFi协议集合"><a href="#协议层：部署在合约层的DeFi协议集合" class="headerlink" title="协议层：部署在合约层的DeFi协议集合"></a>协议层：部署在合约层的DeFi协议集合</h4></li>
+<li>加密货币协议：数字资产标准，如ERC-20</li>
+<li>金融协议：区块链的独特功能（如透明度、原子性和离散批量交易执行）使得与CeFi不同的新颖设计成为可能</li>
+<li>协议层激励机制：DeFi协议可能会引入PRO激励机制，以鼓励所需的用户行为。其中一个例子是空投治理代币，以换取在去中心化交易所中提供流动性<h4 id="辅助层：提供服务以提升系统效率"><a href="#辅助层：提供服务以提升系统效率" class="headerlink" title="辅助层：提供服务以提升系统效率"></a>辅助层：提供服务以提升系统效率</h4>辅助服务指任何需要或有助于提高 DeFi 效率，但不属于上述四个系统层（即 NET、CON、SC 和 PRO）的实体。例如，运行中的 DeFi 协议实施可能由以下部分组成： (i) 前端代码；(ii) 实现协议设计的项目开发人员；(iii) 具有管理权限的 “操作员”，例如部署代码、升级协议、冻结或停止运行中的 DeFi 协议活动的权限；(iv) 从中心化交易所同步价格数据到链上智能合约的链下 Oracle 服务等。<h3 id="威胁模型"><a href="#威胁模型" class="headerlink" title="威胁模型"></a>威胁模型</h3></li>
+<li>DeFi事件：事件是指导致以下一个或多个实体遭受意外经济损失的一系列行为： (i) 用户； (ii) 流动性提供者； (iii) 投机者；或 (iv) 运营商。我们将事件分为以下两类：<ol>
+<li>攻击：对手 A 可能会利用漏洞，试图禁用、延迟或改变 DeFi 协议的预期状态转换。尽管所有五个系统层都存在漏洞，但 DeFi 漏洞最常见于以下三个层：<ol>
+<li>合约层：编码错误造成的，例如算术错误、转换错误、访问控制不一致、函数重入等</li>
+<li>协议层：类似于金融市场操纵，而不是传统的系统漏洞（即协议设计缺陷，例如不安全的外部协议依赖性或交互）</li>
+<li>辅助层：包括操作漏洞（例如链下预言机操纵、私钥泄露等）和“信息不对称”攻击（例如后门、蜜罐、网络钓鱼等）。一般来说，我们观察到用户在提供金融资产之前可能并不总是（或可能无法）检查和理解 DeFi 协议智能合约，更不用说评估其安全性和风险了。因此，用户对合约操作的理解可能主要基于营销传播，而不是实际的合约源代码，从而导致用户遇到不可预见或意外的情况。</li>
+</ol>
+</li>
+<li>事故：任何未明确涉及主动对手的事件都被归类为 DeFi 事故。例如，由于无意的编码错误，用户的资金可能会被永久锁定在合约中。</li>
+</ol>
+</li>
+<li>对抗效用目标：假设对抗者理性<ol>
+<li>货币：货币效用函数定义为 A 的加密货币资产组合的市场价值总增量，对抗者旨在最大化该投资组合。</li>
+<li>非货币：对抗者可能会最大化非货币效用，例如成就感或声誉。 DeFi 白帽黑客（也称为道德黑客）是非货币对抗的一个例子，他们发起对抗，试图将 DeFi 事件的损失降到最低</li>
+</ol>
+</li>
+<li>对抗知识：对抗者具有的信息<ol>
+<li>公开信息：<ol>
+<li>原始链上数据，如区块、大区块、交易、账户、余额和已部署的智能合约代码；</li>
+<li>原始网络数据，如 P2P 网络转发行为、待处理区块、已丢弃的过期区块、区块链节点 IP 地址、端口号、客户端版本字符串等； </li>
+<li>公共侧渠道，如开源智能合约代码、社交媒体/聊天信息；</li>
+<li>公开数据分析，如推断的网络拓扑结构、估计的序列器位置和反编译的智能合约字节码。</li>
+</ol>
+</li>
+<li>排序器： 如果对抗者是/与排序器有联系，则对抗者会获得以下信息：<ol>
+<li>来自私人通信渠道的待处理交易；</li>
+<li>相应排序器的交易排序逻辑，包括贿赂偏好；</li>
+<li>如果相应排序器生成下一个区块，则在广播前提前访问区块状态。</li>
+</ol>
+</li>
+<li>内幕信息：例如，如果对抗者能提前获得外部市场价格、预言机更新或操作员的钱包密码，就可能出现特权信息不对称。</li>
+</ol>
+</li>
+<li>对抗能力：具有不同知识水平的 A 可能能够实现相同的能力。例如，排序器可以控制其生成的块的交易顺序（K2），而没有排序器知识的对抗者也可以通过在公共区块链 P2P 网络上竞争来执行前/后运行（K1）。<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2>本文数据集来源于大量学术论文、审计报告、以太坊和BSC的区块链事件，就不记录具体细节了。<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2></li>
+<li>事件频率随时间推移增加</li>
+<li>分析了不同协议类型发生事件的比例，与稳定币和借贷相关的协议问题明显更多</li>
+<li>用SEM分析了变量之间的因果关系，包括一个内生/因变量（即伤害）和三个外生/自变量（即资产、预防性防御和反应性防御）</li>
+<li>探讨了紧急暂停机制的有效性（看起来没什么用）</li>
+<li>分析了安全审计的有效性：有点用，但样本太少，不确定到底多有用。<h2 id="事件防御"><a href="#事件防御" class="headerlink" title="事件防御"></a>事件防御</h2></li>
+<li>执行时间范围：过半的攻击不是自动执行的，因此有时间救援，最短一小时，最多25天</li>
+<li>字节码相似度分析：用于识别对抗性合约</li>
+<li>FaaS的使用：套利、私人对抗</li>
+<li>资金追踪：追踪从地址X到Y的交易，目前没有基于账户的资金追踪。资金来源如下：<ol>
+<li>中心化交易所：满足一定条件，反洗钱服务等会直接要求交易所泄露个人信息</li>
+<li>混币器</li>
+<li>跨链桥<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2></li>
+</ol>
+</li>
+<li>DeFi事件：防御者试图最小化安全风险面，而攻击者则突破防御。</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2023/10/11/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-SoK%20Decentralized%20Finance%20(DeFi)%20Attacks/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/defi/" rel="tag">defi</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/blog/2023/10/18/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Cooperative%20Multi-Agent%20Game%20Based%20on%20Reinforcement%20Learning/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            论文记录-Cooperative Multi-Agent Game Based on Reinforcement Learning
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2023/10/03/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-A%20Survey%20on%20Applications%20of%20Game%20Theory%20in%20Blockchain/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">论文记录-A Survey on Applications of Game Theory in Blockchain</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2026
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>

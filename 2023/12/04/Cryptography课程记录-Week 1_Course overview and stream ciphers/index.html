@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="三月樱，六月雪，也望尘莫及" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Cryptography课程记录-Week 1: Course overview and stream ciphers |  左边
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/blog/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/blog/dist/main.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  
+<link rel="stylesheet" href="/blog/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Cryptography课程记录-Week 1_Course overview and stream ciphers"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Cryptography课程记录-Week 1: Course overview and stream ciphers
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/blog/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-Week%201_Course%20overview%20and%20stream%20ciphers/" class="article-date">
+  <time datetime="2023-12-04T06:39:54.000Z" itemprop="datePublished">2023-12-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Section-1-what-is-cryptography-about"><a href="#Section-1-what-is-cryptography-about" class="headerlink" title="Section 1: what is cryptography about?"></a>Section 1: what is cryptography about?</h1><h2 id="Course-Overview"><a href="#Course-Overview" class="headerlink" title="Course Overview"></a>Course Overview</h2><p>课程目标：</p>
+<ul>
+<li>密码学原理</li>
+<li>如何正确使用密码学原语和安全性证明</li>
+</ul>
+<p>密码学的应用案例：</p>
+<ul>
+<li>安全通信：Alice和Bob试图使用HTTPS通信，起到安全作用的是SSL，也称为TLS，确保网络中传输的数据既不会被窃听也不会被篡改。<ul>
+<li>网络通信：HTTPS</li>
+<li>无线通信：802.11i WPA2, GSM, Bluetooth</li>
+<li>SSL(Secure Sockets Layer)/TLS由两部分组成：<ol>
+<li>握手协议：构造共享密钥，采用公钥技术</li>
+<li>记录层：如何使用密钥传输数据</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>磁盘加密文件：EFS, TrueCrypt<ul>
+<li>对磁盘上的文件加密，保证既不会被窃取也不会被篡改【保密性和完整性】</li>
+</ul>
+</li>
+<li>内容保护（例如DVD, Blu-ray）：CSS, AACS</li>
+<li>用户认证 等等</li>
+</ul>
+<p>安全通信的基石：对称加密系统（sym.encryption）</p>
+<ul>
+<li>Alice和Bob使用共享密钥<code>k</code>通信，攻击者不知道<code>k</code></li>
+<li>使用公开的加密算法<code>E</code>和解密算法<code>D</code>，<code>E</code>的输入是明文消息<code>m</code>和密钥<code>k</code>，输出密文消息<code>c</code>；<code>D</code>的输入是密文消息<code>c</code>和密钥<code>k</code>，输出明文消息<code>m</code>。</li>
+</ul>
+<p>对称加密系统的两种情况：</p>
+<ul>
+<li>一次性密钥：只用来加密单条消息，例如加密邮件的时候，每个邮件都生成一个新密钥</li>
+<li>重复使用密钥：用来加密多条消息，例如加密文件的时候，一个密钥用于若干个文件，需要一些额外工作确保这样的加密系统是安全的</li>
+</ul>
+<p>密码学的局限性：</p>
+<ul>
+<li>并不能完全保证安全，对软件漏洞和社工无效</li>
+<li>需要正确使用，一个例子是加密WiFi通信的WEP</li>
+<li>使用密码学原语，而非创造</li>
+</ul>
+<h2 id="What-is-Cryptography"><a href="#What-is-Cryptography" class="headerlink" title="What is Cryptography?"></a>What is Cryptography?</h2><p>密码学核心：安全通信</p>
+<ul>
+<li>安全密钥构造</li>
+<li>安全通信</li>
+</ul>
+<p>密码学的其他应用：</p>
+<ul>
+<li>数字签名</li>
+<li>匿名通信</li>
+<li>匿名数字货币<ul>
+<li>支付数字货币而保持匿名</li>
+<li>实现该功能的同时避免双花</li>
+</ul>
+</li>
+<li>结合抽象协议<ul>
+<li>选举：既知道被选中的是谁，又不知道每个人投了谁——引入选举中心计票</li>
+<li>私有拍卖：采用Victory拍卖（价高者得，二价支付），需要公开出价最高的身份和出价第二高的价格，其余信息保密——引入拍卖中心统计</li>
+<li>安全多方计算：输出函数计算的值，而对函数输入信息保密，例如前两个涉及的选票计算和拍卖计算——在密码学中可信第三方是不可靠的，系统也不应当引入这样的第三方，而是通过一些协议完成计算。</li>
+</ul>
+</li>
+<li>其他不太相关的应用<ul>
+<li>私有外包计算：Alice将一串关键词加密后发送给Google，Google无需知道原文即可根据加密关键词检索到加密结果并返回给Alice，Alice自行解密得到查询结果。</li>
+<li>零知识证明：Alice知道一个大数字N，也知道该数字可由两个素数P和Q相乘得到；Bob也知道N，但不知道P和Q，Alice可通过某方法向Bob证明自己确实知道P和Q，而无需让Bob也知道P和Q。</li>
+</ul>
+</li>
+</ul>
+<p>密码学的三个步骤：</p>
+<ul>
+<li>精确说明威胁模型，例如数字签名中的威胁模型是：攻击者如何对数字签名发起攻击，攻击者发动攻击的动机</li>
+<li>提出构造方案</li>
+<li>证明在特定威胁模型条件下，任何攻击者对该构造发起攻击都相当于求解一个很复杂的难题。</li>
+</ul>
+<h2 id="History-of-Cryptography"><a href="#History-of-Cryptography" class="headerlink" title="History of Cryptography"></a>History of Cryptography</h2><p>Alice和Bob试图安全对话，攻击者试图窃听，为确保安全，A和B使用加密器<code>(E,D)</code>，前者是加密算法，后者是解密算法。</p>
+<p>对称加密：加密和解密使用相同的密钥：</p>
+<ul>
+<li>$c=E(k,m)$表示用算法$E$和密钥$k$对消息$m$加密得到密文$c$</li>
+<li>$m:=D(k,c)$表示用算法$D$和密钥$k$对密文$c$解密得到消息$m$</li>
+</ul>
+<p>一些已破解的对称加密：</p>
+<ul>
+<li>替换加密：不同字母之间替换    </li>
+<li>凯撒密码是类似的方式。破解方式：字母频率、字母组合频率</li>
+<li>Vigener密码：密钥复制到明文的长度，明文的每一位和密钥的每一位相加再模26，破解方式也是频率</li>
+<li>转轮机（Rotor machine）</li>
+<li>数据加密标准DES</li>
+</ul>
+<p>一些仍有效的密码：AES、Salsa20 等</p>
+<h2 id="Section-2-crash-course-in-discrete-probability"><a href="#Section-2-crash-course-in-discrete-probability" class="headerlink" title="Section 2: crash course in discrete probability"></a>Section 2: crash course in discrete probability</h2><h3 id="Discrete-Probability"><a href="#Discrete-Probability" class="headerlink" title="Discrete Probability"></a>Discrete Probability</h3><p>定义：$U$：有限集，通常是$n$位二进制字符串集，用$\lbrace0,1\rbrace^n$表示，例如$\lbrace0,1\rbrace^2=\lbrace 00,01,10,11 \rbrace$</p>
+<p>定义：全集$U$上的概率分布是函数$P:U\rightarrow[0,1]$，该函数为全集中的每个元素分配一个0到1之间的数，该数称为该元素在全集中的权重或概率，$\sum_{x\in U}P(X)=1$</p>
+<p>分布的例子：</p>
+<ul>
+<li>均匀分布：各元素概率相等，即对于所有$x\in U$，$P(X)=1/|U|$</li>
+<li>在$x_0$的点分布：取值为$x_0$时概率为1，其他时候概率为0</li>
+</ul>
+<p>所有元素的概率分布都列出来可组成一个分布向量</p>
+<p>定义：考虑全集的一个子集$A$，$Pr[A]=\sum_{x\in A}P(X)\in[0,1]$，子集A被称为<strong>事件</strong>。注意：$Pr[U]=1$</p>
+<p>例：$U=\lbrace0,1\rbrace^8, A=\lbrace all\ x\ in\ U such\ that\ lsb_2(x)=11\rbrace\subseteq U$，$lsb_2$是最低两位的意思，这里A是最低两位是11的8位二进制数，若$U$是均匀分布，则$Pr[A]=0.25$</p>
+<p>定义：联合边界：对于事件$A_1$和$A_2$，$Pr[A_1\cup A_2]\leq Pr[A_1]+Pr[A_2]$，当且仅当$A_1\cap A_2=\emptyset$时取等号。</p>
+<p>例：$A_1=\lbrace all\ x\ in\ \lbrace 0,1\rbrace^n \ s.t.\ lsb_2(x)=11\rbrace, A_1=\lbrace all\ x\ in\ \lbrace 0,1\rbrace^n \ s.t.\ msb_2(x)=11\rbrace$</p>
+<p>$Pr[lsb_2(x)=11\ or\ msb_2(x)=11]=Pr[A_1\cap A_2]\leq\frac{1}{4}+\frac{1}{4}=\frac{1}{2}$</p>
+<p>定义：随机变量：一个随机变量$X$是一个从全集映射到某个集合V的函数$X:U\rightarrow V$，集合V被称为随机变量的值域。</p>
+<p>例：$X:\lbrace0,1\rbrace^n\rightarrow\lbrace0,1\rbrace$; $X(y)=lsb(y)\in\lbrace0,1\rbrace$，对于该映射，当U是均匀分布时，可知$Pr[X=0]=Pr[X=1]=\frac{1}{2}$</p>
+<p>更一般地，一个随机变量X从集合V中取值，则该随机变量实际上生成了集合V的概率分布：$Pr[X=v]:=Pr[X^{-1}(v)]$，含义：随机变量输出v的概率等同于从全集中随机抽取一个元素，对其施加函数X，然后判断其输出v的概率。换言之，我们X输出v的概率，就等于从全集中抽一个元素，正好落在v在函数X下的原像中。</p>
+<p>定义：均匀随机变量：假定U是某有限集，例$\lbrace 0,1 \rbrace^n$，则用$r\stackrel{R}\leftarrow U$表示U上的均匀随机变量，对于所有$a\in U: Pr[r=a]=1/|U|$。这里$\stackrel{R}\leftarrow$表示均匀抽样。正式来说，$r$是恒等函数，对于所有$x\in U$而言，$r(x)=x$。</p>
+<ul>
+<li>确定性算法：给定输入，总产生固定的输出：$y\leftarrow A(m)$</li>
+<li>随机化算法：输入的除了给定的m，还有一个隐形参数r，每次执行算法时会重新抽取，因此每次输出会改变，$y\leftarrow A(m;r)\ where\ r\stackrel{R}\leftarrow \lbrace 0,1 \rbrace^n$，即$y\stackrel{R}\leftarrow A(m)$</li>
+</ul>
+<p>例：用随机字符串k来加密输入的消息m，$A(m;k)=F(k,m), y\stackrel{R}\leftarrow A(m)$</p>
+<p>定义：独立性：当$Pr[A\ and\ B]=Pr[A]\cdot Pr[B]$时，事件A和B独立。当$\forall a,b\in V:Pr[X=a\ and\ Y=b]=Pr[X=a]\cdot Pr[Y=b]$时，从集合V中取值的随机变量X和Y独立。</p>
+<p>例：$U=\lbrace 0,1\rbrace^2=\lbrace 00,01,10,11 \rbrace$且$r\stackrel{R}\leftarrow U$，定义随机变量X和Y为$X=lsb(r),Y=msb(r)$，则$Pr[X=0\ and\ Y=0]=Pr[r=00]=\frac{1}{4}=Pr[X=0]\cdot Pr[Y=0]$</p>
+<p>定义：异或XOR：两个$\lbrace 0,1\rbrace^n$上的字符串执行异或操作是指按位加并模2，例如$0110111\oplus 1011010=1101101$。</p>
+<p>定理：异或的属性：Y是$\lbrace 0,1\rbrace^n$上的随机变量，X是$\lbrace 0,1\rbrace^n$上的独立均匀分布变量，则$Z:=Y\oplus X$是$\lbrace 0,1\rbrace^n$上的均匀变量。</p>
+<p>证明（$n=1$）：$Pr[Y=0]=P_0,Pr[Y=1]=P_1, Pr[X=0]=Pr[X=1]=0.5$，联合分布如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Y</th>
+<th>X</th>
+<th>Pr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>$0.5P_0$</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>$0.5P_0$</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>$0.5P_1$</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>$0.5P_1$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>$Pr[Z=0]=Pr[(0,0)or(1,1)]=0.5P_0+0.5P_1=0.5$，类似地，$Pr[Z=1]=0.5$。</p>
+<p>生日悖论：令$r_1,…,r_n\in U$表示独立同分布的随机变量，则当$n=1.2\times |U|^{\frac{1}{2}}$时$Pr[\exists i\neq j:r_i=r_j]\geq \frac{1}{2}$。</p>
+<p>例：$U=\lbrace 0,1 \rbrace^{128}$，采样约$2^{64}$随机消息，则其中两个消息很有可能相同。</p>
+<p>现实一些的例子：多少人聚在一起会有至少两个人的生日相同？一年365天，因此是$1.2\sqrt{365}\approx 23$</p>
+<h2 id="Stream-Ciphers-1-the-one-time-pad-and-stream-ciphers"><a href="#Stream-Ciphers-1-the-one-time-pad-and-stream-ciphers" class="headerlink" title="Stream Ciphers 1: the one-time pad and stream ciphers"></a>Stream Ciphers 1: the one-time pad and stream ciphers</h2><h3 id="Information-Theoretic-Security-and-The-One-Time-Pad"><a href="#Information-Theoretic-Security-and-The-One-Time-Pad" class="headerlink" title="Information Theoretic Security and The One Time Pad"></a>Information Theoretic Security and The One Time Pad</h3><h3 id="Stream-Ciphers-and-Pseudo-Random-Generators"><a href="#Stream-Ciphers-and-Pseudo-Random-Generators" class="headerlink" title="Stream Ciphers and Pseudo Random Generators"></a>Stream Ciphers and Pseudo Random Generators</h3> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kunlii.github.io/blog/2023/12/04/Cryptography%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-Week%201_Course%20overview%20and%20stream%20ciphers/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Cryptography/" rel="tag">Cryptography</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/blog/2023/12/06/LLM+%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%E6%80%BB%E7%BB%93/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            LLM+隐私保护总结
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2023/11/24/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-Privacy-Preserving%20Prompt%20Tuning%20for%20Large%20Language%20Model%20Services/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">论文记录-Privacy-Preserving Prompt Tuning for Large Language Model Services</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "VqvB5y0diPuBd9JFy4kQbHxz-gzGzoHsz",
+    app_key: "Gmmb4mTXjSDf8ndcJ0ex4Ufi",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2026
+        <i class="ri-heart-fill heart_icon"></i> Kun Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/blog/"><img src="/blog/images/ayer.png" alt="左边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/blog/friends">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/blog/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/blog/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/blog/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/blog/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/blog/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+<div id="waifu">
+    <div id="waifu-message"></div>
+    <div class="waifu-tool">
+        <span class="icon-next"></span>
+        <span class="icon-home"></span>
+        <span class="icon-message"></span>
+        <span class="icon-camera"></span>
+        <span class="icon-volumeup"></span>
+        <span class="icon-volumedown"></span>
+        <span class="icon-about"></span>
+        <span class="icon-cross"></span>
+    </div>
+    <canvas id="live2d2" style="top:150px"></canvas>
+    <canvas id="live2d4" style="top:150px"></canvas>
+</div>
+<!--    src 中改为你存放的路径    -->
+<script src="/blog/dist/live2d_bundle.js"></script>
+<script async type="module" src="/blog/js/waifu-tips.js"></script>
+
+</body>
+
+</html>
