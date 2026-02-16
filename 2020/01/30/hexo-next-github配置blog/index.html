@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">12.6k</span>
+            <span class="post-count">12.7k</span>
         </span>
     </span>
 
@@ -365,6 +365,9 @@
 <li>回到本地的博客文件夹里，打开git终端，输入<code>git remote add private git@github.com:用户名/仓库名.git</code>。这一步是给本地仓库添加远程仓库名为private。</li>
 <li>本地放博客源文件的分支名是<code>origin/hexo</code>，远程的是<code>privae/master</code>，执行<code>git push -f -u private hexo:master</code>实现将本地的源文件推送到远程private仓库。最开始用的是<code>git push -u private master</code>但是没成功推送所有文件，只传了个gitnore文件，改用新的强制更新后就好了起来。</li>
 <li>这样一番操作后，本地再次<code>git push</code>的时候，会报错，说上下游分支名称不一样，需要在git终端里输入<code>git config push.default upstream</code>，之后再进行<code>git push</code>就可以了。</li>
+<li>到这里新的仓库都没有问题了，但我们还需要把旧的那个远程分支删了，以免遗留文件泄露密码，可以在GitHub页面上先把博客仓库的默认分支改回master（因为之前为了方便把hexo设置成默认了）。</li>
+<li>在本地的git终端输入<code>git remote prune origin</code>来去除旧的不再需要的远程引用。</li>
+<li>可以通过<code>git push origin --delete hexo</code>删除远程仓库那个不再需要的hexo分支，也可以直接在Github网页上操作来删除分支。</li>
 </ol>
 <h2 id="新版live2d"><a href="#新版live2d" class="headerlink" title="新版live2d"></a>新版live2d</h2><p>前面的内容提到了hexo本身可以安装插件并设置live2d的开关，打开以后加载对应模型就能显示了，但是在实际使用的过程中，我发现它支持的是旧版本的live2d，无法显示新版本的，因此研究一番试图加载新版本的。</p>
 <p>首先简单说明一下，目前市面上的live2d模型有3个版本，最古老的是2.0版本，它只能用旧版的live2d cubism生成（官网没有对应的版本了），其次是3.0版本，它能用目前所有版本的<a href="https://www.live2d.com/zh-CHS/" target="_blank" rel="noopener">Live2D Cubism</a>软件生成，最新的是4.0版本，能用最新的live2d cubisim制作。虽然可以用同一个软件制作，但是3.0和4.0是不同的，差别在于sdk版本。它们在live2d的模型配置文件（.model.json）中的version都是3，然而用live2d cubism viewer打开查看moc3文件的信息就能发现sdk版本的差异了，这也导致网页渲染的时候要用不同的东西。</p>
