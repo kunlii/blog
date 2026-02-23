@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">12.2k</span>
+            <span class="post-count">13k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">50 分钟</span>
+            <span class="post-count">54 分钟</span>
         </span>
     </span>
 </div>
@@ -97,7 +97,7 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h2 id="安装各种东西"><a href="#安装各种东西" class="headerlink" title="安装各种东西"></a>安装各种东西</h2><ol>
-<li><p>node.js：<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js官网链接</a> 点击下载安装即可。</p>
+<li><p>node.js：<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js官网链接</a> 点击下载安装即可。注意不要装最新版本。</p>
 </li>
 <li><p>Git： <a href="https://www.git-scm.com/download/win" target="_blank" rel="noopener">Git官网链接</a> 点击下载安装即可。</p>
 </li>
@@ -140,6 +140,8 @@
 <li><p>发布博客页面：命令行里输入<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>，这等于一次性执行了清空、刷新、部署三个命令，此时在浏览器里已经可以通过<code>用户名.github.io</code>访问博客了，在github的这个仓库里也能看到<strong>/blog/public</strong>文件夹里的内容。</p>
 </li>
 <li><p>可选：<code>hexo d</code>只是把public文件夹中的内容（也就是静态网页）传到了github的仓库里，应该还可以建立分支把博客配置文件整个传到github上，不过我没做这一步。</p>
+</li>
+<li><p>如果hexo d的时候遇到奇怪报错，就用<code>node -v</code>和<code>hexo -v</code>来检查node和hexo的版本，大概率是有至少一个的版本被更新了，通常是node.js的版本，可以卸载并去官网下载安装旧版本的。</p>
 </li>
 </ol>
 <h2 id="关于next主题的配置"><a href="#关于next主题的配置" class="headerlink" title="关于next主题的配置"></a>关于next主题的配置</h2><p>目前在blog文件夹里有一个config.yml文件，我们称之为站点配置文件；而在themes/next文件夹里也有一个config.yml文件，称之为主题配置文件。</p>
@@ -356,6 +358,21 @@
 </li>
 <li><p>以上操作也可以通过github的桌面版程序来完成，还挺方便。</p>
 </li>
+</ol>
+<h3 id="用另一个仓库存源文件"><a href="#用另一个仓库存源文件" class="headerlink" title="用另一个仓库存源文件"></a>用另一个仓库存源文件</h3><p>有一些页面只是作为个人记录，并不希望开放查阅，因此设置了密码，但是这两天忽然意识到，因为分支同步了源文件，所以网页端的密码形同虚设，而GitHub Page又不能免费改私有，因此我应该把源文件同步到一个私有仓库，而不是博客仓库的另一个分支。操作流程如下：</p>
+<ol>
+<li>先在Github的网页端新建一个什么都没有的私有仓库，我这里命名是blog_source。</li>
+<li>回到本地的博客文件夹里，打开git终端，输入<code>git remote add private git@github.com:用户名/仓库名.git</code>。这一步是给本地仓库添加远程仓库名为private。</li>
+<li>本地放博客源文件的分支名是<code>origin/hexo</code>，远程的是<code>privae/master</code>，执行<code>git push -f -u private hexo:master</code>实现将本地的源文件推送到远程private仓库。最开始用的是<code>git push -u private master</code>但是没成功推送所有文件，只传了个gitnore文件，改用新的强制更新后就好了起来。</li>
+<li>这样一番操作后，本地再次<code>git push</code>的时候，会报错，说上下游分支名称不一样，需要在git终端里输入<code>git config push.default upstream</code>，之后再进行<code>git push</code>就可以了。</li>
+<li>到这里新的仓库都没有问题了，但我们还需要把旧的那个远程分支删了，以免遗留文件泄露密码，可以在GitHub页面上先把博客仓库的默认分支改回master（因为之前为了方便把hexo设置成默认了）。</li>
+<li>在本地的git终端输入<code>git remote prune origin</code>来去除旧的不再需要的远程引用。</li>
+<li>可以通过<code>git push origin --delete hexo</code>删除远程仓库那个不再需要的hexo分支，也可以直接在Github网页上操作来删除分支。</li>
+<li>其他设备上的博客文件夹也需要相应地进行更新，首先在博客文件夹下的git bash中输入<code>git status</code>和<code>git branch</code>，前者用于确定有没有修改了但没提交的，如果有则需要先备份提交，后者用于确认当前所属分支确实是博客源文件的分支hexo而非其它分支，如果在其它分支则输入<code>git checkout hexo</code>来切换到hexo分支。</li>
+<li>与第2步一样，输入<code>git remote add private 私有仓库URL</code>来添加一个远程仓库，此时运行<code>git remote -v</code>可以看到两个仓库分别是orgin和hexo。</li>
+<li>输入<code>git fetch private master</code>获取远程仓库的master分支的最新提交，如果源文件所在仓库分支不是master则需要用对应的分支名称。</li>
+<li>输入<code>git merge private/master --allow-unrelated-histories</code>把两个分支合并，这期间如果有冲突就备份文件后用git stash解决冲突。</li>
+<li>输入<code>git branch --set-upstream-to=private/master hexo</code>将本地 <code>hexo</code> 分支的上游设置为 <code>private/master</code>，现在，在 <code>hexo</code> 分支上直接运行 <code>git push</code> 就会推送到私有仓库的 <code>master</code> 分支。同样需要<code>git config push.default upstream</code>来去掉上下游名称不同的报错。</li>
 </ol>
 <h2 id="新版live2d"><a href="#新版live2d" class="headerlink" title="新版live2d"></a>新版live2d</h2><p>前面的内容提到了hexo本身可以安装插件并设置live2d的开关，打开以后加载对应模型就能显示了，但是在实际使用的过程中，我发现它支持的是旧版本的live2d，无法显示新版本的，因此研究一番试图加载新版本的。</p>
 <p>首先简单说明一下，目前市面上的live2d模型有3个版本，最古老的是2.0版本，它只能用旧版的live2d cubism生成（官网没有对应的版本了），其次是3.0版本，它能用目前所有版本的<a href="https://www.live2d.com/zh-CHS/" target="_blank" rel="noopener">Live2D Cubism</a>软件生成，最新的是4.0版本，能用最新的live2d cubisim制作。虽然可以用同一个软件制作，但是3.0和4.0是不同的，差别在于sdk版本。它们在live2d的模型配置文件（.model.json）中的version都是3，然而用live2d cubism viewer打开查看moc3文件的信息就能发现sdk版本的差异了，这也导致网页渲染的时候要用不同的东西。</p>

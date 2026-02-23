@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">9.1k</span>
+            <span class="post-count">9.8k</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">36 分钟</span>
+            <span class="post-count">39 分钟</span>
         </span>
     </span>
 </div>
@@ -189,6 +189,15 @@ h_i(\boldsymbol{\lambda},\tilde{\boldsymbol{\theta}})=\max_{\boldsymbol{x}-i}\ma
 </li>
 </ol>
 <p>其中，$\epsilon\frac{P_{\Theta_{-i}}(\tilde{\theta}_{-i}|\tilde{\theta}_i)}{\left|P_{\Theta_{-i}}(\tilde{\theta}_{-i}|\tilde{\theta}_i)\right|_2}$是奖励函数，$\epsilon$是待设计的正近似系数，$x_{-i}=\{x_j\}_{j\neq i}$，且$\mathcal{X}_{-i}=\{x_{-i}:\sum_{j\in\mathcal{I},j\neq i}x_{j,n}\leq C_n,\forall n\in\mathcal{N},x_{j,n}\geq0,\forall n\in\mathcal{N},\forall j\neq i\}$。</p>
+<p>分析一下$h_i$这个函数，它有三部分组成：</p>
+<ol>
+<li>$\max_{\boldsymbol{x}-i}\max_{\boldsymbol{j}\neq\boldsymbol{i}}\sum_{\boldsymbol{n}\in\boldsymbol{N}}f(x_{j,\boldsymbol{n}},\lambda_{j,\boldsymbol{n}})$ 表示当用户$i$ <strong>完全不参与</strong>机制时，其他所有用户能获得的最大代理函数值之和，用来衡量用户$i$的参与对其他用户造成的影响。</li>
+<li>$\sum_{j\neq i}\sum_{n\in\mathcal{N}}f(x_{j,n}^<em>(\boldsymbol{\lambda}),\lambda_{j,n})$ 表示用户$i$ <strong>参与机制</strong>时，其他用户在<em>*实际最优分配</em></em> $x^\ast(\lambda)$ 下获得的代理函数值之和。</li>
+<li>$\epsilon\frac{P_{\Theta_{-i}}(\tilde{\boldsymbol{\theta}}_{-i}|\tilde{\boldsymbol{\theta}}_i)}{\left|P_{\Theta_{-i}}(\tilde{\boldsymbol{\theta}}_{-i}|\tilde{\boldsymbol{\theta}}_i)\right|_2}$ 这部分是对用户的奖励，分子部分是给定用户i的报告，其余用户会报告$\tilde{\boldsymbol{\theta}}_{-i}$的条件概率，分母是这个条件概率的L2范数，分母实际上是计算$\sqrt(\sum_{\theta_i}[P_{\Theta_{-i}}(\tilde{\boldsymbol{\theta}}_{-i}|\tilde{\boldsymbol{\theta}}_i)])$。这里分子除分母的作用是归一化，之所以要归一化，是为了避免概率值非常小以至于起不到调节的作用。</li>
+</ol>
+<p>传统的VCG机制是观察用户$i$的参与前后对其它用户收益的影响，也就是这个函数中的第一项减去第二项，而第三项是用于激励用户说真话。</p>
+<p>而代理函数在这里的作用，按我的理解就是替代掉各用户的收益函数。因为每个用户的收益函数都不同，且是私有信息，让大家都上报收益函数也会带来复杂的运算，因此由平台公开一个代理函数的形式，比如是对数函数$\lambda log(x)$，然后用户上报自己的估值$x$以及对数函数参数值$\lambda$，显然参数的大小能体现出用户估值对代理函数结果的边际影响，例如参数很大时，边际影响就也会很大。模型中用户的支付函数也直接与这个代理函数挂钩，相当于这里不关心用户的真实收益，只关心用户估值变化后带来的边际影响。</p>
+<p>VCG机制的思路是，一个用户应该支出的是：它不在该机制中时其它个体在有效分配下的社会福利之和，减去它在该机制中时其他个体在有效分配下的社会福利之和。也就是说，个体支付的本质是是它给社会（其他个体）带来的负外部性。回到这里的公式中，一个用户应该支出的还减去了它在机制中时会得到的奖励函数。</p>
 <h4 id="直观感受"><a href="#直观感受" class="headerlink" title="直观感受"></a>直观感受</h4><p>用户提交投标从而基于平台预设的代理函数$f(x,\lambda)$决定他们的分配和收益情况。给定函数$f(x,\lambda)$，用户仅需在第二阶段向平台提交N维信息，通信负担很小。此外，在均衡的情况下，满足一定条件的代理函数能够刺激用户提交其边际效用满足特定条件的出价，从而提高均衡时的分配效率（E1）。另一方面，(5) 中设计的支付结构限制了每个用户通过虚假报告操纵 (4) 和 (5) 中结果的能力（将在第 4.3 节中说明）；(5) 中的奖励函数用于诱导每个用户真实地获取感官数据 (E2)。(5) 中奖励函数的选择依赖于$P_{\Theta_i}(\cdot|\cdot)$的设计，可根据第 5 节中说明的系统模型推导得出。</p>
 <h4 id="代理函数"><a href="#代理函数" class="headerlink" title="代理函数"></a>代理函数</h4><p>为了实现（或近似实现）属性（E1）-（E4），平台选择代理函数来满足以下正则条件：</p>
 <p>定义1：正则。如果一个代理函数满足以下条件，则称它是正则的：</p>
