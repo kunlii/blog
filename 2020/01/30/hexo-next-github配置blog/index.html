@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">13k</span>
+            <span class="post-count">13.1k</span>
         </span>
     </span>
 
@@ -261,17 +261,18 @@
 </ol>
 <p><img src="https://i.loli.net/2021/02/27/4TRVLa5sFIzktBX.png" alt="image-20210227190056808"></p>
 <h2 id="如何发布新的博客"><a href="#如何发布新的博客" class="headerlink" title="如何发布新的博客"></a>如何发布新的博客</h2><ol>
-<li><p>在blog文件夹的命令行里输入<code>hexo new &quot;标题&quot;</code>，然后进入<code>/blog/sources/_post/</code>找到对应的markdown文件就可以开始写了，也可以直接在这个文件夹下新建一个markdown文件，然后添加对应的文件头。写博客的时候根据需求在文件头里填写tags和categories的信息，然后hexo会自动建立好tags和categories的内容并给文章分类。</p>
-<p>文件头信息如下编写：</p>
+<li>在blog文件夹的命令行里输入<code>hexo new &quot;标题&quot;</code>，然后进入<code>/blog/sources/_post/</code>找到对应的markdown文件就可以开始写了，也可以直接在这个文件夹下新建一个markdown文件，然后添加对应的文件头。写博客的时候根据需求在文件头里填写tags和categories的信息，然后hexo会自动建立好tags和categories的内容并给文章分类。文件头信息如下编写：</li>
+</ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title:</span><br><span class="line">date:</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>写好以后保存，然后还是blog文件夹的命令行，输入<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>，就发布成功了。</p>
+<ol>
+<li>写好以后保存，然后还是blog文件夹的命令行，输入<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>，就发布成功了。</li>
+<li><p>顺带一提，时隔两年之后，在文章越来越多的情况下，我发现每次<code>hexo clean</code>都要等很久，而<code>hexo g</code>也要重新生成大量内容，一番搜索以后发现，原来不需要每次都clean，只有在遇到网页同步后内容仍然没更新的情况才需要用clean清除缓存，正常情况g命令会进行增量更新。所以在做了改动之后只需要<code>hexo g</code>和<code>hexo g</code>。</p>
 </li>
 <li><p>如果一个文章想设置多个标签，那么在编写文件头信息的时候，要按下面的方式写：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tags:</span><br><span class="line">    - tag1</span><br><span class="line">    - tag2</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<p>这里<code>tags:</code> 后面一定要换行，下面的<code>-</code>后面注意有空格。</p>
 </li>
 </ol>
+<p>这里<code>tags:</code> 后面一定要换行，下面的<code>-</code>后面注意有空格。</p>
 <h2 id="一些后续问题"><a href="#一些后续问题" class="headerlink" title="一些后续问题"></a>一些后续问题</h2><p>今天（2020.03.16）突然发现当博客内容多起来以后，首页会有翻页，而翻页图标显示是乱的，查了一下发现要改<code>/Blog/themes/next/layout/_partials/pagination.swig</code>这个文件，内容整体替换成下面的：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if page.prev or page.next %&#125;</span><br><span class="line"> <span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"pagination"</span>&gt;</span></span><br><span class="line">&#123;&#123;</span><br><span class="line">  paginator(&#123;</span><br><span class="line">    prev_text: '<span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-angle-left"</span> <span class="attr">aria-label</span>=<span class="string">"'+__('accessibility.prev_page')+'"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>',</span><br><span class="line">    next_text: '<span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-angle-right"</span> <span class="attr">aria-label</span>=<span class="string">"'+__('accessibility.next_page')+'"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>',</span><br><span class="line">    mid_size: 1,</span><br><span class="line">    escape: false</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="SSH登录配置"><a href="#SSH登录配置" class="headerlink" title="SSH登录配置"></a>SSH登录配置</h2><p>每次<code>hexo d</code>的时候都要输入用户名和密码会很麻烦，所以今天做了一下这个。</p>
