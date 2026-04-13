@@ -1,3 +1,7 @@
+https://kunlii.github.io/blog/2026/04/13/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-CMIR%20Detecting%20Cross-Modal%20Inconsistency%20and%20Privacy%20Risks%20in%20Multimodal%20Inputs%20for%20Large%20Language%20Model%20Systems/
+https://kunlii.github.io/blog/2026/04/13/%E6%9C%AA%E5%91%BD%E5%90%8D/
+https://kunlii.github.io/blog/2026/04/13/vscode%20+%20claude%20code%20+%20qwen%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE/
+https://kunlii.github.io/blog/2020/06/06/vscode%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E9%85%8D%E7%BD%AE/
 https://kunlii.github.io/blog/2020/01/30/hexo-next-github%E9%85%8D%E7%BD%AEblog/
 https://kunlii.github.io/blog/2026/04/06/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E8%87%AA%E6%9F%A5%E6%B8%85%E5%8D%95/
 https://kunlii.github.io/blog/2026/04/06/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E6%92%B0%E5%86%99%E6%8C%87%E5%8D%97/
@@ -98,7 +102,6 @@ https://kunlii.github.io/blog/2022/05/29/%E8%8E%B7%E5%8F%96B%E7%AB%99%E8%A7%86%E
 https://kunlii.github.io/blog/2020/07/07/typora%E5%9B%BE%E5%BA%8A%E5%8A%9F%E8%83%BD%E8%AE%BE%E7%BD%AE/
 https://kunlii.github.io/blog/2020/04/22/python%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-9/
 https://kunlii.github.io/blog/2021/02/11/%E4%BB%99%E5%A2%83%E4%B9%8B%E5%A4%9C%E6%94%BB%E7%95%A5%E8%AE%B0%E5%BD%95/
-https://kunlii.github.io/blog/2020/06/06/vscode%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E9%85%8D%E7%BD%AE/
 https://kunlii.github.io/blog/2020/03/11/python%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-3/
 https://kunlii.github.io/blog/2020/03/23/python%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-4/
 https://kunlii.github.io/blog/2020/04/01/python%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95-6/
